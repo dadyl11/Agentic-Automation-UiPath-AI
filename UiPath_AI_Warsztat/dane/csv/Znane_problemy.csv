@@ -1,0 +1,5 @@
+﻿issueId;service;description;workaround;status
+KI-001;sales;Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.;Podziel raport na okresy nie dłuższe niż 31 dni.;INVESTIGATING
+KI-002;billing;Lista faktur jest pusta z powodu aktywnego filtra dat obejmującego wyłącznie bieżący dzień.;Sprawdź filtr dat i wybierz okres, w którym wystawiono fakturę.;KNOWN
+KI-003;portal;Logowanie po zmianie hasła nie działa w starej sesji przeglądarki.;Zamknij sesję i ponownie otwórz stronę logowania.;KNOWN
+KI-004;sales;Podgląd wykresu sprzedaży nie odświeża się po zmianie regionu.;Ponownie otwórz widok raportu.;KNOWN

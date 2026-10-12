@@ -1,0 +1,7 @@
+﻿id;tekst A;tekst B;oczekiwane;uwagi;wynik score (wpisz)
+SIM-01;Od wczoraj eksport raportu sprzedaży kończy się błędem 500. Wybrałam okres ostatnich 60 dni. Potrzebuję go na spotkanie.;Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.;MATCH;REQ-001 (DEVELOPMENT);
+SIM-02;Przy eksporcie sprzedaży za cały kwartał dostaję komunikat Internal Server Error.;Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.;MATCH;Parafraza kalibracyjna spoza zestawu zgłoszeń;
+SIM-03;Raport sprzedaży za ostatni tydzień eksportuje się do CSV bez nagłówków kolumn. Błędu nie ma.;Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.;NO_MATCH;"Podobny temat, inna przyczyna; tekst kalibracyjny spoza zestawu zgłoszeń";
+SIM-04;Czy możecie dodać ciemny motyw interfejsu? Wieczorem portal razi w oczy.;Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.;NO_MATCH;REQ-006 (DEVELOPMENT);
+SIM-05;Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.;Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.;MATCH;Tekst identyczny: górna granica skali;
+SIM-06;Zakładka Faktury jest pusta, a powinny być tam dokumenty. Nie widzę komunikatu błędu.;Lista faktur jest pusta z powodu aktywnego filtra dat obejmującego wyłącznie bieżący dzień.;MATCH;REQ-009 (DEVELOPMENT), kandydat KI-002 do weryfikacji;

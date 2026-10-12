@@ -1,0 +1,88 @@
+{
+  "version": "2.0",
+  "resources": [
+    {
+      "resource": "process",
+      "key": "FindKnownIssue_Zapas",
+      "value": {
+        "name": {
+          "defaultValue": "FindKnownIssue_Zapas",
+          "isExpression": false,
+          "displayName": "Process name"
+        },
+        "folderPath": {
+          "defaultValue": "Shared",
+          "isExpression": false,
+          "displayName": "Folder path"
+        }
+      },
+      "metadata": {
+        "subType": "process",
+        "bindingsVersion": "2.2",
+        "solutionsSupport": "true"
+      }
+    },
+    {
+      "resource": "process",
+      "key": "GetServiceStatus_Zapas",
+      "value": {
+        "name": {
+          "defaultValue": "GetServiceStatus_Zapas",
+          "isExpression": false,
+          "displayName": "Process name"
+        },
+        "folderPath": {
+          "defaultValue": "Shared",
+          "isExpression": false,
+          "displayName": "Folder path"
+        }
+      },
+      "metadata": {
+        "subType": "process",
+        "bindingsVersion": "2.2",
+        "solutionsSupport": "true"
+      }
+    },
+    {
+      "resource": "process",
+      "key": "GetTicketStatus_Zapas",
+      "value": {
+        "name": {
+          "defaultValue": "GetTicketStatus_Zapas",
+          "isExpression": false,
+          "displayName": "Process name"
+        },
+        "folderPath": {
+          "defaultValue": "Shared",
+          "isExpression": false,
+          "displayName": "Folder path"
+        }
+      },
+      "metadata": {
+        "subType": "process",
+        "bindingsVersion": "2.2",
+        "solutionsSupport": "true"
+      }
+    },
+    {
+      "resource": "index",
+      "key": "Northstar_KB",
+      "value": {
+        "name": {
+          "defaultValue": "Northstar_KB",
+          "isExpression": false,
+          "displayName": "Index Name"
+        },
+        "folderPath": {
+          "defaultValue": "Shared",
+          "isExpression": false,
+          "displayName": "Folder path"
+        }
+      },
+      "metadata": {
+        "bindingsVersion": "2.2",
+        "solutionsSupport": "true"
+      }
+    }
+  ]
+}

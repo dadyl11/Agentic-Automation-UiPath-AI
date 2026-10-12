@@ -1,0 +1,11 @@
+{
+  "fileName": "exact-humanreview.json",
+  "id": "8f31ee54-0487-4fca-b004-0e9053ea75fc",
+  "name": "Exact match: humanReview",
+  "description": "Dokładna zgodność pola humanReview z oczekiwanym wynikiem.",
+  "category": 0,
+  "type": 1,
+  "targetOutputKey": "humanReview",
+  "createdAt": "2026-10-09T14:21:32.000Z",
+  "updatedAt": "2026-10-09T14:21:32.000Z"
+}

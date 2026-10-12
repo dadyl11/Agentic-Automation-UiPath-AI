@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Przewodnik po plikach</title>
+<style>
+:root { --ink:#142F47; --accent:#087F8C; --muted:#536878; --line:#C9D3DB; --bg:#F6F5F0; --card:#FFFFFF; --head:#142F47; --headtxt:#FFFFFF; --zebra:#EDF1F3; --warn:#D9822B; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ink:#E3EAF0; --accent:#6AD1CE; --muted:#A9BCCB; --line:#33495C; --bg:#0F1B26; --card:#162636; --head:#22405C; --headtxt:#FFFFFF; --zebra:#1B2E40; --warn:#E8A15A; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font: 16px/1.55 'Segoe UI', Calibri, system-ui, sans-serif; }
+main { max-width: 900px; margin: 0 auto; padding: 32px 16px 64px; }
+nav#TOC { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px 20px; margin-bottom:32px; }
+nav#TOC::before { content:'Spis treści'; display:block; font-weight:700; color:var(--accent); margin-bottom:4px; }
+nav#TOC ul { margin:0; padding-left:18px; columns: 2; column-gap: 32px; }
+nav#TOC a { color:var(--ink); text-decoration:none; }
+nav#TOC a:hover { color:var(--accent); }
+h1 { font-size: 1.7rem; border-bottom: 3px solid var(--accent); padding-bottom: 6px; margin: 56px 0 14px; }
+h1:first-of-type { margin-top: 0; }
+h2 { font-size: 1.25rem; color:var(--accent); margin-top: 30px; border-left: 4px solid var(--accent); padding-left: 10px; }
+h3 { font-size: 1.05rem; margin: 20px 0 6px; }
+h4 { font-size: .85rem; letter-spacing: .06em; color:var(--accent); margin: 22px 0 6px; }
+p { margin: 6px 0; }
+ol, ul { padding-left: 24px; }
+li { margin: 3px 0; }
+code { background: var(--zebra); padding: 1px 5px; border-radius: 4px; font-size: .9em; }
+pre { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 6px; padding: 12px 14px; overflow-x: auto; white-space: pre-wrap; }
+pre code { background: none; padding: 0; font-size: .88rem; }
+blockquote { margin: 14px 0; padding: 10px 14px; background: var(--zebra); border-left: 4px solid var(--warn); border-radius: 6px; }
+blockquote p { margin: 2px 0; }
+.tablewrap { overflow-x: auto; margin: 10px 0; }
+table { border-collapse: collapse; width: 100%; background: var(--card); font-size: .92rem; }
+th { background: var(--head); color: var(--headtxt); text-align: left; padding: 6px 9px; }
+td { border: 1px solid var(--line); padding: 6px 9px; vertical-align: top; }
+tr:nth-child(even) td { background: var(--zebra); }
+table.card td { background: var(--card); }
+table.card td:first-child { width: 150px; font-weight: 600; color: var(--accent); }
+.diagram { margin: 14px 0; overflow-x: auto; }
+.diagram svg { display: block; max-width: 100%; height: auto; }
+footer { max-width:900px; margin:0 auto; padding: 0 16px 32px; color: var(--muted); font-size: .85rem; }
+@media (max-width: 640px) { nav#TOC ul { columns: 1; } h1 { font-size: 1.4rem; } table.card td:first-child { width: auto; } }
+@media print {
+  @page { size: A4; margin: 18mm 16mm 20mm; @bottom-center { content: 'UiPath AI | Northstar | Materiał warsztatowy • 1.2 | str. ' counter(page); font-size: 8pt; color: #536878; } }
+  :root { --ink:#142F47; --accent:#087F8C; --line:#C9D3DB; --bg:#FFFFFF; --card:#FFFFFF; --zebra:#F2F5F7; --head:#142F47; }
+  body { font-size: 10.5pt; }
+  main { max-width: none; padding: 0; }
+  nav#TOC { break-after: page; border: none; padding: 0; }
+  h1 { break-before: page; margin-top: 0; font-size: 17pt; }
+  nav#TOC + h1, h1:first-of-type { break-before: auto; }
+  h1, h2, h3, h4 { break-after: avoid; }
+  tr, li, pre, blockquote, .diagram { break-inside: avoid; }
+  th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  footer { display: none; }
+}
+</style>
+</head>
+<body>
+<main>
+<nav id="TOC">
+<ul>
+<li><a href="#przewodnik-po-plikach--co-do-czego-służy"
+id="toc-przewodnik-po-plikach--co-do-czego-służy">Przewodnik po plikach
+| Co do czego służy</a></li>
+</ul>
+</nav>
+<h1 id="przewodnik-po-plikach--co-do-czego-służy">Przewodnik po plikach
+| Co do czego służy</h1>
+<p>Ściąga dla prowadzącego: który plik pakietu jest potrzebny w którym
+ćwiczeniu. Źródłem danych są pliki JSON; Excel, CSV i pliki „do
+wklejenia” są z nich generowane
+(<code>narzedzia_pakietu/make_tables.py</code>), więc po zmianie edytuj
+JSON i uruchom skrypt.</p>
+<h2 id="najkrócej-po-którą-rzecz-sięgnąć">Najkrócej: po którą rzecz
+sięgnąć</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Potrzebuję…</th>
+<th>Plik</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>treści zgłoszenia do wpisania w argumenty</td>
+<td><code>dane/Northstar_dane.xlsx</code>, arkusz <em>Zgloszenia</em>
+(albo tabela w instrukcji)</td>
+</tr>
+<tr>
+<td>promptu do skopiowania</td>
+<td><code>Prompty_Northstar.txt</code> (sekcje
+<code>##### nazwa</code>)</td>
+</tr>
+<tr>
+<td>pliku do wgrania do Orchestratora</td>
+<td><code>dane/sprawy.csv</code> → bucket Northstar_Rejestr (ćw.
+3A)</td>
+</tr>
+<tr>
+<td>dokumentu wiedzy dla agenta</td>
+<td><code>baza_wiedzy/Portal_Northstar.txt</code> → indeks Context
+Grounding (ćw. 4)</td>
+</tr>
+<tr>
+<td>evaluation setu do importu</td>
+<td><code>testy/import_Northstar_DEVELOPMENT.json</code> i
+<code>import_Northstar_HOLDOUT.json</code> (ćw. 5)</td>
+</tr>
+<tr>
+<td>oczekiwanych wyników do sprawdzenia</td>
+<td><code>testy/Northstar_testy.xlsx</code>, arkusz
+<em>Oczekiwane_wyniki</em></td>
+</tr>
+<tr>
+<td>kontraktu narzędzia (wejścia, wyjścia, statusy)</td>
+<td><code>kontrakty/narzedzia.md</code></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="pliki-według-ćwiczeń">Pliki według ćwiczeń</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Ćwiczenie</th>
+<th>Plik</th>
+<th>Do czego</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1A</td>
+<td>arkusz <em>Zgloszenia</em></td>
+<td>REQ-001, REQ-005, REQ-007 do argumentów</td>
+</tr>
+<tr>
+<td>1A</td>
+<td><code>Prompty_Northstar.txt</code> → „Podsumowanie zgłoszenia”</td>
+<td>prompt Content Generation</td>
+</tr>
+<tr>
+<td>1B</td>
+<td><code>Prompty_Northstar.txt</code> → „Kategorie”, arkusz
+<em>Kategorie</em></td>
+<td>6 kategorii z opisami do Categorize</td>
+</tr>
+<tr>
+<td>1B</td>
+<td>arkusz <em>Przyklady_cwiczeniowe</em></td>
+<td>DEMO-01 (kilka próśb w jednej wiadomości)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><code>dane/known_issues_do_wklejenia.txt</code></td>
+<td>wartość domyślna zmiennej lstKnownIssues (4 znane problemy jako
+wyrażenie VB)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>arkusz <em>Znane_problemy</em></td>
+<td>te same problemy w czytelnej tabeli</td>
+</tr>
+<tr>
+<td>2</td>
+<td>arkusz <em>Pary_podobienstwa</em></td>
+<td>6 par SIM do kalibracji progu T (kolumna na wynik score)</td>
+</tr>
+<tr>
+<td>3A</td>
+<td><code>dane/sprawy.csv</code></td>
+<td>wgrać do bucketu Northstar_Rejestr; GetTicketStatus czyta go przez
+Read Storage Text</td>
+</tr>
+<tr>
+<td>3A</td>
+<td>arkusze <em>Sprawy</em> i <em>Statusy_uslug</em></td>
+<td>te same dane w Excelu: 3 sprawy, 3 statusy usług</td>
+</tr>
+<tr>
+<td>3A</td>
+<td><code>kontrakty/narzedzia.md</code></td>
+<td>wejścia, wyjścia <code>out_…</code>, statusy i opisy narzędzi dla
+agenta</td>
+</tr>
+<tr>
+<td>3B</td>
+<td><code>Prompty_Northstar.txt</code> → „SupportAgent: prompt
+systemowy” i „prompt użytkownika”</td>
+<td>prompty agenta</td>
+</tr>
+<tr>
+<td>3B</td>
+<td><code>kontrakty/agent_output.schema.json</code></td>
+<td>schemat wyniku agenta (Output w Definition)</td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>baza_wiedzy/Portal_Northstar.txt</code></td>
+<td>jedyny dokument wiedzy agenta, 6 procedur KB</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>testy/import_Northstar_DEVELOPMENT.json</code>,
+<code>import_Northstar_HOLDOUT.json</code></td>
+<td>import evaluation setów w Studio Web</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>testy/ewaluacja_do_wklejenia.txt</code></td>
+<td>te same przypadki DEVELOPMENT do ręcznego wklejenia (krok 2a i
+zapas)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>testy/import_Northstar_DEVELOPMENT.csv</code></td>
+<td>ten sam set w CSV, tylko do porównania formatów</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>Prompty_Northstar.txt</code> → „Rubryka oceny szkicu”,
+„Evaluator Trajectory”</td>
+<td>prompty evaluatorów LLM</td>
+</tr>
+<tr>
+<td>5</td>
+<td><code>testy/Northstar_testy.xlsx</code></td>
+<td><em>Oczekiwane_wyniki</em> (kolumny na wynik v1 i v2),
+<em>Testy_techniczne</em></td>
+</tr>
+<tr>
+<td>6B</td>
+<td>arkusz <em>Testy_techniczne</em>,
+<em>Przyklady_cwiczeniowe</em></td>
+<td>TECH-01…06 (awaria, zły JSON, powtórzenie, odrzucenie) i
+DEMO-03</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>Prompty_Northstar.txt</code> → „NorthstarHelpdesk: prompt
+systemowy”</td>
+<td>prompt agenta konwersacyjnego</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>testy/Northstar_testy.xlsx</code>, arkusz
+<em>Rozmowy_testowe</em></td>
+<td>8 rozmów CHAT-01…08</td>
+</tr>
+<tr>
+<td>7</td>
+<td><code>testy/rubryka_zadania_koncowego.md</code></td>
+<td>ocena prezentacji zespołów na koniec dnia 2</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="pliki-prowadzącego-nie-dla-uczestników-w-trakcie-ćwiczeń">Pliki
+prowadzącego (nie dla uczestników w trakcie ćwiczeń)</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Plik</th>
+<th>Do czego</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>testy/oczekiwane_wyniki.json</code></td>
+<td>źródło oczekiwanych wyników (kategoria, akcja, KI, wymagane
+narzędzia, split DEVELOPMENT/HOLDOUT)</td>
+</tr>
+<tr>
+<td><code>testy/Klucz_testow.md</code></td>
+<td>te same oczekiwania jako tabela do wydruku</td>
+</tr>
+<tr>
+<td><code>testy/karta_oceny.md</code></td>
+<td>szablon notatki z jednego przebiegu (runId, kategoria
+oczekiwana/otrzymana…)</td>
+</tr>
+<tr>
+<td><code>testy/pary_podobienstwa.json</code>,
+<code>testy_techniczne.json</code>,
+<code>rozmowy_testowe.json</code></td>
+<td>źródła arkuszy testowych</td>
+</tr>
+<tr>
+<td><code>UiPath_AI_Warsztaty_v4.pptx</code></td>
+<td>prezentacja z notatkami</td>
+</tr>
+<tr>
+<td><code>Przyklady_promptow.html</code></td>
+<td>teoria prompt engineeringu do slajdów</td>
+</tr>
+<tr>
+<td><code>UiPath_AI_Trust_Layer_przewodnik.html</code></td>
+<td>materiał uzupełniający o LLM Gateway, guardrails, własnych
+modelach</td>
+</tr>
+<tr>
+<td><code>Preflight_uczestnika.html</code></td>
+<td>do wysłania uczestnikom przed szkoleniem</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Uwaga:</strong> oczekiwanych wyników i testów nie wklejaj do
+promptu ani do wiedzy agenta. To kryteria oceny, nie dane.</p>
+</blockquote>
+<h2 id="źródła-danych-edytujesz-tylko-je">Źródła danych (edytujesz tylko
+je)</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Plik JSON</th>
+<th>Z niego powstaje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dane/zgloszenia.json</code> (18 zgłoszeń)</td>
+<td>arkusz <em>Zgloszenia</em>, evaluation sety</td>
+</tr>
+<tr>
+<td><code>dane/przyklady_cwiczeniowe.json</code> (DEMO-01…03)</td>
+<td>arkusz <em>Przyklady_cwiczeniowe</em></td>
+</tr>
+<tr>
+<td><code>dane/known_issues.json</code> (4)</td>
+<td>arkusz <em>Znane_problemy</em>,
+<code>known_issues_do_wklejenia.txt</code></td>
+</tr>
+<tr>
+<td><code>dane/service_status.json</code> (3)</td>
+<td>arkusz <em>Statusy_uslug</em></td>
+</tr>
+<tr>
+<td><code>dane/tickets.json</code> (3 sprawy)</td>
+<td>arkusz <em>Sprawy</em>, <code>dane/sprawy.csv</code></td>
+</tr>
+<tr>
+<td><code>dane/categories.json</code> (6)</td>
+<td>arkusz <em>Kategorie</em></td>
+</tr>
+<tr>
+<td><code>dane/przyklad_wyniku.json</code></td>
+<td>przykład poprawnego wyniku agenta (REQ-001), do porównania ze
+schematem</td>
+</tr>
+</tbody>
+</table></div>
+<p>Pozostałe pliki pochodne: <code>dane/csv/</code> i
+<code>testy/csv/</code> to każdy arkusz Excela jako CSV.
+<code>diagramy/*.svg</code> i <code>diagramy/png/</code> są generowane z
+<code>diagramy/diagramy.json</code> (<code>make_diagrams.py</code>).
+Pliki HTML są generowane z <code>instrukcje/*.md</code>
+(<code>make_html.py</code>).</p>
+<h2 id="sprawy-w-sprawycsv">Sprawy w sprawy.csv</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Sprawa</th>
+<th>Właściciel</th>
+<th>Po co jest</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>INC-104</td>
+<td>celina@example.com</td>
+<td>REQ-003 (właścicielka → FOUND) i REQ-016 (ktoś inny → FORBIDDEN);
+rozmowa CHAT-04</td>
+</tr>
+<tr>
+<td>INC-105</td>
+<td>anna@example.com</td>
+<td>drugi przypadek FOUND (RESOLVED) w testach narzędzia</td>
+</tr>
+<tr>
+<td>INC-106</td>
+<td>bartek@example.com</td>
+<td>jedyna sprawa z potwierdzonym terminem (<code>eta</code>
+2026-11-20): pokazuje, kiedy agent może podać termin</td>
+</tr>
+<tr>
+<td>INC-999</td>
+<td>(brak w pliku)</td>
+<td>REQ-010 sprawdza NOT_FOUND</td>
+</tr>
+</tbody>
+</table></div>
+
+</main>
+<footer>UiPath AI | Northstar | Materiał warsztatowy • wersja 1.2 • 8 października 2026. Wydruk do PDF: Ctrl+P → Zapisz jako PDF.</footer>
+</body>
+</html>

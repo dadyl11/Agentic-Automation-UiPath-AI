@@ -1,0 +1,26 @@
+[
+  {
+    "ticketId": "INC-104",
+    "requesterEmail": "celina@example.com",
+    "status": "IN_PROGRESS",
+    "summary": "Problem z pobieraniem raportu.",
+    "lastUpdate": "Zespół odtworzył problem i analizuje przyczynę.",
+    "eta": ""
+  },
+  {
+    "ticketId": "INC-105",
+    "requesterEmail": "anna@example.com",
+    "status": "RESOLVED",
+    "summary": "Brak dostępu do archiwum.",
+    "lastUpdate": "Przywrócono dostęp do archiwum.",
+    "eta": ""
+  },
+  {
+    "ticketId": "INC-106",
+    "requesterEmail": "bartek@example.com",
+    "status": "IN_PROGRESS",
+    "summary": "Wolne ładowanie listy faktur.",
+    "lastUpdate": "Poprawka jest w testach, wdrożenie zaplanowano na najbliższe okno serwisowe.",
+    "eta": "2026-11-20"
+  }
+]

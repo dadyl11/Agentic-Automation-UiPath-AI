@@ -1,0 +1,303 @@
+{
+  "exportedBy": null,
+  "bundleHash": null,
+  "version": "1.0.0.0",
+  "jitAssemblyCompilerCommands": [
+    {
+      "providerName": "CustomEntities",
+      "bundleOptions": {
+        "hash": "WmhEWaHyRlH7eYW8j4YdbGJXkJpNTvqBNTpZJioddvzK0BDXtJEqa7MNzREm/L3sCJNYdj41skSNK4/tRgCmwA==",
+        "bundleName": "C5F20788C42_semanticminus_signsimilarity_Create",
+        "entitiesBundle": {
+          "Types": {
+            "semanticSimilarity": {
+              "name": "semanticSimilarity",
+              "properties": [
+                {
+                  "name": "listOfScores",
+                  "type": {
+                    "ClrType": "System.String, System.Private.CoreLib"
+                  },
+                  "attributes": {
+                    "values": [
+                      {
+                        "Type": {
+                          "ClrType": "System.ComponentModel.DescriptionAttribute, System.ComponentModel.Primitives"
+                        },
+                        "constructorArguments": [
+                          {
+                            "Value": "\"A list containing similarity scores for multiple comparisons (only for list of score).\"",
+                            "type": {
+                              "ClrType": "System.String, System.Private.CoreLib"
+                            }
+                          }
+                        ],
+                        "namedArguments": []
+                      },
+                      {
+                        "Type": {
+                          "ClrType": "UiPath.IntegrationService.Activities.Runtime.Models.FieldSampleValueAttribute, UiPath.IntegrationService.Activities.Runtime"
+                        },
+                        "constructorArguments": [
+                          {
+                            "Value": "\"[{\\\"string\\\":\\\"Machine learning is transforming multiple sectors.\\\",\\\"similarityScore\\\":0.85,\\\"similarityExplanation\\\":\\\"High similarity due to shared context and intent. Both sentences discuss the impact of advanced technologies (AI and machine learning) on various industries or sectors. The key concepts of technological transformation and industry impact are present in both. The vocabulary differs slightly but conveys a similar theme.\\\"},{\\\"string\\\":\\\"Traditional methods are becoming obsolete.\\\",\\\"similarityScore\\\":0.4,\\\"similarityExplanation\\\":\\\"Moderate similarity. While the primary string discusses the positive impact of AI on industries, this comparison string implies a negative consequence (obsolescence of traditional methods) which can be indirectly related to the rise of AI. The context of technological change is present, but the intent and sentiment differ.\\\"},{\\\"string\\\":\\\"AI applications are limited to tech companies.\\\",\\\"similarityScore\\\":0.6,\\\"similarityExplanation\\\":\\\"Moderate to high similarity. Both sentences discuss AI, but the primary string emphasizes its broad impact across various industries, while the comparison string suggests a limitation to tech companies. The key concept of AI is shared, but the scope and sentiment differ, with the comparison string presenting a more restricted view.\\\"}]\"",
+                            "type": {
+                              "ClrType": "System.String, System.Private.CoreLib"
+                            }
+                          }
+                        ],
+                        "namedArguments": []
+                      },
+                      {
+                        "Type": {
+                          "ClrType": "System.ComponentModel.DataAnnotations.DisplayAttribute, System.ComponentModel.Annotations"
+                        },
+                        "constructorArguments": [],
+                        "namedArguments": [
+                          {
+                            "name": "Name",
+                            "value": {
+                              "Value": "\"listOfScores\"",
+                              "type": {
+                                "ClrType": "System.String, System.Private.CoreLib"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "_string",
+                  "type": {
+                    "ClrType": "System.String, System.Private.CoreLib"
+                  },
+                  "attributes": {
+                    "values": [
+                      {
+                        "Type": {
+                          "ClrType": "System.ComponentModel.DescriptionAttribute, System.ComponentModel.Primitives"
+                        },
+                        "constructorArguments": [
+                          {
+                            "Value": "\"Best match string out of the provided comparison array (only for best match).\"",
+                            "type": {
+                              "ClrType": "System.String, System.Private.CoreLib"
+                            }
+                          }
+                        ],
+                        "namedArguments": []
+                      },
+                      {
+                        "Type": {
+                          "ClrType": "UiPath.IntegrationService.Activities.Runtime.Models.FieldSampleValueAttribute, UiPath.IntegrationService.Activities.Runtime"
+                        },
+                        "constructorArguments": [
+                          {
+                            "Value": "\"\"",
+                            "type": {
+                              "ClrType": "System.String, System.Private.CoreLib"
+                            }
+                          }
+                        ],
+                        "namedArguments": []
+                      },
+                      {
+                        "Type": {
+                          "ClrType": "Newtonsoft.Json.JsonPropertyAttribute, Newtonsoft.Json"
+                        },
+                        "constructorArguments": [],
+                        "namedArguments": [
+                          {
+                            "name": "PropertyName",
+                            "value": {
+                              "Value": "\"string\"",
+                              "type": {
+                                "ClrType": "System.String, System.Private.CoreLib"
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "Type": {
+                          "ClrType": "System.ComponentModel.DataAnnotations.DisplayAttribute, System.ComponentModel.Annotations"
+                        },
+                        "constructorArguments": [],
+                        "namedArguments": [
+                          {
+                            "name": "Name",
+                            "value": {
+                              "Value": "\"string\"",
+                              "type": {
+                                "ClrType": "System.String, System.Private.CoreLib"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "similarityScore",
+                  "type": {
+                    "ClrType": "System.Nullable`1[[System.Double, System.Private.CoreLib]], System.Private.CoreLib"
+                  },
+                  "attributes": {
+                    "values": [
+                      {
+                        "Type": {
+                          "ClrType": "System.ComponentModel.DescriptionAttribute, System.ComponentModel.Primitives"
+                        },
+                        "constructorArguments": [
+                          {
+                            "Value": "\"The calculated score representing the semantic similarity (only for string to string or best match).\"",
+                            "type": {
+                              "ClrType": "System.String, System.Private.CoreLib"
+                            }
+                          }
+                        ],
+                        "namedArguments": []
+                      },
+                      {
+                        "Type": {
+                          "ClrType": "UiPath.IntegrationService.Activities.Runtime.Models.FieldSampleValueAttribute, UiPath.IntegrationService.Activities.Runtime"
+                        },
+                        "constructorArguments": [
+                          {
+                            "Value": "0.3",
+                            "type": {
+                              "ClrType": "System.Double, System.Private.CoreLib"
+                            }
+                          }
+                        ],
+                        "namedArguments": []
+                      },
+                      {
+                        "Type": {
+                          "ClrType": "System.ComponentModel.DataAnnotations.DisplayAttribute, System.ComponentModel.Annotations"
+                        },
+                        "constructorArguments": [],
+                        "namedArguments": [
+                          {
+                            "name": "Name",
+                            "value": {
+                              "Value": "\"similarityScore\"",
+                              "type": {
+                                "ClrType": "System.String, System.Private.CoreLib"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "similarityExplanation",
+                  "type": {
+                    "ClrType": "System.String, System.Private.CoreLib"
+                  },
+                  "attributes": {
+                    "values": [
+                      {
+                        "Type": {
+                          "ClrType": "System.ComponentModel.DescriptionAttribute, System.ComponentModel.Primitives"
+                        },
+                        "constructorArguments": [
+                          {
+                            "Value": "\"Provides an explanation of the semantic similarity result (only for string to string or best match).\"",
+                            "type": {
+                              "ClrType": "System.String, System.Private.CoreLib"
+                            }
+                          }
+                        ],
+                        "namedArguments": []
+                      },
+                      {
+                        "Type": {
+                          "ClrType": "UiPath.IntegrationService.Activities.Runtime.Models.FieldSampleValueAttribute, UiPath.IntegrationService.Activities.Runtime"
+                        },
+                        "constructorArguments": [
+                          {
+                            "Value": "\"\"",
+                            "type": {
+                              "ClrType": "System.String, System.Private.CoreLib"
+                            }
+                          }
+                        ],
+                        "namedArguments": []
+                      },
+                      {
+                        "Type": {
+                          "ClrType": "System.ComponentModel.DataAnnotations.DisplayAttribute, System.ComponentModel.Annotations"
+                        },
+                        "constructorArguments": [],
+                        "namedArguments": [
+                          {
+                            "name": "Name",
+                            "value": {
+                              "Value": "\"similarityExplanation\"",
+                              "type": {
+                                "ClrType": "System.String, System.Private.CoreLib"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "values": [],
+              "baseType": null
+            },
+            "semanticminus_signsimilarity_Create": {
+              "name": "semanticminus_signsimilarity_Create",
+              "properties": [
+                {
+                  "name": "semanticSimilarity",
+                  "type": {
+                    "definitionName": "semanticSimilarity"
+                  },
+                  "attributes": {
+                    "values": [
+                      {
+                        "Type": {
+                          "ClrType": "System.ComponentModel.DataAnnotations.DisplayAttribute, System.ComponentModel.Annotations"
+                        },
+                        "constructorArguments": [],
+                        "namedArguments": [
+                          {
+                            "name": "Name",
+                            "value": {
+                              "Value": "\"semanticSimilarity\"",
+                              "type": {
+                                "ClrType": "System.String, System.Private.CoreLib"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "values": [],
+              "baseType": null
+            }
+          },
+          "Metadata": {},
+          "version": 1
+        }
+      },
+      "entityAssemblyKey": {
+        "name": "Helm.SWEntities.C5F20788C42_semanticminus_signsimilarity_Create",
+        "hash": "V21oRVdhSHlSbEg3ZVlXOGo0WWRiR0pYa0pwTlR2cUJOVHBaSmlvZGR2ekswQkRYdEpFcWE3TU56UkVtL0wzc0NKTllkajQxc2tTTks0L3RSZ0Ntd0E9PQ",
+        "assemblyName": "C5F20788C42_semantic.lCKEgAUZSP1YJIMqr3JyN3"
+      }
+    }
+  ]
+}

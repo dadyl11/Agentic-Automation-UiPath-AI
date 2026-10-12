@@ -1,0 +1,7 @@
+﻿name;description
+ACCESS_REQUEST;Prośba o nadanie, zmianę lub odebranie uprawnień. Ma pierwszeństwo w wiadomości zawierającej kilka próśb.
+STATUS_REQUEST;Pytanie o postęp konkretnego zgłoszenia. Nie oznacza pytania o bieżącą awarię usługi.
+INCIDENT;Zgłoszenie niedziałającej funkcji, błędu lub niedostępności.
+HOW_TO;Pytanie o sposób wykonania czynności, bez informacji o awarii.
+FEATURE_REQUEST;Propozycja nowej funkcji lub zmiany produktu.
+OTHER;Brak danych pozwalających rozpoznać sprawę lub temat poza zakresem.

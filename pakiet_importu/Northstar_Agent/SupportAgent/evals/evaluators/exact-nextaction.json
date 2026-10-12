@@ -1,0 +1,11 @@
+{
+  "fileName": "exact-nextaction.json",
+  "id": "00b4b100-5653-4af1-8c1c-aa90a5ae34dd",
+  "name": "Exact match: nextAction",
+  "description": "Dokładna zgodność pola nextAction z oczekiwanym wynikiem.",
+  "category": 0,
+  "type": 1,
+  "targetOutputKey": "nextAction",
+  "createdAt": "2026-10-09T14:21:32.000Z",
+  "updatedAt": "2026-10-09T14:21:32.000Z"
+}

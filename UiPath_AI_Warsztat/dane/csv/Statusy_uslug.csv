@@ -1,0 +1,4 @@
+﻿service;status;message;eta;asOf
+portal;DEGRADED;Trwa analiza problemu z dostępnością portalu.;;2026-10-05T09:00:00Z
+sales;OPERATIONAL;Brak ogólnej awarii usługi raportowej.;;2026-10-05T09:00:00Z
+billing;OPERATIONAL;Brak ogólnej awarii rozliczeń.;;2026-10-05T09:00:00Z

@@ -1,0 +1,4 @@
+ticketId;requesterEmail;status;summary;lastUpdate;eta
+INC-104;celina@example.com;IN_PROGRESS;Problem z pobieraniem raportu.;Zespół odtworzył problem i analizuje przyczynę.;
+INC-105;anna@example.com;RESOLVED;Brak dostępu do archiwum.;Przywrócono dostęp do archiwum.;
+INC-106;bartek@example.com;IN_PROGRESS;Wolne ładowanie listy faktur.;Poprawka jest w testach, wdrożenie zaplanowano na najbliższe okno serwisowe.;2026-11-20

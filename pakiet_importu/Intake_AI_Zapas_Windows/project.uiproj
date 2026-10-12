@@ -1,0 +1,6 @@
+{
+  "Name": "Intake_AI_Zapas_Windows",
+  "ProjectType": "Process",
+  "Description": "Northstar: zapas cwiczen 1A i 1B (Intake_AI), wariant Windows",
+  "MainFile": "Main.xaml"
+}

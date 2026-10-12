@@ -1,0 +1,6 @@
+{
+  "Name": "Intake_AI_Zapas",
+  "ProjectType": "Process",
+  "Description": "Northstar: zapas cwiczen 1A i 1B (Intake_AI)",
+  "MainFile": "Main.xaml"
+}

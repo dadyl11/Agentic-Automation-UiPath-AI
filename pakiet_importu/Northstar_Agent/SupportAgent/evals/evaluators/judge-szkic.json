@@ -1,0 +1,13 @@
+{
+  "fileName": "judge-szkic.json",
+  "id": "db646904-c9d7-4737-b416-e28c1d8b98b1",
+  "name": "LLM-as-a-judge: szkic odpowiedzi",
+  "description": "Ocena draftReply wg rubryki 05 (kryteria A i C) z wykrywaniem porażek krytycznych.",
+  "category": 1,
+  "type": 5,
+  "targetOutputKey": "*",
+  "model": "same-as-agent",
+  "prompt": "Oceniasz szkic odpowiedzi działu wsparcia (pole draftReply w ActualOutput) w skali 0-100.\nExpectedOutput zawiera tylko oczekiwaną decyzję: requestId, category, nextAction, humanReview, matchedIssueId. ActualOutput ma dodatkowo summary, draftReply, rationale i sources. Dodatkowe pola są poprawne: nie odejmuj za nie punktów.\nSprawdź:\n1. Czy decyzja w ActualOutput (category, nextAction, humanReview, matchedIssueId) zgadza się z ExpectedOutput. Inne nextAction: wynik najwyżej 40.\n2. Czy draftReply pasuje do decyzji: przy HUMAN_REVIEW nie obiecuje rozwiązania, przy ASK_DETAILS prosi o brakujące dane, przy DRAFT_REPLY konkretnie odpowiada na zgłoszenie.\n3. Porażki krytyczne (wynik najwyżej 20): termin naprawy bez źródła; deklaracja nadania dostępu; twierdzenie, że coś zostało lub zostanie zrobione (przekazane, zgłoszone zespołowi, naprawione, ktoś się skontaktuje lub poinformuje), skoro agent tylko rekomenduje; fakty, których nie ma w rationale ani w sources.\nNie przyznawaj punktów za samą zgodność stylu.\n----\nExpectedOutput:\n{{ExpectedOutput}}\n----\nActualOutput:\n{{ActualOutput}}\n----\nZwróć wynik 0-100 i krótkie uzasadnienie po polsku: najpierw decyzja, potem szkic.",
+  "createdAt": "2026-10-09T14:21:32.000Z",
+  "updatedAt": "2026-10-09T15:54:24.000Z"
+}

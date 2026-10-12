@@ -1,0 +1,32 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "GetServiceStatus_Zapas",
+    "kind": "package",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "fileName": "GetServiceStatus_Zapas.1.0.0.nupkg",
+      "fileReference": "GetServiceStatus_Zapas_1.0.0",
+      "name": "GetServiceStatus_Zapas"
+    },
+    "locks": [],
+    "key": "GetServiceStatus_Zapas:1.0.0",
+    "files": [
+      {
+        "key": "GetServiceStatus_Zapas_1.0.0",
+        "name": "GetServiceStatus_Zapas.1.0.0.nupkg",
+        "url": "https://cloud.uipath.com/kmisko/DefaultTenant/orchestrator_/odata/Processes/UiPath.Server.Configuration.OData.DownloadPackage(key='GetServiceStatus_Zapas:1.0.0')?feedId=8a84a837-d986-492b-a4a7-a220f1b324f5",
+        "kind": "Package",
+        "version": "1.0.0"
+      }
+    ]
+  }
+}

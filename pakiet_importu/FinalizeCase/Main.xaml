@@ -1,0 +1,222 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:stjn="clr-namespace:System.Text.Json.Nodes;assembly=System.Text.Json" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="requestId" Type="InArgument(x:String)" />
+    <x:Property Name="runId" Type="InArgument(x:String)" />
+    <x:Property Name="agentResultJson" Type="InArgument(x:String)" />
+    <x:Property Name="finalStatus" Type="InArgument(x:String)" />
+    <x:Property Name="reviewOutcome" Type="InArgument(x:String)" />
+    <x:Property Name="reviewedDraft" Type="InArgument(x:String)" />
+    <x:Property Name="reviewerId" Type="InArgument(x:String)" />
+    <x:Property Name="out_status" Type="OutArgument(x:String)" />
+    <x:Property Name="out_finalStatus" Type="OutArgument(x:String)" />
+    <x:Property Name="out_saved" Type="OutArgument(x:Boolean)" />
+    <x:Property Name="out_runId" Type="OutArgument(x:String)" />
+    <x:Property Name="out_message" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text.Json</x:String>
+      <x:String>System.Text.Json.Nodes</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Core.Activities.Storage</x:String>
+      <x:String>System.Collections</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Text.Json</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="FinalizeCase" sap2010:Annotation.AnnotationText="Zapisuje wynik jednego zgłoszenia do rejestru spraw (rejestr_spraw.csv w buckecie Northstar_Rejestr).&#xA;Wywołuje go proces Maestro (ćw. 6B), nie agent.&#xA;Przebieg: 1. przygotuj wejście → 2. sprawdź wejście → 3. odczytaj wynik agenta → 4. czytaj rejestr → 5. czy sprawa już jest? → 6. dopisz wiersz → 7. log.&#xA;Wynik (out_status): SAVED, ALREADY_PROCESSED, INVALID_INPUT albo ERROR. Job zawsze kończy się poprawnie, błąd jest w out_status." sap:VirtualizedContainerService.HintSize="584,1526.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="Northstar_Rejestr" Name="strBucketName" />
+      <Variable x:TypeArguments="x:String" Default="rejestr_spraw.csv" Name="strRegisterPath" />
+      <Variable x:TypeArguments="x:String" Default="RequestId;FinalStatus;Category;NextAction;HumanReview;MatchedIssueId;Sources;Summary;DraftReply;ReviewOutcome;ReviewedDraft;ReviewerId;RunId;SavedAtUtc" Name="strHeader" />
+      <Variable x:TypeArguments="x:String" Name="strRequestId" />
+      <Variable x:TypeArguments="x:String" Name="strFinalStatus" />
+      <Variable x:TypeArguments="x:String" Name="strRunId" />
+      <Variable x:TypeArguments="x:String" Name="strValidationError" />
+      <Variable x:TypeArguments="x:String" Name="strRegister" />
+      <Variable x:TypeArguments="x:String" Name="strNewRow" />
+      <Variable x:TypeArguments="x:Boolean" Default="False" Name="boolAlreadyProcessed" />
+      <Variable x:TypeArguments="stjn:JsonObject" Name="jsonAgent" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="0. Wyczyść wynik" sap2010:Annotation.AnnotationText="Wszystkie argumenty Out zaczynają od pustej wartości, żeby żadna gałąź nie zostawiła starego wyniku.">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_finalStatus" To="[out_finalStatus]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:Boolean" DisplayName="out_saved" To="[out_saved]" Value="[False]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_runId" To="[out_runId]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_message" To="[out_message]" Value="[&quot;&quot;]" />
+</Sequence>
+    <Assign x:TypeArguments="x:String" DisplayName="1a. Przytnij requestId" sap2010:Annotation.AnnotationText="Usuwa spacje z początku i końca. Nothing (brak wartości) zamienia na pusty tekst." sap:VirtualizedContainerService.HintSize="584,56.8" sap2010:WorkflowViewState.IdRef="Assign`1_1" To="[strRequestId]" Value="[If(requestId, &quot;&quot;).Trim()]" />
+    <Assign x:TypeArguments="x:String" DisplayName="1b. Przytnij finalStatus" sap2010:Annotation.AnnotationText="Jak wyżej. Wielkość liter musi być dokładna, np. READY_DRAFT." sap:VirtualizedContainerService.HintSize="584,56.8" sap2010:WorkflowViewState.IdRef="Assign`1_2" To="[strFinalStatus]" Value="[If(finalStatus, &quot;&quot;).Trim()]" />
+    <Assign x:TypeArguments="x:String" DisplayName="1c. Ustal runId" sap2010:Annotation.AnnotationText="Identyfikator przebiegu. Jeśli Maestro go nie podał, tworzy własny: data i godzina UTC + requestId, np. 20261012153000-REQ-001." sap:VirtualizedContainerService.HintSize="584,56.8" sap2010:WorkflowViewState.IdRef="Assign`1_3" To="[strRunId]" Value="[If(String.IsNullOrWhiteSpace(runId), DateTime.UtcNow.ToString(&quot;yyyyMMddHHmmss&quot;) &amp; &quot;-&quot; &amp; strRequestId, runId.Trim())]" />
+    <Assign x:TypeArguments="x:String" DisplayName="2. Sprawdź wejście" sap2010:Annotation.AnnotationText="Wynik: pusty tekst = wejście poprawne, inaczej opis błędu.&#xA;Pusty requestId → &quot;Missing requestId&quot;.&#xA;finalStatus spoza listy READY_DRAFT, NEEDS_DETAILS, REVIEWED_DRAFT, REJECTED, VALIDATION_FAILED → &quot;Invalid finalStatus&quot;." sap:VirtualizedContainerService.HintSize="584,56.8" sap2010:WorkflowViewState.IdRef="Assign`1_4" To="[strValidationError]" Value="[If(strRequestId = &quot;&quot;, &quot;Missing requestId&quot;, If(Not New String() {&quot;READY_DRAFT&quot;, &quot;NEEDS_DETAILS&quot;, &quot;REVIEWED_DRAFT&quot;, &quot;REJECTED&quot;, &quot;VALIDATION_FAILED&quot;}.Contains(strFinalStatus), &quot;Invalid finalStatus&quot;, &quot;&quot;))]" />
+    <If Condition="[strValidationError = &quot;&quot;]" DisplayName="Wejście poprawne?" sap2010:Annotation.AnnotationText="Nie → INVALID_INPUT, nic nie jest zapisywane." sap:VirtualizedContainerService.HintSize="584,1110.4" sap2010:WorkflowViewState.IdRef="If_2">
+      <If.Then>
+        <Sequence DisplayName="Tak: zapis w rejestrze" sap:VirtualizedContainerService.HintSize="550.4,832" sap2010:WorkflowViewState.IdRef="Sequence_10">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <TryCatch DisplayName="3. Odczytaj wynik agenta" sap2010:Annotation.AnnotationText="agentResultJson to cały wynik agenta jako tekst JSON (category, nextAction, summary, draftReply…).&#xA;Zamieniamy go na obiekt, z którego w kroku 6 wyciągniemy pola.&#xA;Niepoprawny JSON (np. ścieżka VALIDATION_FAILED) nie przerywa zapisu: pola agenta zostaną puste." sap:VirtualizedContainerService.HintSize="516.8,341.6" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch.Try>
+              <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="416,80" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign x:TypeArguments="stjn:JsonObject" DisplayName="Zamień tekst JSON na obiekt" sap2010:Annotation.AnnotationText="Pusty agentResultJson traktujemy jak pusty obiekt {}." sap2010:WorkflowViewState.IdRef="Assign`1_5" To="[jsonAgent]" Value="[TryCast(JsonNode.Parse(If(String.IsNullOrWhiteSpace(agentResultJson), &quot;{}&quot;, agentResultJson)), JsonObject)]" />
+              </Sequence>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Błąd: niepoprawny JSON" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <Assign x:TypeArguments="stjn:JsonObject" DisplayName="Pola agenta będą puste" sap2010:WorkflowViewState.IdRef="Assign`1_6" To="[jsonAgent]" Value="[Nothing]" />
+                  </Sequence>
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+          <TryCatch DisplayName="Kroki 4–6 z obsługą błędu" sap2010:Annotation.AnnotationText="Każdy błąd odczytu lub zapisu bucketu kończy się wynikiem ERROR z opisem w out_message (Catch na dole)." sap:VirtualizedContainerService.HintSize="516.8,430.4" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+            <TryCatch.Try>
+              <Sequence DisplayName="Try" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <TryCatch DisplayName="4. Czytaj rejestr" sap2010:Annotation.AnnotationText="Brak pliku przy pierwszym zapisie to nie błąd: zaczynamy od samego wiersza nagłówka." sap2010:WorkflowViewState.IdRef="TryCatch_2">
+                  <TryCatch.Try>
+                    <Sequence DisplayName="Try" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="Read Storage Text: rejestr_spraw.csv" sap2010:Annotation.AnnotationText="Cały plik trafia do strRegister jako jeden tekst." sap2010:WorkflowViewState.IdRef="ReadStorageText_1" Path="[strRegisterPath]" Result="[strRegister]" StorageBucketName="[strBucketName]" />
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Brak pliku: nowy rejestr" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                          <Assign x:TypeArguments="x:String" DisplayName="Rejestr = sam nagłówek" sap2010:WorkflowViewState.IdRef="Assign`1_7" To="[strRegister]" Value="[strHeader]" />
+                        </Sequence>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+                <Assign x:TypeArguments="x:Boolean" DisplayName="5. Czy sprawa już jest w rejestrze?" sap2010:Annotation.AnnotationText="Dzieli rejestr na wiersze, pomija nagłówek (Skip(1)) i sprawdza, czy pierwsza kolumna któregoś wiersza to ten sam requestId.&#xA;Wielkość liter i cudzysłowy nie mają znaczenia. Wynik True/False w boolAlreadyProcessed." sap2010:WorkflowViewState.IdRef="Assign`1_8" To="[boolAlreadyProcessed]" Value="[strRegister.Split(New String() {vbCrLf, vbLf}, StringSplitOptions.RemoveEmptyEntries).Skip(1).Any(Function(l) l.Split(&quot;;&quot;c)(0).Trim(&quot;&quot;&quot;&quot;c).Equals(strRequestId, StringComparison.OrdinalIgnoreCase))]" />
+                <If Condition="[boolAlreadyProcessed]" DisplayName="Sprawa już zapisana?" sap2010:Annotation.AnnotationText="Tak → ALREADY_PROCESSED, plik się nie zmienia. To chroni przed podwójnym zapisem przy ponownym uruchomieniu (TECH-03)." sap2010:WorkflowViewState.IdRef="If_1">
+                  <If.Then>
+                    <Sequence DisplayName="Tak: ALREADY_PROCESSED" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                      <Sequence DisplayName="Wynik ALREADY_PROCESSED">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;ALREADY_PROCESSED&quot;]" />
+<Assign x:TypeArguments="x:Boolean" DisplayName="out_saved" To="[out_saved]" Value="[False]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_finalStatus" To="[out_finalStatus]" Value="[strFinalStatus]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_runId" To="[out_runId]" Value="[strRunId]" />
+</Sequence>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <Sequence DisplayName="6. Nie: dopisz wiersz" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="s:Func(x:String, x:String)" Default="[Function(v As String) &quot;&quot;&quot;&quot; &amp; If(v, &quot;&quot;).Replace(vbCr, &quot; &quot;).Replace(vbLf, &quot; &quot;).Replace(&quot;&quot;&quot;&quot;, &quot;&quot;&quot;&quot;&quot;&quot;) &amp; &quot;&quot;&quot;&quot;]" Name="fnCsv" />
+                        <Variable x:TypeArguments="s:Func(x:String, x:String)" Name="fnAgent" />
+                      </Sequence.Variables>
+                      <Assign x:TypeArguments="s:Func(x:String, x:String)" DisplayName="6a. Funkcja: pole agenta" sap2010:Annotation.AnnotationText="fnAgent(&quot;category&quot;) zwraca wartość pola z wyniku agenta jako tekst.&#xA;Brak pola albo niepoprawny JSON → pusty tekst. Lista (sources) → wartości po przecinku, np. &quot;KI-001, KB-002&quot;.&#xA;Druga funkcja, fnCsv (zmienna tego bloku), przygotowuje wartość do CSV: bierze ją w cudzysłów, podwaja cudzysłowy w środku i zamienia nowe linie na spacje, żeby średnik ani Enter w tekście nie rozbiły wiersza." sap2010:WorkflowViewState.IdRef="Assign`1_10" To="[fnAgent]" Value="[Function(k As String) If(jsonAgent IsNot Nothing AndAlso jsonAgent.ContainsKey(k) AndAlso jsonAgent(k) IsNot Nothing, If(jsonAgent(k).GetValueKind() = System.Text.Json.JsonValueKind.Array, String.Join(&quot;, &quot;, jsonAgent(k).AsArray().Select(Function(x) x.ToString())), jsonAgent(k).ToString()), &quot;&quot;)]" />
+                      <Assign x:TypeArguments="x:String" DisplayName="6b. Zbuduj wiersz CSV" sap2010:Annotation.AnnotationText="14 kolumn w kolejności nagłówka: RequestId, FinalStatus, 7 pól agenta, 3 pola przeglądu, RunId, SavedAtUtc.&#xA;Każda wartość przechodzi przez fnCsv, potem łączymy je średnikiem." sap2010:WorkflowViewState.IdRef="Assign`1_11" To="[strNewRow]" Value="[String.Join(&quot;;&quot;, New String() {strRequestId, strFinalStatus, fnAgent(&quot;category&quot;), fnAgent(&quot;nextAction&quot;), fnAgent(&quot;humanReview&quot;), fnAgent(&quot;matchedIssueId&quot;), fnAgent(&quot;sources&quot;), fnAgent(&quot;summary&quot;), fnAgent(&quot;draftReply&quot;), If(reviewOutcome, &quot;&quot;), If(reviewedDraft, &quot;&quot;), If(reviewerId, &quot;&quot;), strRunId, DateTime.UtcNow.ToString(&quot;yyyy-MM-dd HH:mm:ss&quot;)}.Select(fnCsv))]" />
+                      <ucas:WriteStorageText TimeoutMS="{x:Null}" DisplayName="6c. Write Storage Text: rejestr + nowy wiersz" sap2010:Annotation.AnnotationText="Zapisuje cały plik od nowa: dotychczasowa treść + nowy wiersz. Kodowanie UTF-8, więc polskie znaki są poprawne w Excelu." Encoding="utf-8" sap2010:WorkflowViewState.IdRef="WriteStorageText_1" Path="[strRegisterPath]" StorageBucketName="[strBucketName]" Text="[strRegister.TrimEnd(ChrW(13), ChrW(10)) &amp; vbCrLf &amp; strNewRow &amp; vbCrLf]" />
+                      <Sequence DisplayName="Wynik SAVED">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;SAVED&quot;]" />
+<Assign x:TypeArguments="x:Boolean" DisplayName="out_saved" To="[out_saved]" Value="[True]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_finalStatus" To="[out_finalStatus]" Value="[strFinalStatus]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_runId" To="[out_runId]" Value="[strRunId]" />
+</Sequence>
+                    </Sequence>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <Sequence DisplayName="Błąd odczytu lub zapisu: ERROR" sap:VirtualizedContainerService.HintSize="483.2,108" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Sequence DisplayName="Wynik ERROR">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;ERROR&quot;]" />
+<Assign x:TypeArguments="x:Boolean" DisplayName="out_saved" To="[out_saved]" Value="[False]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_message" To="[out_message]" Value="[exception.Message]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_finalStatus" To="[out_finalStatus]" Value="[strFinalStatus]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_runId" To="[out_runId]" Value="[strRunId]" />
+</Sequence>
+                  </Sequence>
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Nie: INVALID_INPUT" sap:VirtualizedContainerService.HintSize="483.2,108" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence DisplayName="Wynik INVALID_INPUT">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;INVALID_INPUT&quot;]" />
+<Assign x:TypeArguments="x:Boolean" DisplayName="out_saved" To="[out_saved]" Value="[False]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_message" To="[out_message]" Value="[strValidationError]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_finalStatus" To="[out_finalStatus]" Value="[strFinalStatus]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_runId" To="[out_runId]" Value="[strRunId]" />
+</Sequence>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:LogMessage DisplayName="7. Log wyniku" sap2010:Annotation.AnnotationText="Jedna linia w logu joba: FinalizeCase | status | finalStatus | runId | komunikat." sap:VirtualizedContainerService.HintSize="584,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;FinalizeCase | &quot; &amp; out_status &amp; &quot; | &quot; &amp; out_finalStatus &amp; &quot; | &quot; &amp; out_runId &amp; &quot; | &quot; &amp; out_message]" />
+  </Sequence>
+</Activity>

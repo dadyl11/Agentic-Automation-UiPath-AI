@@ -1,0 +1,30 @@
+[
+  {
+    "issueId": "KI-001",
+    "service": "sales",
+    "description": "Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.",
+    "workaround": "Podziel raport na okresy nie dłuższe niż 31 dni.",
+    "status": "INVESTIGATING"
+  },
+  {
+    "issueId": "KI-002",
+    "service": "billing",
+    "description": "Lista faktur jest pusta z powodu aktywnego filtra dat obejmującego wyłącznie bieżący dzień.",
+    "workaround": "Sprawdź filtr dat i wybierz okres, w którym wystawiono fakturę.",
+    "status": "KNOWN"
+  },
+  {
+    "issueId": "KI-003",
+    "service": "portal",
+    "description": "Logowanie po zmianie hasła nie działa w starej sesji przeglądarki.",
+    "workaround": "Zamknij sesję i ponownie otwórz stronę logowania.",
+    "status": "KNOWN"
+  },
+  {
+    "issueId": "KI-004",
+    "service": "sales",
+    "description": "Podgląd wykresu sprzedaży nie odświeża się po zmianie regionu.",
+    "workaround": "Ponownie otwórz widok raportu.",
+    "status": "KNOWN"
+  }
+]

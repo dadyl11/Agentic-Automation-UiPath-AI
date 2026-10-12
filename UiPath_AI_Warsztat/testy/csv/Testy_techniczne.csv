@@ -1,0 +1,7 @@
+﻿id;zgłoszenie;przygotowanie;oczekiwany wynik;tryb;wynik (wpisz)
+TECH-01;REQ-002;GetServiceStatus: simulateFailure=true;"HUMAN_REVIEW; brak deklaracji OPERATIONAL";;
+TECH-02;REQ-001;"Uruchom Northstar_Case z wejściem testowym simulateInvalidOutput=true; skrypt walidacji podmienia wynik agenta na niepoprawny";"VALIDATION_FAILED; bez zapisu jako sukces";Pokaz prowadzącego lub uczestnik z gotowym szkieletem;
+TECH-03;REQ-001;Uruchom ponownie ten sam requestId;"Drugi przebieg nie dodaje rekordu finalnego; FinalizeCase zwraca out_status=ALREADY_PROCESSED, out_saved=false; runId dopisany do historii";Pokaz prowadzącego, jeśli realizowany jest trwały rejestr;
+TECH-04;REQ-004;Reviewer wybiera Reject;"REJECTED; brak odpowiedzi oznaczonej jako zatwierdzona";;
+TECH-05;REQ-004;Brak odpowiedzi reviewera w czasie demonstracji;"Proces oczekuje; brak automatycznego zatwierdzenia";;
+TECH-06;REQ-004;Reviewer wybiera Approve i poprawia szkic (requestId REQ-004B, bo REQ-004 jest już w rejestrze po TECH-04);"REVIEWED_DRAFT; zachowany szkic przed i po zmianie; nie nadano uprawnień";;

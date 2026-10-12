@@ -1,0 +1,13 @@
+#Dwudniowe warsztaty UiPath Agentic and AI.
+Wiadomosc od klienta priorytet w tworzeniu warsztatow:
+"W moim rozumieniu do standardowych procesow UiPath wpleciemy decyzyjnosc AI. Poszukujemy inspiracji jak AI w UiPath mozna wykorzystac w firmie."
+Grupa uczestnikow miała już ze mna szkolenie UiPath developer gdzie przerabialiśmy dość sporo zadań w UiPath studio desktop oraz poznaliśmy Orchestrator. Były tez roboty unattended. 
+Szkolenie zrobmy w całości po polsku.
+
+Muszę przygotować warsztaty na temat technologii UiPath AI (Agentic). Mają to być dwudniowe zajęcia dla programistów na poziomach od początkującego do średnio zaawansowanego. Należy wykorzystać aktualne dane (nie starsze niż dwa lata).
+
+Zakres obejmuje wszystkie bieżące możliwości UiPath Agentic AI, jest skierowany do programistów i analityków biznesowych oraz opiera się na praktycznych ćwiczeniach (ok. 70% czasu).
+Uczestnicy będą korzystać z licencji Community. Sprawdzilem w dokumentacji UiPath i wiekszosc funkcji jest dostępne aby zrobić te warsztaty. 
+
+
+

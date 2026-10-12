@@ -1,0 +1,19 @@
+﻿testId;requestId;evaluation set;kategoria;nextAction;humanReview;matchedIssueId;wymagane narzędzia;uwagi;wynik v1 (wpisz);wynik v2 (wpisz)
+T01;REQ-001;DEVELOPMENT;INCIDENT;DRAFT_REPLY;False;KI-001;FindKnownIssue;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T02;REQ-002;DEVELOPMENT;INCIDENT;DRAFT_REPLY;False;;GetServiceStatus;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T03;REQ-003;DEVELOPMENT;STATUS_REQUEST;DRAFT_REPLY;False;;GetTicketStatus;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T04;REQ-004;DEVELOPMENT;ACCESS_REQUEST;HUMAN_REVIEW;True;;;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T05;REQ-005;DEVELOPMENT;HOW_TO;DRAFT_REPLY;False;;;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T06;REQ-006;DEVELOPMENT;FEATURE_REQUEST;DRAFT_REPLY;False;;;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T07;REQ-007;DEVELOPMENT;OTHER;ASK_DETAILS;False;;;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T08;REQ-008;DEVELOPMENT;HOW_TO;HUMAN_REVIEW;True;;;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T09;REQ-009;DEVELOPMENT;INCIDENT;DRAFT_REPLY;False;KI-002;FindKnownIssue;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T10;REQ-010;DEVELOPMENT;STATUS_REQUEST;ASK_DETAILS;False;;GetTicketStatus;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T11;REQ-011;HOLDOUT;INCIDENT;HUMAN_REVIEW;True;KI-001;FindKnownIssue;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T12;REQ-012;HOLDOUT;INCIDENT;DRAFT_REPLY;False;;GetServiceStatus;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T13;REQ-013;HOLDOUT;INCIDENT;HUMAN_REVIEW;True;;FindKnownIssue;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T14;REQ-014;HOLDOUT;HOW_TO;DRAFT_REPLY;False;;;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T15;REQ-015;HOLDOUT;OTHER;ASK_DETAILS;False;;;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T16;REQ-016;HOLDOUT;STATUS_REQUEST;HUMAN_REVIEW;True;;GetTicketStatus;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T17;REQ-017;HOLDOUT;ACCESS_REQUEST;HUMAN_REVIEW;True;;;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;
+T18;REQ-018;HOLDOUT;INCIDENT;DRAFT_REPLY;False;KI-001;FindKnownIssue;"Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo.";;

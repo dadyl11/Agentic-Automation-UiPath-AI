@@ -1,0 +1,23 @@
+[
+  {
+    "service": "portal",
+    "status": "DEGRADED",
+    "message": "Trwa analiza problemu z dostępnością portalu.",
+    "eta": "",
+    "asOf": "2026-10-05T09:00:00Z"
+  },
+  {
+    "service": "sales",
+    "status": "OPERATIONAL",
+    "message": "Brak ogólnej awarii usługi raportowej.",
+    "eta": "",
+    "asOf": "2026-10-05T09:00:00Z"
+  },
+  {
+    "service": "billing",
+    "status": "OPERATIONAL",
+    "message": "Brak ogólnej awarii rozliczeń.",
+    "eta": "",
+    "asOf": "2026-10-05T09:00:00Z"
+  }
+]

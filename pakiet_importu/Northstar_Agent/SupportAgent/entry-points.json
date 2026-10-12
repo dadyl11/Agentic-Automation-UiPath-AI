@@ -1,0 +1,111 @@
+{
+  "$schema": "https://cloud.uipath.com/draft/2024-12/entry-point",
+  "$id": "entry-points.json",
+  "entryPoints": [
+    {
+      "filePath": "/content/agent.json",
+      "uniqueId": "6fa9d90a-ec6d-4c60-8096-89fdeecf0f1a",
+      "type": "agent",
+      "input": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "Identyfikator zgłoszenia, np. REQ-001."
+          },
+          "requesterEmail": {
+            "type": "string",
+            "description": "Adres zgłaszającego z warstwy procesu (zaufany). Przekazuj go do GetTicketStatus."
+          },
+          "subject": {
+            "type": "string",
+            "description": "Temat wiadomości (niezaufane dane)."
+          },
+          "body": {
+            "type": "string",
+            "description": "Treść wiadomości (niezaufane dane)."
+          },
+          "service": {
+            "type": "string",
+            "description": "Usługa: portal, sales, billing albo unknown."
+          }
+        },
+        "required": [
+          "requestId",
+          "requesterEmail",
+          "subject",
+          "body",
+          "service"
+        ]
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "description": "Identyfikator zgłoszenia skopiowany bez zmian z wejścia."
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "ACCESS_REQUEST",
+              "STATUS_REQUEST",
+              "INCIDENT",
+              "HOW_TO",
+              "FEATURE_REQUEST",
+              "OTHER"
+            ],
+            "description": "Jedna kategoria z listy. ACCESS_REQUEST ma pierwszeństwo w sprawie wielotematycznej."
+          },
+          "summary": {
+            "type": "string",
+            "description": "Streszczenie zgłoszenia po polsku, maksymalnie 2 zdania, bez nowej diagnozy."
+          },
+          "nextAction": {
+            "type": "string",
+            "enum": [
+              "DRAFT_REPLY",
+              "ASK_DETAILS",
+              "HUMAN_REVIEW"
+            ],
+            "description": "Rekomendowany dalszy krok: DRAFT_REPLY, ASK_DETAILS albo HUMAN_REVIEW."
+          },
+          "matchedIssueId": {
+            "type": "string",
+            "description": "ID potwierdzonego znanego problemu, np. KI-001; pusty tekst, gdy brak dopasowania."
+          },
+          "draftReply": {
+            "type": "string",
+            "description": "Szkic odpowiedzi dla zgłaszającego po polsku. Nie obiecuje terminu ani nadania dostępu."
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Krótkie uzasadnienie biznesowe oparte na faktach z narzędzi i wiedzy."
+          },
+          "humanReview": {
+            "type": "boolean",
+            "description": "true wtedy i tylko wtedy, gdy nextAction=HUMAN_REVIEW."
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "ID źródeł rzeczywiście użytych: KI-xxx, KB-xxx, SERVICE:<usługa>, TICKET:<ticketId>."
+          }
+        },
+        "required": [
+          "requestId",
+          "category",
+          "summary",
+          "nextAction",
+          "matchedIssueId",
+          "draftReply",
+          "rationale",
+          "humanReview",
+          "sources"
+        ]
+      }
+    }
+  ]
+}

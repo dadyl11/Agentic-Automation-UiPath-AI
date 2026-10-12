@@ -1,0 +1,57 @@
+{
+  "$resourceType": "tool",
+  "name": "GetServiceStatus",
+  "description": "Sprawdza bieżącą dostępność jednej usługi: portal, sales albo billing. Użyj, gdy zgłoszenie opisuje ogólną niedostępność usługi (np. portal nie otwiera się nikomu). Do statusu konkretnego numeru INC użyj GetTicketStatus, do błędu jednej funkcji FindKnownIssue. Puste eta oznacza brak potwierdzonego terminu.",
+  "location": "external",
+  "type": "process",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "service": {
+        "type": "string",
+        "description": "portal, sales albo billing."
+      }
+    },
+    "required": [
+      "service"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "out_status": {
+        "type": "string",
+        "description": "FOUND, NOT_FOUND albo ERROR."
+      },
+      "out_serviceStatus": {
+        "type": "string",
+        "description": "Stan usługi przy FOUND: OPERATIONAL albo DEGRADED."
+      },
+      "out_message": {
+        "type": "string",
+        "description": "Opis stanu usługi albo błędu."
+      },
+      "out_eta": {
+        "type": "string",
+        "description": "Potwierdzony termin; pusty = brak potwierdzonego terminu."
+      },
+      "out_sourceId": {
+        "type": "string",
+        "description": "SERVICE:<usługa> przy FOUND; pusty w pozostałych przypadkach."
+      }
+    }
+  },
+  "settings": {},
+  "guardrail": {
+    "policies": []
+  },
+  "properties": {
+    "processName": "GetServiceStatus_Zapas",
+    "folderPath": "Shared",
+    "exampleCalls": []
+  },
+  "id": "a341056d-81a1-4e3f-9bf2-c6172a3c0c44",
+  "referenceKey": "965a278d-b421-47f4-b12f-5091524c1a63",
+  "isEnabled": true,
+  "argumentProperties": {}
+}

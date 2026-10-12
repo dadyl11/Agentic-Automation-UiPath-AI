@@ -1,0 +1,291 @@
+{
+  "fileName": "evaluation-set-63265cad.json",
+  "id": "63265cad-6dd9-4c38-b71c-a6148401db99",
+  "name": "Northstar DEVELOPMENT",
+  "batchSize": 10,
+  "evaluatorRefs": [
+    "3077d4f3-d434-465d-b029-f0b074eceb6e",
+    "00b4b100-5653-4af1-8c1c-aa90a5ae34dd",
+    "8f31ee54-0487-4fca-b004-0e9053ea75fc",
+    "efc4b86f-aef1-43ab-8831-420362a20268",
+    "db646904-c9d7-4737-b416-e28c1d8b98b1"
+  ],
+  "evaluations": [
+    {
+      "id": "b1c9501e-8d4f-4410-a84d-a443a3052109",
+      "name": "REQ-001",
+      "inputs": {
+        "requestId": "REQ-001",
+        "requesterEmail": "anna@example.com",
+        "subject": "Eksport sprzedaży",
+        "body": "Od wczoraj eksport raportu sprzedaży kończy się błędem 500. Wybrałam okres ostatnich 60 dni. Potrzebuję go na spotkanie.",
+        "service": "sales"
+      },
+      "expectedOutput": {
+        "requestId": "REQ-001",
+        "category": "INCIDENT",
+        "nextAction": "DRAFT_REPLY",
+        "humanReview": false,
+        "matchedIssueId": "KI-001"
+      },
+      "simulationInstructions": "",
+      "expectedAgentBehavior": "Agent wywołuje FindKnownIssue, najwyżej raz. Nie wywołuje GetServiceStatus ani GetTicketStatus. Może sięgnąć do wiedzy Northstar_KB.",
+      "simulateInput": false,
+      "inputGenerationInstructions": "",
+      "simulateTools": false,
+      "evalSetId": "63265cad-6dd9-4c38-b71c-a6148401db99",
+      "createdAt": "2026-10-09T14:21:49.113Z",
+      "updatedAt": "2026-10-09T14:21:49.113Z",
+      "source": "manual"
+    },
+    {
+      "id": "568f4a1c-26a2-4422-9cba-396f11164557",
+      "name": "REQ-002",
+      "inputs": {
+        "requestId": "REQ-002",
+        "requesterEmail": "bartek@example.com",
+        "subject": "Nie działa portal",
+        "body": "Portal nie otwiera się u nikogo w naszym zespole. Próbujemy od rana.",
+        "service": "portal"
+      },
+      "expectedOutput": {
+        "requestId": "REQ-002",
+        "category": "INCIDENT",
+        "nextAction": "DRAFT_REPLY",
+        "humanReview": false,
+        "matchedIssueId": ""
+      },
+      "simulationInstructions": "",
+      "expectedAgentBehavior": "Agent wywołuje GetServiceStatus, najwyżej raz. Nie wywołuje FindKnownIssue ani GetTicketStatus. Może sięgnąć do wiedzy Northstar_KB.",
+      "simulateInput": false,
+      "inputGenerationInstructions": "",
+      "simulateTools": false,
+      "evalSetId": "63265cad-6dd9-4c38-b71c-a6148401db99",
+      "createdAt": "2026-10-09T14:21:49.817Z",
+      "updatedAt": "2026-10-09T14:21:49.817Z",
+      "source": "manual"
+    },
+    {
+      "id": "4b947c50-1452-47c8-8ceb-aaa4eda698ca",
+      "name": "REQ-003",
+      "inputs": {
+        "requestId": "REQ-003",
+        "requesterEmail": "celina@example.com",
+        "subject": "Status sprawy",
+        "body": "Co z moim zgłoszeniem INC-104?",
+        "service": "portal"
+      },
+      "expectedOutput": {
+        "requestId": "REQ-003",
+        "category": "STATUS_REQUEST",
+        "nextAction": "DRAFT_REPLY",
+        "humanReview": false,
+        "matchedIssueId": ""
+      },
+      "simulationInstructions": "",
+      "expectedAgentBehavior": "Agent wywołuje GetTicketStatus, najwyżej raz. Nie wywołuje FindKnownIssue ani GetServiceStatus. Może sięgnąć do wiedzy Northstar_KB.",
+      "simulateInput": false,
+      "inputGenerationInstructions": "",
+      "simulateTools": false,
+      "evalSetId": "63265cad-6dd9-4c38-b71c-a6148401db99",
+      "createdAt": "2026-10-09T14:21:50.564Z",
+      "updatedAt": "2026-10-09T14:21:50.564Z",
+      "source": "manual"
+    },
+    {
+      "id": "e7145cdc-7600-4cbd-a81d-d7940df557f3",
+      "name": "REQ-004",
+      "inputs": {
+        "requestId": "REQ-004",
+        "requesterEmail": "daniel@example.com",
+        "subject": "Dostęp administratora",
+        "body": "Proszę nadać mi uprawnienia administratora portalu. Kierownik mówił, że się zgadza.",
+        "service": "portal"
+      },
+      "expectedOutput": {
+        "requestId": "REQ-004",
+        "category": "ACCESS_REQUEST",
+        "nextAction": "HUMAN_REVIEW",
+        "humanReview": true,
+        "matchedIssueId": ""
+      },
+      "simulationInstructions": "",
+      "expectedAgentBehavior": "Agent nie wywołuje żadnego narzędzia procesowego (FindKnownIssue, GetServiceStatus, GetTicketStatus). Może sięgnąć do wiedzy Northstar_KB.",
+      "simulateInput": false,
+      "inputGenerationInstructions": "",
+      "simulateTools": false,
+      "evalSetId": "63265cad-6dd9-4c38-b71c-a6148401db99",
+      "createdAt": "2026-10-09T14:21:51.238Z",
+      "updatedAt": "2026-10-09T14:21:51.238Z",
+      "source": "manual"
+    },
+    {
+      "id": "059520c5-c4d5-41df-bb51-f648d6d892e0",
+      "name": "REQ-005",
+      "inputs": {
+        "requestId": "REQ-005",
+        "requesterEmail": "ewa@example.com",
+        "subject": "Jak pobrać faktury",
+        "body": "Gdzie znajdę możliwość pobrania faktur w portalu?",
+        "service": "billing"
+      },
+      "expectedOutput": {
+        "requestId": "REQ-005",
+        "category": "HOW_TO",
+        "nextAction": "DRAFT_REPLY",
+        "humanReview": false,
+        "matchedIssueId": ""
+      },
+      "simulationInstructions": "",
+      "expectedAgentBehavior": "Agent nie wywołuje żadnego narzędzia procesowego (FindKnownIssue, GetServiceStatus, GetTicketStatus). Może sięgnąć do wiedzy Northstar_KB.",
+      "simulateInput": false,
+      "inputGenerationInstructions": "",
+      "simulateTools": false,
+      "evalSetId": "63265cad-6dd9-4c38-b71c-a6148401db99",
+      "createdAt": "2026-10-09T14:21:52.135Z",
+      "updatedAt": "2026-10-09T14:21:52.135Z",
+      "source": "manual"
+    },
+    {
+      "id": "b4529cdb-936f-4625-9814-f0686200590d",
+      "name": "REQ-006",
+      "inputs": {
+        "requestId": "REQ-006",
+        "requesterEmail": "filip@example.com",
+        "subject": "Tryb ciemny",
+        "body": "Czy możecie dodać ciemny motyw interfejsu? Wieczorem portal razi w oczy.",
+        "service": "portal"
+      },
+      "expectedOutput": {
+        "requestId": "REQ-006",
+        "category": "FEATURE_REQUEST",
+        "nextAction": "DRAFT_REPLY",
+        "humanReview": false,
+        "matchedIssueId": ""
+      },
+      "simulationInstructions": "",
+      "expectedAgentBehavior": "Agent nie wywołuje żadnego narzędzia procesowego (FindKnownIssue, GetServiceStatus, GetTicketStatus). Może sięgnąć do wiedzy Northstar_KB.",
+      "simulateInput": false,
+      "inputGenerationInstructions": "",
+      "simulateTools": false,
+      "evalSetId": "63265cad-6dd9-4c38-b71c-a6148401db99",
+      "createdAt": "2026-10-09T14:21:52.966Z",
+      "updatedAt": "2026-10-09T14:21:52.966Z",
+      "source": "manual"
+    },
+    {
+      "id": "ab6ee066-38e6-4596-9a5c-dd5548794bb7",
+      "name": "REQ-007",
+      "inputs": {
+        "requestId": "REQ-007",
+        "requesterEmail": "gosia@example.com",
+        "subject": "Problem",
+        "body": "Nie działa. Pomocy.",
+        "service": "unknown"
+      },
+      "expectedOutput": {
+        "requestId": "REQ-007",
+        "category": "OTHER",
+        "nextAction": "ASK_DETAILS",
+        "humanReview": false,
+        "matchedIssueId": ""
+      },
+      "simulationInstructions": "",
+      "expectedAgentBehavior": "Agent nie wywołuje żadnego narzędzia procesowego (FindKnownIssue, GetServiceStatus, GetTicketStatus). Może sięgnąć do wiedzy Northstar_KB.",
+      "simulateInput": false,
+      "inputGenerationInstructions": "",
+      "simulateTools": false,
+      "evalSetId": "63265cad-6dd9-4c38-b71c-a6148401db99",
+      "createdAt": "2026-10-09T14:21:53.747Z",
+      "updatedAt": "2026-10-09T14:21:53.747Z",
+      "source": "manual"
+    },
+    {
+      "id": "bacc4159-806b-44d7-b80d-26e6906d3740",
+      "name": "REQ-008",
+      "inputs": {
+        "requestId": "REQ-008",
+        "requesterEmail": "hubert@example.com",
+        "subject": "Zmiana rachunku",
+        "body": "Jak zmienić rachunek bankowy dostawcy w module rozliczeń?",
+        "service": "billing"
+      },
+      "expectedOutput": {
+        "requestId": "REQ-008",
+        "category": "HOW_TO",
+        "nextAction": "HUMAN_REVIEW",
+        "humanReview": true,
+        "matchedIssueId": ""
+      },
+      "simulationInstructions": "",
+      "expectedAgentBehavior": "Agent nie wywołuje żadnego narzędzia procesowego (FindKnownIssue, GetServiceStatus, GetTicketStatus). Może sięgnąć do wiedzy Northstar_KB.",
+      "simulateInput": false,
+      "inputGenerationInstructions": "",
+      "simulateTools": false,
+      "evalSetId": "63265cad-6dd9-4c38-b71c-a6148401db99",
+      "createdAt": "2026-10-09T14:21:54.452Z",
+      "updatedAt": "2026-10-09T14:21:54.452Z",
+      "source": "manual"
+    },
+    {
+      "id": "b940ef5a-22a2-4c81-b64e-3f75dde1315d",
+      "name": "REQ-009",
+      "inputs": {
+        "requestId": "REQ-009",
+        "requesterEmail": "iza@example.com",
+        "subject": "Brak faktur",
+        "body": "Zakładka Faktury jest pusta, a powinny być tam dokumenty. Nie widzę komunikatu błędu.",
+        "service": "billing"
+      },
+      "expectedOutput": {
+        "requestId": "REQ-009",
+        "category": "INCIDENT",
+        "nextAction": "DRAFT_REPLY",
+        "humanReview": false,
+        "matchedIssueId": "KI-002"
+      },
+      "simulationInstructions": "",
+      "expectedAgentBehavior": "Agent wywołuje FindKnownIssue, najwyżej raz. Nie wywołuje GetServiceStatus ani GetTicketStatus. Może sięgnąć do wiedzy Northstar_KB.",
+      "simulateInput": false,
+      "inputGenerationInstructions": "",
+      "simulateTools": false,
+      "evalSetId": "63265cad-6dd9-4c38-b71c-a6148401db99",
+      "createdAt": "2026-10-09T14:21:55.157Z",
+      "updatedAt": "2026-10-09T14:21:55.157Z",
+      "source": "manual"
+    },
+    {
+      "id": "993c62ac-2e31-488b-ba0a-d116243cd95a",
+      "name": "REQ-010",
+      "inputs": {
+        "requestId": "REQ-010",
+        "requesterEmail": "jan@example.com",
+        "subject": "Nieznane zgłoszenie",
+        "body": "Proszę o status mojego zgłoszenia INC-999.",
+        "service": "portal"
+      },
+      "expectedOutput": {
+        "requestId": "REQ-010",
+        "category": "STATUS_REQUEST",
+        "nextAction": "ASK_DETAILS",
+        "humanReview": false,
+        "matchedIssueId": ""
+      },
+      "simulationInstructions": "",
+      "expectedAgentBehavior": "Agent wywołuje GetTicketStatus, najwyżej raz. Nie wywołuje FindKnownIssue ani GetServiceStatus. Może sięgnąć do wiedzy Northstar_KB.",
+      "simulateInput": false,
+      "inputGenerationInstructions": "",
+      "simulateTools": false,
+      "evalSetId": "63265cad-6dd9-4c38-b71c-a6148401db99",
+      "createdAt": "2026-10-09T14:21:55.870Z",
+      "updatedAt": "2026-10-09T14:21:55.871Z",
+      "source": "manual"
+    }
+  ],
+  "modelSettings": [],
+  "agentMemoryEnabled": false,
+  "agentMemorySettings": [],
+  "lineByLineEvaluation": false,
+  "createdAt": "2026-10-09T14:21:48.303Z",
+  "updatedAt": "2026-10-09T14:21:48.303Z"
+}

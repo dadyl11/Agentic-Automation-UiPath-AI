@@ -1,0 +1,32 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "FindKnownIssue_Zapas",
+    "kind": "package",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "fileName": "FindKnownIssue_Zapas.1.0.1.nupkg",
+      "fileReference": "FindKnownIssue_Zapas_1.0.1",
+      "name": "FindKnownIssue_Zapas"
+    },
+    "locks": [],
+    "key": "FindKnownIssue_Zapas:1.0.1",
+    "files": [
+      {
+        "key": "FindKnownIssue_Zapas_1.0.1",
+        "name": "FindKnownIssue_Zapas.1.0.1.nupkg",
+        "url": "https://cloud.uipath.com/kmisko/DefaultTenant/orchestrator_/odata/Processes/UiPath.Server.Configuration.OData.DownloadPackage(key='FindKnownIssue_Zapas:1.0.1')?feedId=8a84a837-d986-492b-a4a7-a220f1b324f5",
+        "kind": "Package",
+        "version": "1.0.1"
+      }
+    ]
+  }
+}

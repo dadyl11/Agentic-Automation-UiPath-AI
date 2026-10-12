@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 330" width="1024" height="330" role="img" aria-label="Northstar: całość rozwiązania" font-family="DejaVu Sans, Segoe UI, Arial, sans-serif">
+<defs><marker id="arr-00_architektura" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8A9BA8"/></marker></defs>
+<rect width="100%" height="100%" rx="10" fill="#FFFFFF" stroke="#C9D3DB"/>
+<text x="24" y="30" font-size="17" font-weight="700" fill="#142F47">Northstar: całość rozwiązania</text>
+<text x="24" y="50" font-size="12.5" fill="#087F8C">Desktop i Web budują narzędzia, agent je wybiera, Maestro pilnuje przeglądu i zapisu.</text>
+<rect x="24" y="72" width="168" height="62" rx="8" fill="#FFFFFF" stroke="#8A9BA8" stroke-width="1.6"/>
+<text x="108" y="108.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">Zgłoszenie</text>
+<rect x="226" y="72" width="168" height="62" rx="8" fill="#EDF1F3" stroke="#8A9BA8" stroke-width="1.6"/>
+<text x="310" y="100.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">Northstar_Case</text>
+<text x="310" y="116.0" text-anchor="middle" font-size="11.5" fill="#536878">Maestro Flow</text>
+<path d="M192 103 L224 103" stroke="#8A9BA8" stroke-width="1.6" fill="none" marker-end="url(#arr-00_architektura)"/>
+<rect x="428" y="72" width="168" height="62" rx="8" fill="#142F47" stroke="#142F47" stroke-width="1.6"/>
+<text x="512" y="100.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#FFFFFF">SupportAgent</text>
+<text x="512" y="116.0" text-anchor="middle" font-size="11.5" fill="#C9E7EA">agent (Published)</text>
+<path d="M394 103 L426 103" stroke="#8A9BA8" stroke-width="1.6" fill="none" marker-end="url(#arr-00_architektura)"/>
+<rect x="630" y="72" width="168" height="62" rx="8" fill="#F3E9F7" stroke="#8E5BA6" stroke-width="1.6"/>
+<text x="714" y="100.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">Przegląd</text>
+<text x="714" y="116.0" text-anchor="middle" font-size="11.5" fill="#536878">Quick Form</text>
+<path d="M596 103 L628 103" stroke="#8A9BA8" stroke-width="1.6" fill="none" marker-end="url(#arr-00_architektura)"/>
+<rect x="832" y="72" width="168" height="62" rx="8" fill="#E6ECF2" stroke="#142F47" stroke-width="1.6"/>
+<text x="916" y="100.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">FinalizeCase</text>
+<text x="916" y="116.0" text-anchor="middle" font-size="11.5" fill="#536878">zapis</text>
+<path d="M798 103 L830 103" stroke="#8A9BA8" stroke-width="1.6" fill="none" marker-end="url(#arr-00_architektura)"/>
+<path d="M512 134 V164" stroke="#8A9BA8" stroke-width="1.6" fill="none"/>
+<path d="M512 164 H233 V202" stroke="#8A9BA8" stroke-width="1.4" fill="none" marker-end="url(#arr-00_architektura)"/>
+<rect x="149" y="204" width="168" height="62" rx="8" fill="#E6ECF2" stroke="#142F47" stroke-width="1.6"/>
+<text x="233" y="232.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">FindKnownIssue</text>
+<text x="233" y="248.0" text-anchor="middle" font-size="11.5" fill="#536878">Studio Web</text>
+<path d="M512 164 H419 V202" stroke="#8A9BA8" stroke-width="1.4" fill="none" marker-end="url(#arr-00_architektura)"/>
+<rect x="335" y="204" width="168" height="62" rx="8" fill="#E6ECF2" stroke="#142F47" stroke-width="1.6"/>
+<text x="419" y="232.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">GetServiceStatus</text>
+<text x="419" y="248.0" text-anchor="middle" font-size="11.5" fill="#536878">Studio Web</text>
+<path d="M512 164 H605 V202" stroke="#8A9BA8" stroke-width="1.4" fill="none" marker-end="url(#arr-00_architektura)"/>
+<rect x="521" y="204" width="168" height="62" rx="8" fill="#E6ECF2" stroke="#142F47" stroke-width="1.6"/>
+<text x="605" y="232.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">GetTicketStatus</text>
+<text x="605" y="248.0" text-anchor="middle" font-size="11.5" fill="#536878">Studio Desktop</text>
+<path d="M512 164 H791 V202" stroke="#8A9BA8" stroke-width="1.4" fill="none" marker-end="url(#arr-00_architektura)"/>
+<rect x="707" y="204" width="168" height="62" rx="8" fill="#F6F5F0" stroke="#536878" stroke-width="1.6"/>
+<text x="791" y="232.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">Northstar_KB</text>
+<text x="791" y="248.0" text-anchor="middle" font-size="11.5" fill="#536878">indeks wiedzy</text>
+<rect x="24" y="285" width="14" height="14" rx="3" fill="#FFFFFF" stroke="#8A9BA8"/>
+<text x="44" y="296" font-size="11.5" fill="#536878">wejście / wynik</text>
+<rect x="157" y="285" width="14" height="14" rx="3" fill="#EDF1F3" stroke="#8A9BA8"/>
+<text x="177" y="296" font-size="11.5" fill="#536878">krok</text>
+<rect x="217" y="285" width="14" height="14" rx="3" fill="#142F47" stroke="#142F47"/>
+<text x="237" y="296" font-size="11.5" fill="#536878">agent</text>
+<rect x="284" y="285" width="14" height="14" rx="3" fill="#F3E9F7" stroke="#8E5BA6"/>
+<text x="304" y="296" font-size="11.5" fill="#536878">człowiek</text>
+<rect x="370" y="285" width="14" height="14" rx="3" fill="#E6ECF2" stroke="#142F47"/>
+<text x="390" y="296" font-size="11.5" fill="#536878">narzędzie</text>
+<rect x="463" y="285" width="14" height="14" rx="3" fill="#F6F5F0" stroke="#536878"/>
+<text x="483" y="296" font-size="11.5" fill="#536878">zasób platformy</text>
+</svg>

@@ -1,0 +1,53 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "GetTicketStatus_Zapas",
+    "kind": "process",
+    "type": "process",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "kind": "Package",
+        "name": "GetTicketStatus_Zapas"
+      }
+    ],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Process",
+      "jobPriority": "Medium",
+      "jobRecording": "Disabled",
+      "remoteControlAccess": "None",
+      "environmentVariables": "",
+      "name": "GetTicketStatus_Zapas",
+      "description": "Northstar: narzędzie z pakietu importu prowadzącego",
+      "package": {
+        "name": "GetTicketStatus_Zapas",
+        "key": "GetTicketStatus_Zapas:1.0.0"
+      },
+      "packageName": "GetTicketStatus_Zapas",
+      "packageVersion": "1.0.0",
+      "hiddenForAttendedUser": false,
+      "alwaysRunning": false,
+      "autoStartProcess": false,
+      "targetFrameworkValue": "Portable",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180,
+      "entryPoints": "[{\"UniqueId\":\"99f4f6c1-13d0-4efc-ac83-6124742fe6f8\",\"Path\":\"Main.xaml\",\"DisplayName\":null,\"InputArguments\":\"{\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"properties\\\": {\\n    \\\"ticketId\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"requesterEmail\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"simulateFailure\\\": {\\n      \\\"type\\\": \\\"boolean\\\"\\n    }\\n  },\\n  \\\"required\\\": []\\n}\",\"OutputArguments\":\"{\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"properties\\\": {\\n    \\\"out_resultJson\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    }\\n  }\\n}\",\"Type\":1,\"TargetRuntime\":null,\"ContentRoot\":null,\"DataVariation\":null,\"Id\":6805389}]",
+      "tags": [],
+      "duration": 40,
+      "frequency": 500,
+      "quality": 100
+    },
+    "locks": [],
+    "key": "5e4428a1-3d29-45f5-ac99-f23956b3c4cb",
+    "files": []
+  }
+}

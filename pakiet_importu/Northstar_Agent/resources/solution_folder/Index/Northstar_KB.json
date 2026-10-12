@@ -1,0 +1,38 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "Northstar_KB",
+    "kind": "index",
+    "apiVersion": "ecs.uipath.com/v2",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "kind": "Bucket",
+        "name": "Northstar_KB"
+      }
+    ],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "name": "Northstar_KB",
+      "description": "Procedury portalu Northstar (KB-001..KB-006)",
+      "storageBucketReference": {
+        "name": "Northstar_KB",
+        "key": "e4f63a23-61e3-4a85-9cdb-5c592e201c21",
+        "folderKey": "29dff2ba-055e-4010-8967-c4174ec0073d"
+      },
+      "fileNameGlob": "All",
+      "dataSourceType": "StorageBucket",
+      "includeSubfolders": true,
+      "ingestionType": "Basic",
+      "encrypted": false
+    },
+    "locks": [],
+    "key": "78330c67-6639-4382-fc8e-08df1efdf339",
+    "files": []
+  }
+}

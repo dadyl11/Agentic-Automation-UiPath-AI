@@ -1,0 +1,6 @@
+{
+  "Name": "GetServiceStatus_Zapas",
+  "ProjectType": "Process",
+  "Description": "Northstar: narzędzie z pakietu importu prowadzącego",
+  "MainFile": "Main.xaml"
+}

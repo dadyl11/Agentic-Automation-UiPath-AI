@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preflight uczestnika</title>
+<style>
+:root { --ink:#142F47; --accent:#087F8C; --muted:#536878; --line:#C9D3DB; --bg:#F6F5F0; --card:#FFFFFF; --head:#142F47; --headtxt:#FFFFFF; --zebra:#EDF1F3; --warn:#D9822B; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ink:#E3EAF0; --accent:#6AD1CE; --muted:#A9BCCB; --line:#33495C; --bg:#0F1B26; --card:#162636; --head:#22405C; --headtxt:#FFFFFF; --zebra:#1B2E40; --warn:#E8A15A; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font: 16px/1.55 'Segoe UI', Calibri, system-ui, sans-serif; }
+main { max-width: 900px; margin: 0 auto; padding: 32px 16px 64px; }
+nav#TOC { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:12px 20px; margin-bottom:32px; }
+nav#TOC::before { content:'Spis treści'; display:block; font-weight:700; color:var(--accent); margin-bottom:4px; }
+nav#TOC ul { margin:0; padding-left:18px; columns: 2; column-gap: 32px; }
+nav#TOC a { color:var(--ink); text-decoration:none; }
+nav#TOC a:hover { color:var(--accent); }
+h1 { font-size: 1.7rem; border-bottom: 3px solid var(--accent); padding-bottom: 6px; margin: 56px 0 14px; }
+h1:first-of-type { margin-top: 0; }
+h2 { font-size: 1.25rem; color:var(--accent); margin-top: 30px; border-left: 4px solid var(--accent); padding-left: 10px; }
+h3 { font-size: 1.05rem; margin: 20px 0 6px; }
+h4 { font-size: .85rem; letter-spacing: .06em; color:var(--accent); margin: 22px 0 6px; }
+p { margin: 6px 0; }
+ol, ul { padding-left: 24px; }
+li { margin: 3px 0; }
+code { background: var(--zebra); padding: 1px 5px; border-radius: 4px; font-size: .9em; }
+pre { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 6px; padding: 12px 14px; overflow-x: auto; white-space: pre-wrap; }
+pre code { background: none; padding: 0; font-size: .88rem; }
+blockquote { margin: 14px 0; padding: 10px 14px; background: var(--zebra); border-left: 4px solid var(--warn); border-radius: 6px; }
+blockquote p { margin: 2px 0; }
+.tablewrap { overflow-x: auto; margin: 10px 0; }
+table { border-collapse: collapse; width: 100%; background: var(--card); font-size: .92rem; }
+th { background: var(--head); color: var(--headtxt); text-align: left; padding: 6px 9px; }
+td { border: 1px solid var(--line); padding: 6px 9px; vertical-align: top; }
+tr:nth-child(even) td { background: var(--zebra); }
+table.card td { background: var(--card); }
+table.card td:first-child { width: 150px; font-weight: 600; color: var(--accent); }
+.diagram { margin: 14px 0; overflow-x: auto; }
+.diagram svg { display: block; max-width: 100%; height: auto; }
+footer { max-width:900px; margin:0 auto; padding: 0 16px 32px; color: var(--muted); font-size: .85rem; }
+@media (max-width: 640px) { nav#TOC ul { columns: 1; } h1 { font-size: 1.4rem; } table.card td:first-child { width: auto; } }
+@media print {
+  @page { size: A4; margin: 18mm 16mm 20mm; @bottom-center { content: 'UiPath AI | Northstar | Materiał warsztatowy • 1.2 | str. ' counter(page); font-size: 8pt; color: #536878; } }
+  :root { --ink:#142F47; --accent:#087F8C; --line:#C9D3DB; --bg:#FFFFFF; --card:#FFFFFF; --zebra:#F2F5F7; --head:#142F47; }
+  body { font-size: 10.5pt; }
+  main { max-width: none; padding: 0; }
+  nav#TOC { break-after: page; border: none; padding: 0; }
+  h1 { break-before: page; margin-top: 0; font-size: 17pt; }
+  nav#TOC + h1, h1:first-of-type { break-before: auto; }
+  h1, h2, h3, h4 { break-after: avoid; }
+  tr, li, pre, blockquote, .diagram { break-inside: avoid; }
+  th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  footer { display: none; }
+}
+</style>
+</head>
+<body>
+<main>
+<nav id="TOC">
+<ul>
+<li><a href="#preflight-uczestnika--uipath-ai--northstar"
+id="toc-preflight-uczestnika--uipath-ai--northstar">Preflight uczestnika
+| UiPath AI / Northstar</a></li>
+</ul>
+</nav>
+<h1 id="preflight-uczestnika--uipath-ai--northstar">Preflight uczestnika
+| UiPath AI / Northstar</h1>
+<div class="tablewrap"><table class="card">
+<tbody>
+<tr>
+<td><strong>Cel</strong></td>
+<td>Sprawdzić przed warsztatem, że Twoja organizacja UiPath Community ma
+wszystko, czego użyjemy.</td>
+</tr>
+<tr>
+<td><strong>Kiedy</strong></td>
+<td>Najpóźniej 5 dni roboczych przed warsztatem</td>
+</tr>
+<tr>
+<td><strong>Czas</strong></td>
+<td>45–60 min</td>
+</tr>
+<tr>
+<td><strong>Wynik</strong></td>
+<td>Zrzuty ekranu z punktu 8 wysłane prowadzącemu</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Zasada danych:</strong> używaj wyłącznie plików z pakietu.
+Nie wgrywaj firmowych dokumentów, danych klientów ani pracowników,
+haseł, danych płatniczych ani medycznych.</p>
+</blockquote>
+<h2 id="1-organizacja-community">1. Organizacja Community</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" />Mam własną organizację UiPath
+Community i zapisałem/am jej adres.</label></li>
+<li><label><input type="checkbox" />Nie zużywam puli consumables na
+własne eksperymenty z AI w miesiącu szkolenia.</label></li>
+</ul>
+<h2 id="2-licencje-i-zużycie">2. Licencje i zużycie</h2>
+<ul class="task-list">
+<li><label><input type="checkbox" />Plan pokazuje
+Community.</label></li>
+<li><label><input type="checkbox" />Widzę przydzielone licencje
+użytkownika i robota oraz pulę consumables.</label></li>
+</ul>
+<h2 id="3-usługi">3. Usługi</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Usługa</th>
+<th>Sprawdzenie</th>
+<th>OK?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Studio Web</td>
+<td>Otwiera się</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Agents</td>
+<td>Mogę utworzyć agenta</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Orchestrator</td>
+<td>Otwiera się</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Maestro</td>
+<td>Otwiera się i pozwala utworzyć proces</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Apps, Action Center</td>
+<td>Otwierają się</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>UiPath Assistant (lokalnie)</td>
+<td>Wersja 2026.0.190+, zalogowany do mojej organizacji Community. RPA
+workflow z Log Message uruchamia się w Studio Web w trybie Debug</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Studio Desktop (lokalnie)</td>
+<td>Wersja <strong>2026.x</strong> (najnowsza Community), zalogowane do
+mojej organizacji Community. Nowy projekt Process
+<strong>cross-platform</strong> z aktywnością <strong>Content
+Generation</strong> (połączenie UiPath GenAI Activities, prompt „Napisz
+OK”) zwraca wynik. Ten projekt publikuję (Publish) do folderu Shared i
+widzę go w Orchestratorze jako proces</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>Brakuje usługi?</strong> Sprawdź Admin → Tenant → Services.
+Jeśli nadal jej nie ma, zgłoś to prowadzącemu.</p>
+</blockquote>
+<h2 id="4-test-agenta">4. Test agenta</h2>
+<ol type="1">
+<li><p>Utwórz agenta autonomicznego
+<strong>PreflightAgent</strong>.</p></li>
+<li><p>Argumenty:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Kierunek</th>
+<th>Typ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>message</td>
+<td>wejście</td>
+<td>String</td>
+</tr>
+<tr>
+<td>summary</td>
+<td>wyjście</td>
+<td>String</td>
+</tr>
+</tbody>
+</table></div></li>
+<li><p>Prompt użytkownika (argument wstaw przez edytor):</p></li>
+</ol>
+<pre class="text"><code>Podsumuj w jednym zdaniu: {{input.message}}</code></pre>
+<ol start="4" type="1">
+<li>Uruchom z tekstem: „Portal nie otwiera się u nikogo w zespole.”</li>
+<li>Otwórz <strong>Execution Trail</strong>.</li>
+</ol>
+<ul class="task-list">
+<li><label><input type="checkbox" />Widzę niepusty wynik summary i
+otwarty trace.</label></li>
+</ul>
+<h2 id="5-test-wiedzy">5. Test wiedzy</h2>
+<ol type="1">
+<li>W Orchestratorze utwórz Storage Bucket <strong>Northstar_KB</strong>
+i wgraj do niego <code>baza_wiedzy/Portal_Northstar.txt</code>.</li>
+<li>Utwórz indeks <strong>Context Grounding</strong> ze źródłem Storage
+Bucket, z podstawową ekstrakcją tekstu (Basic).</li>
+<li>Uruchom synchronizację (ingestion) i poczekaj na status zakończony
+powodzeniem.</li>
+<li>Wyszukaj „Jak pobrać faktury?”.</li>
+</ol>
+<ul class="task-list">
+<li><label><input type="checkbox" />Wynik zawiera fragment z
+KB-001.</label></li>
+</ul>
+<blockquote>
+<p><strong>Uwaga (Community):</strong> przy tworzeniu indeksu wybierz
+podstawową ekstrakcję tekstu (<strong>Basic</strong> / NativeV1).
+Zaawansowana ekstrakcja (Advanced / LLM) nie jest dostępna w Community:
+tworzenie kończy się błędem „Unavailable with current plan. Please
+upgrade your license” (HTTP 402). Dla pliku TXT podstawowa ekstrakcja w
+zupełności wystarcza. Nazwy opcji w interfejsie sprawdź na swoim
+tenantcie.</p>
+</blockquote>
+<blockquote>
+<p><strong>Uwaga:</strong> indeks zostaw. Przyda się w ćwiczeniu 4.</p>
+</blockquote>
+<h2 id="6-test-zadania-człowieka-potrzebny-w-dniu-2">6. Test zadania
+człowieka (potrzebny w dniu 2)</h2>
+<ol type="1">
+<li><p>W Studio Web: <strong>Create New → Flow</strong>, nazwa
+<strong>PreflightReview</strong>. Flow: <strong>Manual trigger → Human
+task → Quick Form → End</strong>.</p></li>
+<li><p>W węźle Quick Form:</p>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Sekcja w Properties</th>
+<th>Wartość</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Schema → pole</td>
+<td>message, kierunek Input, tekst „Test”</td>
+</tr>
+<tr>
+<td>Schema → outcomes</td>
+<td>Approve (primary), Reject</td>
+</tr>
+<tr>
+<td>Assignment criteria</td>
+<td>Twój użytkownik</td>
+</tr>
+</tbody>
+</table></div></li>
+<li><p>Kliknij <strong>Debug</strong>, poczekaj na zadanie i zakończ je,
+wybierając Approve.</p></li>
+</ol>
+<ul class="task-list">
+<li><label><input type="checkbox" />Zadanie dało się zakończyć, a flow
+zakończył się po decyzji. Jeśli nie, zapisz komunikat
+błędu.</label></li>
+</ul>
+<h2 id="7-test-agenta-konwersacyjnego-potrzebny-w-dniu-2">7. Test agenta
+konwersacyjnego (potrzebny w dniu 2)</h2>
+<ol type="1">
+<li>W Studio Web: <strong>Create New → Agent → Conversational → Start
+fresh</strong>. Nazwa: <strong>PreflightChat</strong>.</li>
+<li>Prompt systemowy:</li>
+</ol>
+<pre class="text"><code>Jesteś uprzejmym asystentem. Odpowiadaj po polsku, w jednym lub dwóch zdaniach.</code></pre>
+<ol start="3" type="1">
+<li>Kliknij <strong>Debug</strong> i wyślij dwie wiadomości: „Cześć, mam
+na imię Ola.”, a potem „Jak mam na imię?”.</li>
+</ol>
+<ul class="task-list">
+<li><label><input type="checkbox" />Agent odpowiedział na obie
+wiadomości i w drugiej pamiętał imię. Jeśli pojawił się komunikat o
+licencji lub braku dostępu, zapisz go dosłownie.</label></li>
+</ul>
+<blockquote>
+<p><strong>Uwaga:</strong> według dokumentacji licencji miesięczna pula
+dla agentów konwersacyjnych nie jest dostępna w Community. Wynik tego
+punktu decyduje, czy ćwiczenie 7 robisz samodzielnie, w parze czy jako
+pokaz.</p>
+</blockquote>
+<h2 id="8-odeślij-prowadzącemu">8. Odeślij prowadzącemu</h2>
+<div class="tablewrap"><table>
+<thead>
+<tr>
+<th>Co wysłać</th>
+<th>OK?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Zrzut: plan, licencje i pula consumables</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Zrzut: widoczne usługi</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Zrzut: wynik Content Generation w Studio Desktop i proces w
+Orchestratorze</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Zrzut: wynik PreflightAgent i Execution Trail</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Zrzut: zakończony indeks z wynikiem KB-001</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Wynik testu zadania człowieka (działa / komunikat błędu)</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Wynik testu agenta konwersacyjnego (działa / dosłowny
+komunikat)</td>
+<td>☐</td>
+</tr>
+<tr>
+<td>Który krok się nie powiódł i jaki komunikat się pojawił</td>
+<td>☐</td>
+</tr>
+</tbody>
+</table></div>
+<p>Po wysłaniu zrzutów możesz usunąć PreflightAgent i PreflightChat.</p>
+
+</main>
+<footer>UiPath AI | Northstar | Materiał warsztatowy • wersja 1.2 • 8 października 2026. Wydruk do PDF: Ctrl+P → Zapisz jako PDF.</footer>
+</body>
+</html>

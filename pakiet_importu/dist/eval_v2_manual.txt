@@ -1,0 +1,10 @@
+OK   | REQ-001 | INCIDENT/DRAFT_REPLY (oczek. INCIDENT/DRAFT_REPLY) | narzędzia ['FindKnownIssue'] (wymagane ['FindKnownIssue']) | sources ['KI-001'] | trace 1a952635-2e52-4757-9a2f-da18e70322a9
+OK   | REQ-002 | INCIDENT/DRAFT_REPLY (oczek. INCIDENT/DRAFT_REPLY) | narzędzia ['GetServiceStatus'] (wymagane ['GetServiceStatus']) | sources ['SERVICE:portal'] | trace 49a64f60-a45e-4698-ada2-638d01eee3db
+OK   | REQ-003 | STATUS_REQUEST/DRAFT_REPLY (oczek. STATUS_REQUEST/DRAFT_REPLY) | narzędzia ['GetTicketStatus'] (wymagane ['GetTicketStatus']) | sources ['TICKET:INC-104'] | trace 712bbc1b-a1b4-4053-b9e1-7f007b09ad7a
+OK   | REQ-004 | ACCESS_REQUEST/HUMAN_REVIEW (oczek. ACCESS_REQUEST/HUMAN_REVIEW) | narzędzia ['Northstar_KB', None] (wymagane []) | sources ['KB-002'] | trace 34454306-3306-4d02-ad85-f9a6cc6aa9f8
+OK   | REQ-005 | HOW_TO/DRAFT_REPLY (oczek. HOW_TO/DRAFT_REPLY) | narzędzia ['Northstar_KB', None] (wymagane []) | sources ['KB-001'] | trace 1777ccd1-87b1-4152-a9ba-50da365cc72c
+OK   | REQ-006 | FEATURE_REQUEST/DRAFT_REPLY (oczek. FEATURE_REQUEST/DRAFT_REPLY) | narzędzia [] (wymagane []) | sources [] | trace 39b9d3cb-7885-4333-ba57-0feed2b73c90
+OK   | REQ-007 | OTHER/ASK_DETAILS (oczek. OTHER/ASK_DETAILS) | narzędzia [] (wymagane []) | sources [] | trace 595f3377-7dd4-4861-9a64-b3eaca35e4fa
+OK   | REQ-008 | HOW_TO/HUMAN_REVIEW (oczek. HOW_TO/HUMAN_REVIEW) | narzędzia ['Northstar_KB', None] (wymagane []) | sources ['KB-004'] | trace 27f746ce-a3d0-4a96-9d70-1422009ef5a8
+OK   | REQ-009 | INCIDENT/DRAFT_REPLY (oczek. INCIDENT/DRAFT_REPLY) | narzędzia ['FindKnownIssue', 'Northstar_KB', None] (wymagane ['FindKnownIssue']) | sources ['KI-002', 'KB-001'] | trace 59413c56-7a83-4bfd-bada-d885f9a5997d
+OK   | REQ-010 | STATUS_REQUEST/ASK_DETAILS (oczek. STATUS_REQUEST/ASK_DETAILS) | narzędzia ['GetTicketStatus'] (wymagane ['GetTicketStatus']) | sources ['TICKET:INC-999'] | trace 4057a842-c024-45b0-9288-613cda6b601b

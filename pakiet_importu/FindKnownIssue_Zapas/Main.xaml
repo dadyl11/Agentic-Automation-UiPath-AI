@@ -1,0 +1,206 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="query" Type="InArgument(x:String)" />
+    <x:Property Name="service" Type="InArgument(x:String)" />
+    <x:Property Name="simulateFailure" Type="InArgument(x:Boolean)" />
+    <x:Property Name="out_status" Type="OutArgument(x:String)" />
+    <x:Property Name="out_issueId" Type="OutArgument(x:String)" />
+    <x:Property Name="out_description" Type="OutArgument(x:String)" />
+    <x:Property Name="out_workaround" Type="OutArgument(x:String)" />
+    <x:Property Name="out_score" Type="OutArgument(x:Double)" />
+    <x:Property Name="out_sourceId" Type="OutArgument(x:String)" />
+    <x:Property Name="out_message" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="FindKnownIssue" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:Double" Default="0.6" Name="dblThreshold" />
+      <Variable x:TypeArguments="x:String" Name="strQuery" />
+      <Variable x:TypeArguments="x:String" Name="strService" />
+      <Variable x:TypeArguments="x:Double" Name="dblScore" />
+      <Variable x:TypeArguments="x:Double" Default="-1" Name="dblBestScore" />
+      <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dicBestIssue" />
+      <Variable x:TypeArguments="scg:List(scg:Dictionary(x:String, x:String))" Default="[New List(Of Dictionary(Of String, String)) From {New Dictionary(Of String, String) From {{&quot;issueId&quot;, &quot;KI-001&quot;}, {&quot;service&quot;, &quot;sales&quot;}, {&quot;description&quot;, &quot;Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.&quot;}, {&quot;workaround&quot;, &quot;Podziel raport na okresy nie dłuższe niż 31 dni.&quot;}}, New Dictionary(Of String, String) From {{&quot;issueId&quot;, &quot;KI-002&quot;}, {&quot;service&quot;, &quot;billing&quot;}, {&quot;description&quot;, &quot;Lista faktur jest pusta z powodu aktywnego filtra dat obejmującego wyłącznie bieżący dzień.&quot;}, {&quot;workaround&quot;, &quot;Sprawdź filtr dat i wybierz okres, w którym wystawiono fakturę.&quot;}}, New Dictionary(Of String, String) From {{&quot;issueId&quot;, &quot;KI-003&quot;}, {&quot;service&quot;, &quot;portal&quot;}, {&quot;description&quot;, &quot;Logowanie po zmianie hasła nie działa w starej sesji przeglądarki.&quot;}, {&quot;workaround&quot;, &quot;Zamknij sesję i ponownie otwórz stronę logowania.&quot;}}, New Dictionary(Of String, String) From {{&quot;issueId&quot;, &quot;KI-004&quot;}, {&quot;service&quot;, &quot;sales&quot;}, {&quot;description&quot;, &quot;Podgląd wykresu sprzedaży nie odświeża się po zmianie regionu.&quot;}, {&quot;workaround&quot;, &quot;Ponownie otwórz widok raportu.&quot;}}}]" Name="lstKnownIssues" />
+      <Variable x:TypeArguments="scg:List(scg:Dictionary(x:String, x:String))" Name="lstCandidates" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Wyczyść wynik">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_issueId" To="[out_issueId]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_description" To="[out_description]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_workaround" To="[out_workaround]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:Double" DisplayName="out_score" To="[out_score]" Value="[0]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_sourceId" To="[out_sourceId]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_message" To="[out_message]" Value="[&quot;&quot;]" />
+</Sequence>
+    <If Condition="[simulateFailure]" DisplayName="a. simulateFailure?" sap2010:WorkflowViewState.IdRef="If_4">
+      <If.Then>
+        <Sequence DisplayName="Then: ERROR" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Wynik ERROR">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;ERROR&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_message" To="[out_message]" Value="[&quot;Simulated timeout&quot;]" />
+</Sequence>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence DisplayName="Else: wyszukiwanie" sap2010:WorkflowViewState.IdRef="Sequence_11">
+          <Assign x:TypeArguments="x:String" DisplayName="Normalizuj query" sap2010:WorkflowViewState.IdRef="Assign`1_2" To="[strQuery]" Value="[If(query, &quot;&quot;).Trim()]" />
+          <Assign x:TypeArguments="x:String" DisplayName="Normalizuj service" sap2010:WorkflowViewState.IdRef="Assign`1_3" To="[strService]" Value="[If(String.IsNullOrWhiteSpace(service), &quot;unknown&quot;, service.Trim().ToLowerInvariant())]" />
+          <If Condition="[strQuery = &quot;&quot;]" DisplayName="b. Pusty query?" sap2010:WorkflowViewState.IdRef="If_3">
+            <If.Then>
+              <Sequence DisplayName="Then: ERROR Missing query" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="Wynik Missing query">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;ERROR&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_message" To="[out_message]" Value="[&quot;Missing query&quot;]" />
+</Sequence>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence DisplayName="Else: porównanie" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <Assign x:TypeArguments="scg:List(scg:Dictionary(x:String, x:String))" DisplayName="c. Kandydaci dla usługi" sap2010:WorkflowViewState.IdRef="Assign`1_5" To="[lstCandidates]" Value="[lstKnownIssues.Where(Function(i) strService = &quot;unknown&quot; OrElse i(&quot;service&quot;) = strService).ToList()]" />
+                <TryCatch DisplayName="Porównania z obsługą błędu" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                  <TryCatch.Try>
+                    <Sequence DisplayName="Try" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                      <ui:ForEach x:TypeArguments="scg:Dictionary(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="e. Dla każdego znanego problemu" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[lstCandidates]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="scg:Dictionary(x:String, x:String)">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dicIssue" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                              <isactr:ConnectorActivity Configuration="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" ConnectionId="765681cb-a97a-4550-9810-435f20788c42" DisplayName="Semantic Similarity" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="89a94adc-0ec1-36b0-9862-97db1723dcce">
+                                <isactr:ConnectorActivity.FieldObjects>
+                                  <isactr:FieldObject Name="modelName" Type="FieldArgument" />
+                                  <isactr:FieldObject Name="similarityType" Type="FieldArgument">
+                                    <isactr:FieldObject.Value>
+                                      <InArgument x:TypeArguments="x:String">String to string</InArgument>
+                                    </isactr:FieldObject.Value>
+                                  </isactr:FieldObject>
+                                  <isactr:FieldObject Name="outputFormat" Type="FieldArgument" />
+                                  <isactr:FieldObject Name="firstComparisonInput" Type="FieldArgument">
+                                    <isactr:FieldObject.Value>
+                                      <InArgument x:TypeArguments="x:String">[strQuery]</InArgument>
+                                    </isactr:FieldObject.Value>
+                                  </isactr:FieldObject>
+                                  <isactr:FieldObject Name="secondComparisonInput" Type="FieldArgument">
+                                    <isactr:FieldObject.Value>
+                                      <InArgument x:TypeArguments="x:String">[dicIssue("description")]</InArgument>
+                                    </isactr:FieldObject.Value>
+                                  </isactr:FieldObject>
+                                  <isactr:FieldObject Name="comparisonArray" Type="FieldArgument" />
+                                  <isactr:FieldObject Name="Xminus_signElementsminus_signServiceminus_signProfile" Type="FieldArgument" />
+                                  <isactr:FieldObject Name="out_semanticSimilarity_sub_similarityScore" Type="FieldArgument">
+                                    <isactr:FieldObject.Value>
+                                      <OutArgument x:TypeArguments="x:Double">[dblScore]</OutArgument>
+                                    </isactr:FieldObject.Value>
+                                  </isactr:FieldObject>
+                                  <isactr:FieldObject Name="out_semanticSimilarity_sub_similarityExplanation" Type="FieldArgument" />
+                                  <isactr:FieldObject Name="out_semanticSimilarity_sub_string" Type="FieldArgument" />
+                                  <isactr:FieldObject Name="out_semanticSimilarity_sub_listOfScores" Type="FieldArgument" />
+                                  <isactr:FieldObject Name="Jit_semanticminus_signsimilarity" Type="FieldArgument" />
+                                </isactr:ConnectorActivity.FieldObjects>
+                              </isactr:ConnectorActivity>
+                              <If Condition="[dblScore &gt; dblBestScore]" DisplayName="Lepszy wynik?" sap2010:WorkflowViewState.IdRef="If_1">
+                                <If.Then>
+                                  <Sequence DisplayName="Then: zapamiętaj" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                                    <Assign x:TypeArguments="x:Double" DisplayName="Zapamiętaj score" sap2010:WorkflowViewState.IdRef="Assign`1_6" To="[dblBestScore]" Value="[dblScore]" />
+                                    <Assign x:TypeArguments="scg:Dictionary(x:String, x:String)" DisplayName="Zapamiętaj problem" sap2010:WorkflowViewState.IdRef="Assign`1_7" To="[dicBestIssue]" Value="[dicIssue]" />
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <If Condition="[dicBestIssue IsNot Nothing AndAlso dblBestScore &gt;= dblThreshold]" DisplayName="f-g. Po pętli: bestScore ≥ T?" sap2010:WorkflowViewState.IdRef="If_2">
+                        <If.Then>
+                          <Sequence DisplayName="Then: MATCH" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                            <Sequence DisplayName="Wynik MATCH">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;MATCH&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_issueId" To="[out_issueId]" Value="[dicBestIssue(&quot;issueId&quot;)]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_description" To="[out_description]" Value="[dicBestIssue(&quot;description&quot;)]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_workaround" To="[out_workaround]" Value="[dicBestIssue(&quot;workaround&quot;)]" />
+<Assign x:TypeArguments="x:Double" DisplayName="out_score" To="[out_score]" Value="[Math.Round(dblBestScore, 3)]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_sourceId" To="[out_sourceId]" Value="[dicBestIssue(&quot;issueId&quot;)]" />
+</Sequence>
+                          </Sequence>
+                        </If.Then>
+                        <If.Else>
+                          <Sequence DisplayName="Else: NO_MATCH (h, i)" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                            <Sequence DisplayName="Wynik NO_MATCH">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;NO_MATCH&quot;]" />
+<Assign x:TypeArguments="x:Double" DisplayName="out_score" To="[out_score]" Value="[Math.Round(Math.Max(dblBestScore, 0), 3)]" />
+</Sequence>
+                          </Sequence>
+                        </If.Else>
+                      </If>
+                    </Sequence>
+                  </TryCatch.Try>
+                  <TryCatch.Catches>
+                    <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                      <ActivityAction x:TypeArguments="s:Exception">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                        </ActivityAction.Argument>
+                        <Sequence DisplayName="Catch: ERROR" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <Sequence DisplayName="Wynik ERROR AI">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;ERROR&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_message" To="[out_message]" Value="[&quot;Similarity call failed: &quot; &amp; exception.Message]" />
+</Sequence>
+                        </Sequence>
+                      </ActivityAction>
+                    </Catch>
+                  </TryCatch.Catches>
+                </TryCatch>
+              </Sequence>
+            </If.Else>
+          </If>
+        </Sequence>
+      </If.Else>
+    </If>
+    <ui:LogMessage DisplayName="Log wyniku" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;FindKnownIssue | T=&quot; &amp; dblThreshold.ToString(Globalization.CultureInfo.InvariantCulture) &amp; &quot; | &quot; &amp; out_status &amp; &quot; | &quot; &amp; out_issueId &amp; &quot; | &quot; &amp; out_score.ToString(Globalization.CultureInfo.InvariantCulture)]" />
+  </Sequence>
+</Activity>

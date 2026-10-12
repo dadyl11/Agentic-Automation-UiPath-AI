@@ -1,0 +1,26 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "Northstar_KB",
+    "kind": "bucket",
+    "type": "orchestratorBucket",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Orchestrator",
+      "name": "Northstar_KB",
+      "description": "Northstar: baza wiedzy agenta (tylko Portal_Northstar.txt)",
+      "tags": []
+    },
+    "locks": [],
+    "key": "e4f63a23-61e3-4a85-9cdb-5c592e201c21",
+    "files": []
+  }
+}

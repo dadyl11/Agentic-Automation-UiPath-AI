@@ -1,0 +1,71 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "FindKnownIssue_Zapas",
+    "kind": "process",
+    "type": "process",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "kind": "Package",
+        "name": "FindKnownIssue_Zapas"
+      }
+    ],
+    "runtimeDependencies": [
+      {
+        "bindingType": "Connection",
+        "bindingKey": "765681cb-a97a-4550-9810-435f20788c42",
+        "bindingValues": {
+          "connectionId": {
+            "defaultValue": "765681cb-a97a-4550-9810-435f20788c42",
+            "isExpression": false
+          }
+        },
+        "bindingMetadata": {
+          "connector": "uipath-uipath-airdk",
+          "useConnectionService": "true",
+          "activityName": "Semantic Similarity",
+          "bindingsVersion": "2.2"
+        },
+        "resourceKind": "Connection"
+      }
+    ],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Process",
+      "jobPriority": "Medium",
+      "jobRecording": "Disabled",
+      "remoteControlAccess": "None",
+      "environmentVariables": "",
+      "name": "FindKnownIssue_Zapas",
+      "description": "Northstar: narzędzie z pakietu importu prowadzącego",
+      "package": {
+        "name": "FindKnownIssue_Zapas",
+        "key": "FindKnownIssue_Zapas:1.0.1"
+      },
+      "packageName": "FindKnownIssue_Zapas",
+      "packageVersion": "1.0.1",
+      "hiddenForAttendedUser": false,
+      "alwaysRunning": false,
+      "autoStartProcess": false,
+      "targetFrameworkValue": "Portable",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180,
+      "entryPoints": "[{\"UniqueId\":\"85acec38-57c0-4fa6-ac47-def3d5b864b9\",\"Path\":\"Main.xaml\",\"DisplayName\":null,\"InputArguments\":\"{\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"properties\\\": {\\n    \\\"query\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"service\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"simulateFailure\\\": {\\n      \\\"type\\\": \\\"boolean\\\"\\n    }\\n  },\\n  \\\"required\\\": []\\n}\",\"OutputArguments\":\"{\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"properties\\\": {\\n    \\\"out_resultJson\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    }\\n  }\\n}\",\"Type\":1,\"TargetRuntime\":null,\"ContentRoot\":null,\"DataVariation\":null,\"Id\":6805474}]",
+      "tags": [],
+      "duration": 40,
+      "frequency": 500,
+      "quality": 100
+    },
+    "locks": [],
+    "key": "25c00ca5-ef3f-40a7-8c38-5d518c0b0742",
+    "files": []
+  }
+}

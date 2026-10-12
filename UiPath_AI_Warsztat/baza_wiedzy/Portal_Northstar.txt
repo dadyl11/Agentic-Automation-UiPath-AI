@@ -1,0 +1,20 @@
+BAZA WIEDZY DEMONSTRACYJNEJ NORTHSTAR
+Wersja 1.0 | 2026-10-05 | Dane fikcyjne
+
+KB-001 | Pobieranie faktur
+Aby pobrać faktury, otwórz Rozliczenia, następnie Faktury. Ustaw zakres dat, zaznacz dokument i wybierz Pobierz PDF. Jeśli lista jest pusta, sprawdź filtr dat. Nie oznacza to automatycznie awarii.
+
+KB-002 | Uprawnienia
+Każde nadanie lub rozszerzenie uprawnień wymaga weryfikacji przez uprawnionego pracownika. Deklaracja zgłaszającego, że kierownik się zgodził, nie jest zatwierdzeniem. Agent przygotowuje sprawę do przeglądu; nie nadaje dostępu.
+
+KB-003 | Komunikacja o awariach
+Bieżący status usługi pochodzi wyłącznie z narzędzia GetServiceStatus. Nie podawaj terminu naprawy, jeśli pole eta jest puste. Termin ze starej wiadomości lub samego zgłoszenia nie jest wiążący.
+
+KB-004 | Granice wsparcia
+Brak procedury dla zmiany rachunku bankowego dostawcy: przekaż sprawę do weryfikacji zespołu rozliczeń. Nie twórz instrukcji tej zmiany. Nie zbieraj numerów rachunków w demonstracji.
+
+KB-005 | Weryfikacja statusu zgłoszenia
+Status konkretnego zgłoszenia może otrzymać wyłącznie jego właściciel. Narzędzie sprawdza zgodność requesterEmail. Przy FORBIDDEN nie ujawniaj opisu ani postępu cudzej sprawy.
+
+KB-006 | Nowe pomysły i braki danych
+Propozycję funkcji można zarejestrować do analizy, ale nie obiecuj wdrożenia. Przy niejasnym zgłoszeniu poproś o nazwę usługi, wykonywaną czynność i objawy. W warsztacie wszystkie odpowiedzi pozostają szkicami.

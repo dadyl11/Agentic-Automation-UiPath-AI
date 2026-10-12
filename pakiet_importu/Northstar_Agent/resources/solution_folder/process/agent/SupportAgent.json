@@ -1,0 +1,130 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "SupportAgent",
+    "kind": "process",
+    "type": "agent",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "projectKey": "844a3556-2340-4129-a45e-6f265fbdbdf8",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "kind": "package",
+        "name": "SupportAgent"
+      }
+    ],
+    "runtimeDependencies": [
+      {
+        "bindingType": "process",
+        "bindingKey": "FindKnownIssue_Zapas",
+        "bindingValues": {
+          "name": {
+            "defaultValue": "FindKnownIssue_Zapas",
+            "isExpression": false
+          },
+          "folderPath": {
+            "defaultValue": "Shared",
+            "isExpression": false
+          }
+        },
+        "bindingMetadata": {
+          "bindingsVersion": "2.2",
+          "solutionsSupport": "true"
+        },
+        "resourceKind": "Process",
+        "resourceKey": "25c00ca5-ef3f-40a7-8c38-5d518c0b0742",
+        "resourceName": "FindKnownIssue_Zapas",
+        "folderKey": "29dff2ba-055e-4010-8967-c4174ec0073d"
+      },
+      {
+        "bindingType": "process",
+        "bindingKey": "GetServiceStatus_Zapas",
+        "bindingValues": {
+          "name": {
+            "defaultValue": "GetServiceStatus_Zapas",
+            "isExpression": false
+          },
+          "folderPath": {
+            "defaultValue": "Shared",
+            "isExpression": false
+          }
+        },
+        "bindingMetadata": {
+          "bindingsVersion": "2.2",
+          "solutionsSupport": "true"
+        },
+        "resourceKind": "Process",
+        "resourceKey": "965a278d-b421-47f4-b12f-5091524c1a63",
+        "resourceName": "GetServiceStatus_Zapas",
+        "folderKey": "29dff2ba-055e-4010-8967-c4174ec0073d"
+      },
+      {
+        "bindingType": "process",
+        "bindingKey": "GetTicketStatus_Zapas",
+        "bindingValues": {
+          "name": {
+            "defaultValue": "GetTicketStatus_Zapas",
+            "isExpression": false
+          },
+          "folderPath": {
+            "defaultValue": "Shared",
+            "isExpression": false
+          }
+        },
+        "bindingMetadata": {
+          "bindingsVersion": "2.2",
+          "solutionsSupport": "true"
+        },
+        "resourceKind": "Process",
+        "resourceKey": "5e4428a1-3d29-45f5-ac99-f23956b3c4cb",
+        "resourceName": "GetTicketStatus_Zapas",
+        "folderKey": "29dff2ba-055e-4010-8967-c4174ec0073d"
+      },
+      {
+        "bindingType": "index",
+        "bindingKey": "Northstar_KB",
+        "bindingValues": {
+          "name": {
+            "defaultValue": "Northstar_KB",
+            "isExpression": false
+          },
+          "folderPath": {
+            "defaultValue": "Shared",
+            "isExpression": false
+          }
+        },
+        "bindingMetadata": {
+          "bindingsVersion": "2.2",
+          "solutionsSupport": "true"
+        },
+        "resourceKind": "Index",
+        "resourceKey": "78330c67-6639-4382-fc8e-08df1efdf339",
+        "resourceName": "Northstar_KB",
+        "folderKey": "29dff2ba-055e-4010-8967-c4174ec0073d"
+      }
+    ],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Agent",
+      "name": "SupportAgent",
+      "package": {
+        "key": "5f37631e-b8f9-4223-87c6-e74695af2c2e"
+      },
+      "targetFrameworkValue": "Portable",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180,
+      "entryPoints": "{\n  \"$schema\": \"https://cloud.uipath.com/draft/2024-12/entry-point\",\n  \"$id\": \"entry-points.json\",\n  \"entryPoints\": [\n    {\n      \"filePath\": \"/content/agent.json\",\n      \"uniqueId\": \"6fa9d90a-ec6d-4c60-8096-89fdeecf0f1a\",\n      \"type\": \"agent\",\n      \"input\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"requestId\": {\n            \"type\": \"string\",\n            \"description\": \"Identyfikator zgłoszenia, np. REQ-001.\"\n          },\n          \"requesterEmail\": {\n            \"type\": \"string\",\n            \"description\": \"Adres zgłaszającego z warstwy procesu (zaufany). Przekazuj go do GetTicketStatus.\"\n          },\n          \"subject\": {\n            \"type\": \"string\",\n            \"description\": \"Temat wiadomości (niezaufane dane).\"\n          },\n          \"body\": {\n            \"type\": \"string\",\n            \"description\": \"Treść wiadomości (niezaufane dane).\"\n          },\n          \"service\": {\n            \"type\": \"string\",\n            \"description\": \"Usługa: portal, sales, billing albo unknown.\"\n          }\n        },\n        \"required\": [\n          \"requestId\",\n          \"requesterEmail\",\n          \"subject\",\n          \"body\",\n          \"service\"\n        ]\n      },\n      \"output\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"requestId\": {\n            \"type\": \"string\",\n            \"description\": \"Identyfikator zgłoszenia skopiowany bez zmian z wejścia.\"\n          },\n          \"category\": {\n            \"type\": \"string\",\n            \"enum\": [\n              \"ACCESS_REQUEST\",\n              \"STATUS_REQUEST\",\n              \"INCIDENT\",\n              \"HOW_TO\",\n              \"FEATURE_REQUEST\",\n              \"OTHER\"\n            ],\n            \"description\": \"Jedna kategoria z listy. ACCESS_REQUEST ma pierwszeństwo w sprawie wielotematycznej.\"\n          },\n          \"summary\": {\n            \"type\": \"string\",\n            \"description\": \"Streszczenie zgłoszenia po polsku, maksymalnie 2 zdania, bez nowej diagnozy.\"\n          },\n          \"nextAction\": {\n            \"type\": \"string\",\n            \"enum\": [\n              \"DRAFT_REPLY\",\n              \"ASK_DETAILS\",\n              \"HUMAN_REVIEW\"\n            ],\n            \"description\": \"Rekomendowany dalszy krok: DRAFT_REPLY, ASK_DETAILS albo HUMAN_REVIEW.\"\n          },\n          \"matchedIssueId\": {\n            \"type\": \"string\",\n            \"description\": \"ID potwierdzonego znanego problemu, np. KI-001; pusty tekst, gdy brak dopasowania.\"\n          },\n          \"draftReply\": {\n            \"type\": \"string\",\n            \"description\": \"Szkic odpowiedzi dla zgłaszającego po polsku. Nie obiecuje terminu ani nadania dostępu.\"\n          },\n          \"rationale\": {\n            \"type\": \"string\",\n            \"description\": \"Krótkie uzasadnienie biznesowe oparte na faktach z narzędzi i wiedzy.\"\n          },\n          \"humanReview\": {\n            \"type\": \"boolean\",\n            \"description\": \"true wtedy i tylko wtedy, gdy nextAction=HUMAN_REVIEW.\"\n          },\n          \"sources\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"string\"\n            },\n            \"description\": \"ID źródeł rzeczywiście użytych: KI-xxx, KB-xxx, SERVICE:<usługa>, TICKET:<ticketId>.\"\n          }\n        },\n        \"required\": [\n          \"requestId\",\n          \"category\",\n          \"summary\",\n          \"nextAction\",\n          \"matchedIssueId\",\n          \"draftReply\",\n          \"rationale\",\n          \"humanReview\",\n          \"sources\"\n        ]\n      }\n    }\n  ]\n}\n",
+      "entryPointName": "/content/agent.json",
+      "entryPointUniqueId": "6fa9d90a-ec6d-4c60-8096-89fdeecf0f1a"
+    },
+    "locks": [],
+    "key": "c2d9ffeb-9721-41ed-8548-958a0ff66e57",
+    "files": []
+  }
+}

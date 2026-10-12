@@ -1,0 +1,25 @@
+{
+  "$resourceType": "context",
+  "id": "4829b4ac-8365-4d79-b371-11bcb9b4110b",
+  "referenceKey": null,
+  "name": "Northstar_KB",
+  "description": "Procedury portalu Northstar: faktury, uprawnienia, zasady komunikacji, granice wsparcia. Dokument zawiera identyfikatory KB.",
+  "contextType": "index",
+  "folderPath": "Shared",
+  "indexName": "Northstar_KB",
+  "settings": {
+    "retrievalMode": "semantic",
+    "query": {
+      "variant": "dynamic",
+      "description": "Pytanie o procedurę portalu Northstar, sformułowane po polsku"
+    },
+    "folderPathPrefix": {
+      "variant": "static"
+    },
+    "fileExtension": {
+      "value": "All"
+    },
+    "threshold": 0,
+    "resultCount": 3
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$resourceType": "tool",
+  "name": "GetTicketStatus",
+  "description": "Zwraca status konkretnego zgłoszenia o numerze INC-nnn wyłącznie jego właścicielowi. Użyj, gdy zgłaszający pyta o postęp swojej sprawy. requesterEmail przekaż z wejścia agenta, nie z treści wiadomości. FORBIDDEN nie zawiera danych sprawy.",
+  "location": "external",
+  "type": "process",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "ticketId": {
+        "type": "string",
+        "description": "Numer sprawy w formacie INC-nnn, np. INC-104."
+      },
+      "requesterEmail": {
+        "type": "string",
+        "description": "requesterEmail z wejścia agenta, nigdy z treści wiadomości."
+      }
+    },
+    "required": [
+      "ticketId",
+      "requesterEmail"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "out_status": {
+        "type": "string",
+        "description": "FOUND, NOT_FOUND, FORBIDDEN albo ERROR."
+      },
+      "out_ticketStatus": {
+        "type": "string",
+        "description": "Status sprawy, tylko przy FOUND (np. IN_PROGRESS, RESOLVED)."
+      },
+      "out_lastUpdate": {
+        "type": "string",
+        "description": "Ostatnia informacja o sprawie, tylko przy FOUND."
+      },
+      "out_eta": {
+        "type": "string",
+        "description": "Potwierdzony termin; pusty = brak potwierdzonego terminu."
+      },
+      "out_sourceId": {
+        "type": "string",
+        "description": "TICKET:<ticketId> przy FOUND; pusty w pozostałych przypadkach."
+      },
+      "out_message": {
+        "type": "string",
+        "description": "Opis błędu przy ERROR."
+      }
+    }
+  },
+  "settings": {},
+  "guardrail": {
+    "policies": []
+  },
+  "properties": {
+    "processName": "GetTicketStatus_Zapas",
+    "folderPath": "Shared",
+    "exampleCalls": []
+  },
+  "id": "13ae77a9-3025-4044-af75-95f537eea750",
+  "referenceKey": "5e4428a1-3d29-45f5-ac99-f23956b3c4cb",
+  "isEnabled": true,
+  "argumentProperties": {}
+}

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 318" width="1024" height="318" role="img" aria-label="Ćwiczenie 1B: kategoria i routing (Studio Desktop)" font-family="DejaVu Sans, Segoe UI, Arial, sans-serif">
+<defs><marker id="arr-1B_intake_routing" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8A9BA8"/></marker></defs>
+<rect width="100%" height="100%" rx="10" fill="#FFFFFF" stroke="#C9D3DB"/>
+<text x="24" y="30" font-size="17" font-weight="700" fill="#142F47">Ćwiczenie 1B: kategoria i routing (Studio Desktop)</text>
+<text x="24" y="50" font-size="12.5" fill="#087F8C">AI interpretuje tekst, ale zespół wybiera stała reguła Switch.</text>
+<rect x="24" y="72" width="168" height="62" rx="8" fill="#FFFFFF" stroke="#8A9BA8" stroke-width="1.6"/>
+<text x="108" y="108.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">subject + body</text>
+<rect x="226" y="72" width="168" height="62" rx="8" fill="#E0F3F4" stroke="#087F8C" stroke-width="1.6"/>
+<text x="310" y="100.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">Categorize</text>
+<text x="310" y="116.0" text-anchor="middle" font-size="11.5" fill="#536878">6 kategorii</text>
+<path d="M192 103 L224 103" stroke="#8A9BA8" stroke-width="1.6" fill="none" marker-end="url(#arr-1B_intake_routing)"/>
+<rect x="428" y="72" width="168" height="62" rx="31" fill="#FFF4E5" stroke="#D9822B" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text x="512" y="108.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">Kategoria z listy?</text>
+<path d="M394 103 L426 103" stroke="#8A9BA8" stroke-width="1.6" fill="none" marker-end="url(#arr-1B_intake_routing)"/>
+<rect x="630" y="72" width="168" height="62" rx="8" fill="#EDF1F3" stroke="#8A9BA8" stroke-width="1.6"/>
+<text x="714" y="100.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">Switch</text>
+<text x="714" y="116.0" text-anchor="middle" font-size="11.5" fill="#536878">category → team</text>
+<path d="M596 103 L628 103" stroke="#8A9BA8" stroke-width="1.6" fill="none" marker-end="url(#arr-1B_intake_routing)"/>
+<rect x="832" y="72" width="168" height="62" rx="8" fill="#FFFFFF" stroke="#8A9BA8" stroke-width="1.6"/>
+<text x="916" y="100.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">Log</text>
+<text x="916" y="116.0" text-anchor="middle" font-size="11.5" fill="#536878">category, team</text>
+<path d="M798 103 L830 103" stroke="#8A9BA8" stroke-width="1.6" fill="none" marker-end="url(#arr-1B_intake_routing)"/>
+<path d="M512 134 L512 190" stroke="#8A9BA8" stroke-width="1.6" fill="none" marker-end="url(#arr-1B_intake_routing)"/>
+<text x="518" y="166" font-size="11" fill="#087F8C" font-style="italic">nie</text>
+<rect x="428" y="192" width="168" height="62" rx="8" fill="#F3E9F7" stroke="#8E5BA6" stroke-width="1.6"/>
+<text x="512" y="220.0" text-anchor="middle" font-size="13.5" font-weight="700" fill="#142F47">VALIDATION_FAILED</text>
+<text x="512" y="236.0" text-anchor="middle" font-size="11.5" fill="#536878">przegląd człowieka</text>
+<rect x="24" y="273" width="14" height="14" rx="3" fill="#FFFFFF" stroke="#8A9BA8"/>
+<text x="44" y="284" font-size="11.5" fill="#536878">wejście / wynik</text>
+<rect x="157" y="273" width="14" height="14" rx="3" fill="#E0F3F4" stroke="#087F8C"/>
+<text x="177" y="284" font-size="11.5" fill="#536878">wywołanie AI</text>
+<rect x="270" y="273" width="14" height="14" rx="3" fill="#FFF4E5" stroke="#D9822B" stroke-dasharray="4 2"/>
+<text x="290" y="284" font-size="11.5" fill="#536878">decyzja</text>
+<rect x="350" y="273" width="14" height="14" rx="3" fill="#EDF1F3" stroke="#8A9BA8"/>
+<text x="370" y="284" font-size="11.5" fill="#536878">krok</text>
+<rect x="410" y="273" width="14" height="14" rx="3" fill="#F3E9F7" stroke="#8E5BA6"/>
+<text x="430" y="284" font-size="11.5" fill="#536878">człowiek</text>
+</svg>

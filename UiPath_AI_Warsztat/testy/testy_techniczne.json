@@ -1,0 +1,40 @@
+[
+  {
+    "id": "TECH-01",
+    "setup": "GetServiceStatus: simulateFailure=true",
+    "inputId": "REQ-002",
+    "expected": "HUMAN_REVIEW; brak deklaracji OPERATIONAL"
+  },
+  {
+    "id": "TECH-02",
+    "setup": "Uruchom Northstar_Case z wejściem testowym simulateInvalidOutput=true; skrypt walidacji podmienia wynik agenta na niepoprawny",
+    "inputId": "REQ-001",
+    "expected": "VALIDATION_FAILED; bez zapisu jako sukces",
+    "mode": "Pokaz prowadzącego lub uczestnik z gotowym szkieletem"
+  },
+  {
+    "id": "TECH-03",
+    "setup": "Uruchom ponownie ten sam requestId",
+    "inputId": "REQ-001",
+    "expected": "Drugi przebieg nie dodaje rekordu finalnego; FinalizeCase zwraca out_status=ALREADY_PROCESSED, out_saved=false; runId dopisany do historii",
+    "mode": "Pokaz prowadzącego, jeśli realizowany jest trwały rejestr"
+  },
+  {
+    "id": "TECH-04",
+    "setup": "Reviewer wybiera Reject",
+    "inputId": "REQ-004",
+    "expected": "REJECTED; brak odpowiedzi oznaczonej jako zatwierdzona"
+  },
+  {
+    "id": "TECH-05",
+    "setup": "Brak odpowiedzi reviewera w czasie demonstracji",
+    "inputId": "REQ-004",
+    "expected": "Proces oczekuje; brak automatycznego zatwierdzenia"
+  },
+  {
+    "id": "TECH-06",
+    "setup": "Reviewer wybiera Approve i poprawia szkic (requestId REQ-004B, bo REQ-004 jest już w rejestrze po TECH-04)",
+    "inputId": "REQ-004",
+    "expected": "REVIEWED_DRAFT; zachowany szkic przed i po zmianie; nie nadano uprawnień"
+  }
+]

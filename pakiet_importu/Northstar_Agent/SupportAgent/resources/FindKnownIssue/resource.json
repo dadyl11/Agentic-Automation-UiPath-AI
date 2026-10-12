@@ -1,0 +1,70 @@
+{
+  "$resourceType": "tool",
+  "name": "FindKnownIssue",
+  "description": "Szuka kandydata na znany problem dla błędu konkretnej funkcji (np. eksport, lista faktur, logowanie). Nie używaj do ogólnej niedostępności całej usługi; do tego służy GetServiceStatus. MATCH jest kandydatem do weryfikacji objawów, nie dowodem, że problemy są identyczne. Nie nadaje uprawnień i nie tworzy zgłoszeń.",
+  "location": "external",
+  "type": "process",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "query": {
+        "type": "string",
+        "description": "Oryginalny opis objawów ze zgłoszenia: subject i body bez skracania."
+      },
+      "service": {
+        "type": "string",
+        "description": "portal, sales, billing albo unknown; z wejścia service."
+      }
+    },
+    "required": [
+      "query",
+      "service"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "out_status": {
+        "type": "string",
+        "description": "MATCH, NO_MATCH albo ERROR. MATCH to kandydat do weryfikacji objawów."
+      },
+      "out_issueId": {
+        "type": "string",
+        "description": "ID kandydata, np. KI-001; pusty przy NO_MATCH."
+      },
+      "out_description": {
+        "type": "string",
+        "description": "Opis znanego problemu przy MATCH."
+      },
+      "out_workaround": {
+        "type": "string",
+        "description": "Obejście znanego problemu przy MATCH."
+      },
+      "out_score": {
+        "type": "number",
+        "description": "Podobieństwo 0-1 najlepszego kandydata."
+      },
+      "out_sourceId": {
+        "type": "string",
+        "description": "ID znanego problemu przy MATCH; pusty w pozostałych przypadkach."
+      },
+      "out_message": {
+        "type": "string",
+        "description": "Opis błędu przy ERROR."
+      }
+    }
+  },
+  "settings": {},
+  "guardrail": {
+    "policies": []
+  },
+  "properties": {
+    "processName": "FindKnownIssue_Zapas",
+    "folderPath": "Shared",
+    "exampleCalls": []
+  },
+  "id": "18cdc379-0bde-45ff-9df3-ef7c15fe56ab",
+  "referenceKey": "25c00ca5-ef3f-40a7-8c38-5d518c0b0742",
+  "isEnabled": true,
+  "argumentProperties": {}
+}

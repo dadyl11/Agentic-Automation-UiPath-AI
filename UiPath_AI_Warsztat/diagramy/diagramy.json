@@ -1,0 +1,652 @@
+{
+  "_opis": "Źródło diagramów poglądowych. Generator: python narzedzia_pakietu/make_diagrams.py. Rodzaje kroków: io (wejście/wyjście), krok (zwykła aktywność), ai (wywołanie AI), decyzja, narzedzie, czlowiek, agent, zasob. Każdy wiersz 'rzad' to jedna linia przepływu od lewej do prawej; 'galezie' rysuje rozgałęzienie z ostatniego kroku głównej linii.",
+  "diagramy": [
+    {
+      "id": "00_architektura",
+      "tytul": "Northstar: całość rozwiązania",
+      "podpis": "Desktop i Web budują narzędzia, agent je wybiera, Maestro pilnuje przeglądu i zapisu.",
+      "rzad": [
+        {
+          "t": "Zgłoszenie",
+          "r": "io"
+        },
+        {
+          "t": "Northstar_Case",
+          "s": "Maestro Flow",
+          "r": "krok"
+        },
+        {
+          "t": "SupportAgent",
+          "s": "agent (Published)",
+          "r": "agent"
+        },
+        {
+          "t": "Przegląd",
+          "s": "Quick Form",
+          "r": "czlowiek"
+        },
+        {
+          "t": "FinalizeCase",
+          "s": "zapis",
+          "r": "narzedzie"
+        }
+      ],
+      "pod": {
+        "z": 2,
+        "elementy": [
+          {
+            "t": "FindKnownIssue",
+            "s": "Studio Web",
+            "r": "narzedzie"
+          },
+          {
+            "t": "GetServiceStatus",
+            "s": "Studio Web",
+            "r": "narzedzie"
+          },
+          {
+            "t": "GetTicketStatus",
+            "s": "Studio Desktop",
+            "r": "narzedzie"
+          },
+          {
+            "t": "Northstar_KB",
+            "s": "indeks wiedzy",
+            "r": "zasob"
+          }
+        ]
+      }
+    },
+    {
+      "id": "00_rozgrzewka",
+      "tytul": "Rozgrzewka: Studio Web i Desktop",
+      "podpis": "Pierwsze rozwiązanie w Studio Web: projekt, zasoby i debug.",
+      "rzad": [
+        {
+          "t": "Create New",
+          "s": "RPA Workflow",
+          "r": "krok"
+        },
+        {
+          "t": "Solution",
+          "s": "Explorer",
+          "r": "zasob"
+        },
+        {
+          "t": "Log Message",
+          "s": "+ breakpoint",
+          "r": "krok"
+        },
+        {
+          "t": "Debug",
+          "s": "Run output",
+          "r": "io"
+        }
+      ]
+    },
+    {
+      "id": "1A_intake_podsumowanie",
+      "tytul": "Ćwiczenie 1A: Intake_AI (Studio Desktop)",
+      "podpis": "Robot ustala kolejność kroków. AI wykonuje tylko streszczenie.",
+      "rzad": [
+        {
+          "t": "5 argumentów",
+          "s": "zgłoszenie",
+          "r": "io"
+        },
+        {
+          "t": "body puste?",
+          "r": "decyzja"
+        },
+        {
+          "t": "Content Generation",
+          "s": "prompt: podsumowanie",
+          "r": "ai"
+        },
+        {
+          "t": "summary",
+          "r": "io"
+        },
+        {
+          "t": "Log Message",
+          "r": "krok"
+        }
+      ],
+      "galezie": {
+        "z": 1,
+        "elementy": [
+          {
+            "t": "Bez AI",
+            "s": "NEEDS_DETAILS",
+            "r": "io",
+            "etykieta": "tak"
+          }
+        ]
+      }
+    },
+    {
+      "id": "1B_intake_routing",
+      "tytul": "Ćwiczenie 1B: kategoria i routing (Studio Desktop)",
+      "podpis": "AI interpretuje tekst, ale zespół wybiera stała reguła Switch.",
+      "rzad": [
+        {
+          "t": "subject + body",
+          "r": "io"
+        },
+        {
+          "t": "Categorize",
+          "s": "6 kategorii",
+          "r": "ai"
+        },
+        {
+          "t": "Kategoria z listy?",
+          "r": "decyzja"
+        },
+        {
+          "t": "Switch",
+          "s": "category → team",
+          "r": "krok"
+        },
+        {
+          "t": "Log",
+          "s": "category, team",
+          "r": "io"
+        }
+      ],
+      "galezie": {
+        "z": 2,
+        "elementy": [
+          {
+            "t": "VALIDATION_FAILED",
+            "s": "przegląd człowieka",
+            "r": "czlowiek",
+            "etykieta": "nie"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2_findknownissue",
+      "tytul": "Ćwiczenie 2: FindKnownIssue (Studio Web)",
+      "podpis": "Najpierw porównaj całą listę, dopiero potem zastosuj próg T.",
+      "rzad": [
+        {
+          "t": "query, service",
+          "r": "io"
+        },
+        {
+          "t": "Filtr usługi",
+          "s": "unknown = wszystkie",
+          "r": "krok"
+        },
+        {
+          "t": "Pętla",
+          "s": "Semantic Similarity",
+          "r": "ai"
+        },
+        {
+          "t": "bestScore ≥ T?",
+          "r": "decyzja"
+        },
+        {
+          "t": "MATCH",
+          "s": "issueId, workaround",
+          "r": "io"
+        }
+      ],
+      "galezie": {
+        "z": 3,
+        "elementy": [
+          {
+            "t": "NO_MATCH",
+            "s": "score kandydata",
+            "r": "io",
+            "etykieta": "nie"
+          }
+        ]
+      }
+    },
+    {
+      "id": "3A_getticketstatus",
+      "tytul": "Ćwiczenie 3A: GetTicketStatus (Studio Desktop)",
+      "podpis": "Dane z pliku w buckecie. Kolejność sprawdzeń chroni dane: awaria, istnienie, właściciel.",
+      "rzad": [
+        {
+          "t": "ticketId, email",
+          "r": "io"
+        },
+        {
+          "t": "simulateFailure?",
+          "r": "decyzja"
+        },
+        {
+          "t": "Czytaj sprawy.csv",
+          "s": "bucket Northstar_Rejestr",
+          "r": "io"
+        },
+        {
+          "t": "Sprawa istnieje?",
+          "r": "decyzja"
+        },
+        {
+          "t": "Właściciel?",
+          "r": "decyzja"
+        },
+        {
+          "t": "FOUND",
+          "s": "TICKET:INC-nnn",
+          "r": "io"
+        }
+      ],
+      "galezie": {
+        "z": [
+          1,
+          3,
+          4
+        ],
+        "elementy": [
+          {
+            "t": "ERROR",
+            "r": "io",
+            "etykieta": "tak"
+          },
+          {
+            "t": "NOT_FOUND",
+            "r": "io",
+            "etykieta": "nie"
+          },
+          {
+            "t": "FORBIDDEN",
+            "s": "bez danych",
+            "r": "io",
+            "etykieta": "nie"
+          }
+        ]
+      }
+    },
+    {
+      "id": "3A_publikacja",
+      "tytul": "Ćwiczenie 3A: od projektu Desktop do narzędzia agenta",
+      "podpis": "Agent nie wywołuje pliku XAML, tylko opublikowany proces.",
+      "rzad": [
+        {
+          "t": "Studio Desktop",
+          "s": "projekt",
+          "r": "krok"
+        },
+        {
+          "t": "Publish",
+          "s": "pakiet",
+          "r": "krok"
+        },
+        {
+          "t": "Orchestrator",
+          "s": "proces w folderze",
+          "r": "zasob"
+        },
+        {
+          "t": "SupportAgent",
+          "s": "Add tool",
+          "r": "agent"
+        },
+        {
+          "t": "Robot",
+          "s": "job",
+          "r": "narzedzie"
+        }
+      ]
+    },
+    {
+      "id": "3A_getservicestatus",
+      "tytul": "Ćwiczenie 3A: GetServiceStatus (Studio Web)",
+      "podpis": "Nieznana usługa to NOT_FOUND, nigdy pierwszy rekord z listy.",
+      "rzad": [
+        {
+          "t": "service",
+          "r": "io"
+        },
+        {
+          "t": "simulateFailure?",
+          "r": "decyzja"
+        },
+        {
+          "t": "Switch service",
+          "s": "portal, sales, billing",
+          "r": "krok"
+        },
+        {
+          "t": "Rekord statusu",
+          "s": "SERVICE:<usługa>",
+          "r": "io"
+        }
+      ],
+      "galezie": {
+        "z": [
+          1,
+          2
+        ],
+        "elementy": [
+          {
+            "t": "ERROR",
+            "r": "io",
+            "etykieta": "tak"
+          },
+          {
+            "t": "NOT_FOUND",
+            "s": "inna wartość",
+            "r": "io",
+            "etykieta": "default"
+          }
+        ]
+      }
+    },
+    {
+      "id": "3A_finalizecase",
+      "tytul": "FinalizeCase: zapis wyniku do rejestru (gotowiec)",
+      "podpis": "Wywołuje go proces Maestro, nie agent. Job zawsze kończy się poprawnie, wynik jest w out_status.",
+      "rzad": [
+        {
+          "t": "requestId, finalStatus",
+          "s": "+ agentResultJson",
+          "r": "io"
+        },
+        {
+          "t": "Wejście poprawne?",
+          "r": "decyzja"
+        },
+        {
+          "t": "Czytaj rejestr",
+          "s": "rejestr_spraw.csv",
+          "r": "zasob"
+        },
+        {
+          "t": "Sprawa już jest?",
+          "r": "decyzja"
+        },
+        {
+          "t": "Dopisz wiersz",
+          "s": "zapis pliku",
+          "r": "krok"
+        },
+        {
+          "t": "SAVED",
+          "s": "out_saved = True",
+          "r": "io"
+        }
+      ],
+      "galezie": {
+        "z": [
+          1,
+          3
+        ],
+        "elementy": [
+          {
+            "t": "INVALID_INPUT",
+            "s": "nic nie zapisuje",
+            "r": "io",
+            "etykieta": "nie"
+          },
+          {
+            "t": "ALREADY_PROCESSED",
+            "s": "plik bez zmian",
+            "r": "io",
+            "etykieta": "tak"
+          }
+        ]
+      }
+    },
+    {
+      "id": "3B_supportagent",
+      "tytul": "Ćwiczenie 3B: SupportAgent wybiera narzędzie",
+      "podpis": "Agent dobiera narzędzie do treści sprawy. Gdy brakuje danych, prosi o szczegóły.",
+      "rzad": [
+        {
+          "t": "Zgłoszenie",
+          "s": "5 wejść",
+          "r": "io"
+        },
+        {
+          "t": "SupportAgent",
+          "s": "prompt + opisy narzędzi",
+          "r": "agent"
+        },
+        {
+          "t": "Wynik JSON",
+          "s": "category, nextAction…",
+          "r": "io"
+        }
+      ],
+      "pod": {
+        "z": 1,
+        "elementy": [
+          {
+            "t": "GetServiceStatus",
+            "s": "„portal nie działa”",
+            "r": "narzedzie"
+          },
+          {
+            "t": "GetTicketStatus",
+            "s": "„co z INC-104?”",
+            "r": "narzedzie"
+          },
+          {
+            "t": "FindKnownIssue",
+            "s": "„eksport zwraca 500”",
+            "r": "narzedzie"
+          },
+          {
+            "t": "Brak narzędzia",
+            "s": "ASK_DETAILS",
+            "r": "io"
+          }
+        ]
+      }
+    },
+    {
+      "id": "4_wiedza",
+      "tytul": "Ćwiczenie 4: wiedza agenta (Context Grounding)",
+      "podpis": "Odpowiedź opiera się na znalezionym fragmencie KB albo trafia do eskalacji.",
+      "rzad": [
+        {
+          "t": "Portal_Northstar.txt",
+          "r": "io"
+        },
+        {
+          "t": "Storage Bucket",
+          "s": "Northstar_KB",
+          "r": "zasob"
+        },
+        {
+          "t": "Indeks",
+          "s": "ingestia",
+          "r": "zasob"
+        },
+        {
+          "t": "SupportAgent",
+          "s": "kontekst",
+          "r": "agent"
+        },
+        {
+          "t": "Odpowiedź",
+          "s": "sources: KB-xxx",
+          "r": "io"
+        }
+      ]
+    },
+    {
+      "id": "5_ewaluacja",
+      "tytul": "Ćwiczenie 5: ewaluacja i poprawa",
+      "podpis": "Jedna poprawka naraz, te same dane, porównanie v1 z v2. Zestaw końcowy tylko raz.",
+      "rzad": [
+        {
+          "t": "DEVELOPMENT",
+          "s": "REQ-001…010",
+          "r": "io"
+        },
+        {
+          "t": "Agent v1",
+          "r": "agent"
+        },
+        {
+          "t": "Evaluatory",
+          "s": "Exact, Judge, Trajectory",
+          "r": "ai"
+        },
+        {
+          "t": "Poprawka",
+          "s": "jedna rzecz",
+          "r": "krok"
+        },
+        {
+          "t": "Agent v2",
+          "r": "agent"
+        },
+        {
+          "t": "HOLDOUT",
+          "s": "raz, na końcu",
+          "r": "io"
+        }
+      ]
+    },
+    {
+      "id": "6A_przeglad",
+      "tytul": "Ćwiczenie 6A: przegląd człowieka (Maestro Flow, Quick Form)",
+      "podpis": "Proces sam decyduje o przeglądzie. Approve zatwierdza szkic, nie nadaje dostępu.",
+      "rzad": [
+        {
+          "t": "Manual trigger",
+          "s": "5 pól zgłoszenia",
+          "r": "io"
+        },
+        {
+          "t": "Wymaga przeglądu?",
+          "s": "Decision: „admin”",
+          "r": "decyzja"
+        },
+        {
+          "t": "Quick Form",
+          "s": "Human task",
+          "r": "czlowiek"
+        },
+        {
+          "t": "Approve",
+          "s": "reviewedDraft",
+          "r": "io"
+        },
+        {
+          "t": "End",
+          "r": "krok"
+        }
+      ],
+      "galezie": {
+        "z": [
+          1,
+          2
+        ],
+        "elementy": [
+          {
+            "t": "End",
+            "s": "bez przeglądu",
+            "r": "krok",
+            "etykieta": "Bez przeglądu"
+          },
+          {
+            "t": "Reject",
+            "s": "→ End",
+            "r": "io",
+            "etykieta": "Reject"
+          }
+        ]
+      }
+    },
+    {
+      "id": "6B_maestro",
+      "tytul": "Ćwiczenie 6B: Maestro Flow Northstar_Case",
+      "podpis": "Każda ścieżka kończy się zapisem w FinalizeCase. Proces, nie model, decyduje o przeglądzie człowieka.",
+      "rzad": [
+        {
+          "t": "Manual trigger",
+          "s": "5 pól zgłoszenia",
+          "r": "io"
+        },
+        {
+          "t": "SupportAgent",
+          "s": "Agent → Published",
+          "r": "agent"
+        },
+        {
+          "t": "Wymaga przeglądu?",
+          "s": "Decision",
+          "r": "decyzja"
+        },
+        {
+          "t": "Quick Form",
+          "s": "Approve / Reject",
+          "r": "czlowiek"
+        },
+        {
+          "t": "FinalizeCase",
+          "s": "po przeglądzie",
+          "r": "narzedzie"
+        }
+      ],
+      "galezie": {
+        "z": 2,
+        "elementy": [
+          {
+            "t": "FinalizeCase",
+            "s": "READY / NEEDS_DETAILS",
+            "r": "narzedzie",
+            "etykieta": "Bez przeglądu"
+          }
+        ]
+      }
+    },
+    {
+      "id": "7_helpdesk",
+      "tytul": "Ćwiczenie 7: NorthstarHelpdesk (agent konwersacyjny)",
+      "podpis": "Każda wiadomość to nowa tura. Brakujące dane agent zbiera w rozmowie.",
+      "rzad": [
+        {
+          "t": "Pracownik",
+          "s": "wiadomość w czacie",
+          "r": "czlowiek"
+        },
+        {
+          "t": "NorthstarHelpdesk",
+          "s": "historia + requesterEmail",
+          "r": "agent"
+        },
+        {
+          "t": "Odpowiedź",
+          "s": "tekst, bez schematu",
+          "r": "io"
+        }
+      ],
+      "pod": {
+        "z": 1,
+        "elementy": [
+          {
+            "t": "Northstar_KB",
+            "s": "procedury",
+            "r": "zasob"
+          },
+          {
+            "t": "GetServiceStatus",
+            "r": "narzedzie"
+          },
+          {
+            "t": "GetTicketStatus",
+            "s": "z Desktop",
+            "r": "narzedzie"
+          },
+          {
+            "t": "Eskalacja",
+            "s": "Action Center",
+            "r": "czlowiek"
+          }
+        ]
+      }
+    }
+  ]
+}

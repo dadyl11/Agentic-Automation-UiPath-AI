@@ -1,0 +1,26 @@
+[
+  {
+    "name": "ACCESS_REQUEST",
+    "description": "Prośba o nadanie, zmianę lub odebranie uprawnień. Ma pierwszeństwo w wiadomości zawierającej kilka próśb."
+  },
+  {
+    "name": "STATUS_REQUEST",
+    "description": "Pytanie o postęp konkretnego zgłoszenia. Nie oznacza pytania o bieżącą awarię usługi."
+  },
+  {
+    "name": "INCIDENT",
+    "description": "Zgłoszenie niedziałającej funkcji, błędu lub niedostępności."
+  },
+  {
+    "name": "HOW_TO",
+    "description": "Pytanie o sposób wykonania czynności, bez informacji o awarii."
+  },
+  {
+    "name": "FEATURE_REQUEST",
+    "description": "Propozycja nowej funkcji lub zmiany produktu."
+  },
+  {
+    "name": "OTHER",
+    "description": "Brak danych pozwalających rozpoznać sprawę lub temat poza zakresem."
+  }
+]

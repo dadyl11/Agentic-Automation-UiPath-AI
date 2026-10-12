@@ -1,0 +1,53 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "GetServiceStatus_Zapas",
+    "kind": "process",
+    "type": "process",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "isOverridable": true,
+    "dependencies": [
+      {
+        "kind": "Package",
+        "name": "GetServiceStatus_Zapas"
+      }
+    ],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "type": "Process",
+      "jobPriority": "Medium",
+      "jobRecording": "Disabled",
+      "remoteControlAccess": "None",
+      "environmentVariables": "",
+      "name": "GetServiceStatus_Zapas",
+      "description": "Northstar: narzędzie z pakietu importu prowadzącego",
+      "package": {
+        "name": "GetServiceStatus_Zapas",
+        "key": "GetServiceStatus_Zapas:1.0.0"
+      },
+      "packageName": "GetServiceStatus_Zapas",
+      "packageVersion": "1.0.0",
+      "hiddenForAttendedUser": false,
+      "alwaysRunning": false,
+      "autoStartProcess": false,
+      "targetFrameworkValue": "Portable",
+      "retentionAction": "Delete",
+      "retentionPeriod": 30,
+      "staleRetentionAction": "Delete",
+      "staleRetentionPeriod": 180,
+      "entryPoints": "[{\"UniqueId\":\"5ff0d42a-1fc1-4f6b-b0c7-cb4c50ea28f1\",\"Path\":\"Main.xaml\",\"DisplayName\":null,\"InputArguments\":\"{\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"properties\\\": {\\n    \\\"service\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    },\\n    \\\"simulateFailure\\\": {\\n      \\\"type\\\": \\\"boolean\\\"\\n    }\\n  },\\n  \\\"required\\\": []\\n}\",\"OutputArguments\":\"{\\n  \\\"type\\\": \\\"object\\\",\\n  \\\"properties\\\": {\\n    \\\"out_resultJson\\\": {\\n      \\\"type\\\": \\\"string\\\"\\n    }\\n  }\\n}\",\"Type\":1,\"TargetRuntime\":null,\"ContentRoot\":null,\"DataVariation\":null,\"Id\":6805390}]",
+      "tags": [],
+      "duration": 40,
+      "frequency": 500,
+      "quality": 100
+    },
+    "locks": [],
+    "key": "965a278d-b421-47f4-b12f-5091524c1a63",
+    "files": []
+  }
+}

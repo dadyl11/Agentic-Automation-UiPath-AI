@@ -1,0 +1,159 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ucas="clr-namespace:UiPath.Core.Activities.Storage;assembly=UiPath.System.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ticketId" Type="InArgument(x:String)" />
+    <x:Property Name="requesterEmail" Type="InArgument(x:String)" />
+    <x:Property Name="simulateFailure" Type="InArgument(x:Boolean)" />
+    <x:Property Name="out_status" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ticketStatus" Type="OutArgument(x:String)" />
+    <x:Property Name="out_lastUpdate" Type="OutArgument(x:String)" />
+    <x:Property Name="out_eta" Type="OutArgument(x:String)" />
+    <x:Property Name="out_sourceId" Type="OutArgument(x:String)" />
+    <x:Property Name="out_message" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="GetTicketStatus" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="Northstar_Rejestr" Name="strBucketName" />
+      <Variable x:TypeArguments="x:String" Default="sprawy.csv" Name="strFilePath" />
+      <Variable x:TypeArguments="x:String" Name="strNormalizedTicketId" />
+      <Variable x:TypeArguments="x:String" Name="strNormalizedEmail" />
+      <Variable x:TypeArguments="x:String" Name="strCsvText" />
+      <Variable x:TypeArguments="s:String[]" Name="arrLines" />
+      <Variable x:TypeArguments="s:String[]" Name="arrSprawa" />
+      <Variable x:TypeArguments="s:String[]" Name="arrCols" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="Wyczyść wynik">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_ticketStatus" To="[out_ticketStatus]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_lastUpdate" To="[out_lastUpdate]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_eta" To="[out_eta]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_sourceId" To="[out_sourceId]" Value="[&quot;&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_message" To="[out_message]" Value="[&quot;&quot;]" />
+</Sequence>
+    <If Condition="[simulateFailure]" DisplayName="1. simulateFailure?" sap2010:WorkflowViewState.IdRef="If_3">
+      <If.Then>
+        <Sequence DisplayName="Wynik ERROR">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;ERROR&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_message" To="[out_message]" Value="[&quot;Simulated timeout&quot;]" />
+</Sequence>
+      </If.Then>
+      <If.Else>
+        <TryCatch DisplayName="Wyszukanie sprawy z obsługą błędu" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch.Try>
+            <Sequence DisplayName="Try: wyszukanie sprawy" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <Assign x:TypeArguments="x:String" DisplayName="Normalizuj ticketId" sap2010:WorkflowViewState.IdRef="Assign`1_2" To="[strNormalizedTicketId]" Value="[If(ticketId, &quot;&quot;).Trim().ToUpperInvariant()]" />
+              <Assign x:TypeArguments="x:String" DisplayName="Normalizuj requesterEmail" sap2010:WorkflowViewState.IdRef="Assign`1_3" To="[strNormalizedEmail]" Value="[If(requesterEmail, &quot;&quot;).Trim().ToLowerInvariant()]" />
+              <ucas:ReadStorageText TimeoutMS="{x:Null}" DisplayName="2. Czytaj sprawy.csv" sap2010:WorkflowViewState.IdRef="ReadStorageText_1" Path="[strFilePath]" Result="[strCsvText]" StorageBucketName="[strBucketName]" />
+              <Assign x:TypeArguments="s:String[]" DisplayName="3. Linie pliku" sap2010:WorkflowViewState.IdRef="Assign`1_4" To="[arrLines]" Value="[strCsvText.Replace(vbCr, &quot;&quot;).Split({vbLf}, StringSplitOptions.RemoveEmptyEntries)]" />
+              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="4. Znajdź sprawę (pętla po wierszach)" Values="[arrLines.Skip(1)]">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="x:String">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:String" Name="strLine" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Body">
+                      <Assign x:TypeArguments="s:String[]" DisplayName="Kolumny wiersza" To="[arrCols]" Value="[strLine.Split(&quot;;&quot;c)]" />
+                      <If Condition="[arrCols(0).Trim().ToUpperInvariant() = strNormalizedTicketId]" DisplayName="To ta sprawa?">
+                        <If.Then>
+                          <Sequence DisplayName="Then: zapamiętaj i zakończ">
+                            <Assign x:TypeArguments="s:String[]" DisplayName="Zapamiętaj sprawę" To="[arrSprawa]" Value="[arrCols]" />
+                            <ui:Break DisplayName="Break" />
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+              </ui:ForEach>
+              <If Condition="[arrSprawa Is Nothing]" DisplayName="5. Sprawa istnieje?" sap2010:WorkflowViewState.IdRef="If_2">
+                <If.Then>
+                  <Sequence DisplayName="Wynik NOT_FOUND">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;NOT_FOUND&quot;]" />
+</Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else: sprawa znaleziona" sap2010:WorkflowViewState.IdRef="Sequence_1">
+                    <If Condition="[arrSprawa(1).Trim().ToLowerInvariant() = strNormalizedEmail]" DisplayName="6. Właściciel sprawy?" sap2010:WorkflowViewState.IdRef="If_1">
+                      <If.Then>
+                        <Sequence DisplayName="Wynik FOUND">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;FOUND&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_ticketStatus" To="[out_ticketStatus]" Value="[arrSprawa(2).Trim()]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_lastUpdate" To="[out_lastUpdate]" Value="[arrSprawa(4).Trim()]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_eta" To="[out_eta]" Value="[arrSprawa(5).Trim()]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_sourceId" To="[out_sourceId]" Value="[&quot;TICKET:&quot; &amp; arrSprawa(0).Trim()]" />
+</Sequence>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Wynik FORBIDDEN">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;FORBIDDEN&quot;]" />
+</Sequence>
+                      </If.Else>
+                    </If>
+                  </Sequence>
+                </If.Else>
+              </If>
+            </Sequence>
+          </TryCatch.Try>
+          <TryCatch.Catches>
+            <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+              <ActivityAction x:TypeArguments="s:Exception">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                </ActivityAction.Argument>
+                <Sequence DisplayName="Wynik ERROR odczytu">
+<Assign x:TypeArguments="x:String" DisplayName="out_status" To="[out_status]" Value="[&quot;ERROR&quot;]" />
+<Assign x:TypeArguments="x:String" DisplayName="out_message" To="[out_message]" Value="[&quot;Ticket lookup failed: &quot; &amp; exception.Message]" />
+</Sequence>
+              </ActivityAction>
+            </Catch>
+          </TryCatch.Catches>
+        </TryCatch>
+      </If.Else>
+    </If>
+    <ui:LogMessage DisplayName="Log wyniku" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;GetTicketStatus | &quot; &amp; out_status &amp; &quot; | &quot; &amp; out_sourceId &amp; &quot; | &quot; &amp; out_message]" />
+  </Sequence>
+</Activity>

@@ -1,0 +1,13 @@
+{
+  "requestId": "REQ-001",
+  "category": "INCIDENT",
+  "summary": "Eksport raportu sprzedaży za 60 dni kończy się błędem 500.",
+  "nextAction": "DRAFT_REPLY",
+  "humanReview": false,
+  "matchedIssueId": "KI-001",
+  "sources": [
+    "KI-001"
+  ],
+  "draftReply": "Opis pasuje do znanego problemu eksportu raportów za okres dłuższy niż 31 dni. Proszę podzielić raport na krótsze okresy. Nie mamy potwierdzonego terminu naprawy.",
+  "rationale": "Zgodne objawy i zakres dat z KI-001."
+}

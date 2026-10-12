@@ -1,0 +1,44 @@
+[
+  {
+    "id": "SIM-01",
+    "left": "Od wczoraj eksport raportu sprzedaży kończy się błędem 500. Wybrałam okres ostatnich 60 dni. Potrzebuję go na spotkanie.",
+    "right": "Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.",
+    "expected": "MATCH",
+    "note": "REQ-001 (DEVELOPMENT)"
+  },
+  {
+    "id": "SIM-02",
+    "left": "Przy eksporcie sprzedaży za cały kwartał dostaję komunikat Internal Server Error.",
+    "right": "Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.",
+    "expected": "MATCH",
+    "note": "Parafraza kalibracyjna spoza zestawu zgłoszeń"
+  },
+  {
+    "id": "SIM-03",
+    "left": "Raport sprzedaży za ostatni tydzień eksportuje się do CSV bez nagłówków kolumn. Błędu nie ma.",
+    "right": "Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.",
+    "expected": "NO_MATCH",
+    "note": "Podobny temat, inna przyczyna; tekst kalibracyjny spoza zestawu zgłoszeń"
+  },
+  {
+    "id": "SIM-04",
+    "left": "Czy możecie dodać ciemny motyw interfejsu? Wieczorem portal razi w oczy.",
+    "right": "Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.",
+    "expected": "NO_MATCH",
+    "note": "REQ-006 (DEVELOPMENT)"
+  },
+  {
+    "id": "SIM-05",
+    "left": "Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.",
+    "right": "Eksport raportu sprzedaży za okres dłuższy niż 31 dni kończy się błędem 500.",
+    "expected": "MATCH",
+    "note": "Tekst identyczny: górna granica skali"
+  },
+  {
+    "id": "SIM-06",
+    "left": "Zakładka Faktury jest pusta, a powinny być tam dokumenty. Nie widzę komunikatu błędu.",
+    "right": "Lista faktur jest pusta z powodu aktywnego filtra dat obejmującego wyłącznie bieżący dzień.",
+    "expected": "MATCH",
+    "note": "REQ-009 (DEVELOPMENT), kandydat KI-002 do weryfikacji"
+  }
+]

@@ -1,0 +1,243 @@
+PRZYPADKI DO EVALUATION SETU: Northstar DEVELOPMENT
+W Studio Web: agent SupportAgent → Evaluations → evaluation set "Northstar DEVELOPMENT" → dla każdego zgłoszenia dodaj przypadek i wklej Input, Expected output i Expected agent behavior.
+Plik jest generowany z dane/zgloszenia.json i testy/oczekiwane_wyniki.json (narzedzia_pakietu/make_tables.py).
+
+============================================================
+REQ-001
+============================================================
+Input:
+{
+  "requestId": "REQ-001",
+  "requesterEmail": "anna@example.com",
+  "subject": "Eksport sprzedaży",
+  "body": "Od wczoraj eksport raportu sprzedaży kończy się błędem 500. Wybrałam okres ostatnich 60 dni. Potrzebuję go na spotkanie.",
+  "service": "sales"
+}
+
+Expected output:
+{
+  "requestId": "REQ-001",
+  "category": "INCIDENT",
+  "nextAction": "DRAFT_REPLY",
+  "humanReview": false,
+  "matchedIssueId": "KI-001"
+}
+
+Expected agent behavior:
+Agent wywołuje FindKnownIssue, najwyżej raz. Nie wywołuje GetServiceStatus ani GetTicketStatus. Może sięgnąć do wiedzy Northstar_KB.
+
+============================================================
+REQ-002
+============================================================
+Input:
+{
+  "requestId": "REQ-002",
+  "requesterEmail": "bartek@example.com",
+  "subject": "Nie działa portal",
+  "body": "Portal nie otwiera się u nikogo w naszym zespole. Próbujemy od rana.",
+  "service": "portal"
+}
+
+Expected output:
+{
+  "requestId": "REQ-002",
+  "category": "INCIDENT",
+  "nextAction": "DRAFT_REPLY",
+  "humanReview": false,
+  "matchedIssueId": ""
+}
+
+Expected agent behavior:
+Agent wywołuje GetServiceStatus, najwyżej raz. Nie wywołuje FindKnownIssue ani GetTicketStatus. Może sięgnąć do wiedzy Northstar_KB.
+
+============================================================
+REQ-003
+============================================================
+Input:
+{
+  "requestId": "REQ-003",
+  "requesterEmail": "celina@example.com",
+  "subject": "Status sprawy",
+  "body": "Co z moim zgłoszeniem INC-104?",
+  "service": "portal"
+}
+
+Expected output:
+{
+  "requestId": "REQ-003",
+  "category": "STATUS_REQUEST",
+  "nextAction": "DRAFT_REPLY",
+  "humanReview": false,
+  "matchedIssueId": ""
+}
+
+Expected agent behavior:
+Agent wywołuje GetTicketStatus, najwyżej raz. Nie wywołuje FindKnownIssue ani GetServiceStatus. Może sięgnąć do wiedzy Northstar_KB.
+
+============================================================
+REQ-004
+============================================================
+Input:
+{
+  "requestId": "REQ-004",
+  "requesterEmail": "daniel@example.com",
+  "subject": "Dostęp administratora",
+  "body": "Proszę nadać mi uprawnienia administratora portalu. Kierownik mówił, że się zgadza.",
+  "service": "portal"
+}
+
+Expected output:
+{
+  "requestId": "REQ-004",
+  "category": "ACCESS_REQUEST",
+  "nextAction": "HUMAN_REVIEW",
+  "humanReview": true,
+  "matchedIssueId": ""
+}
+
+Expected agent behavior:
+Agent nie wywołuje żadnego narzędzia procesowego (FindKnownIssue, GetServiceStatus, GetTicketStatus). Może sięgnąć do wiedzy Northstar_KB.
+
+============================================================
+REQ-005
+============================================================
+Input:
+{
+  "requestId": "REQ-005",
+  "requesterEmail": "ewa@example.com",
+  "subject": "Jak pobrać faktury",
+  "body": "Gdzie znajdę możliwość pobrania faktur w portalu?",
+  "service": "billing"
+}
+
+Expected output:
+{
+  "requestId": "REQ-005",
+  "category": "HOW_TO",
+  "nextAction": "DRAFT_REPLY",
+  "humanReview": false,
+  "matchedIssueId": ""
+}
+
+Expected agent behavior:
+Agent nie wywołuje żadnego narzędzia procesowego (FindKnownIssue, GetServiceStatus, GetTicketStatus). Może sięgnąć do wiedzy Northstar_KB.
+
+============================================================
+REQ-006
+============================================================
+Input:
+{
+  "requestId": "REQ-006",
+  "requesterEmail": "filip@example.com",
+  "subject": "Tryb ciemny",
+  "body": "Czy możecie dodać ciemny motyw interfejsu? Wieczorem portal razi w oczy.",
+  "service": "portal"
+}
+
+Expected output:
+{
+  "requestId": "REQ-006",
+  "category": "FEATURE_REQUEST",
+  "nextAction": "DRAFT_REPLY",
+  "humanReview": false,
+  "matchedIssueId": ""
+}
+
+Expected agent behavior:
+Agent nie wywołuje żadnego narzędzia procesowego (FindKnownIssue, GetServiceStatus, GetTicketStatus). Może sięgnąć do wiedzy Northstar_KB.
+
+============================================================
+REQ-007
+============================================================
+Input:
+{
+  "requestId": "REQ-007",
+  "requesterEmail": "gosia@example.com",
+  "subject": "Problem",
+  "body": "Nie działa. Pomocy.",
+  "service": "unknown"
+}
+
+Expected output:
+{
+  "requestId": "REQ-007",
+  "category": "OTHER",
+  "nextAction": "ASK_DETAILS",
+  "humanReview": false,
+  "matchedIssueId": ""
+}
+
+Expected agent behavior:
+Agent nie wywołuje żadnego narzędzia procesowego (FindKnownIssue, GetServiceStatus, GetTicketStatus). Może sięgnąć do wiedzy Northstar_KB.
+
+============================================================
+REQ-008
+============================================================
+Input:
+{
+  "requestId": "REQ-008",
+  "requesterEmail": "hubert@example.com",
+  "subject": "Zmiana rachunku",
+  "body": "Jak zmienić rachunek bankowy dostawcy w module rozliczeń?",
+  "service": "billing"
+}
+
+Expected output:
+{
+  "requestId": "REQ-008",
+  "category": "HOW_TO",
+  "nextAction": "HUMAN_REVIEW",
+  "humanReview": true,
+  "matchedIssueId": ""
+}
+
+Expected agent behavior:
+Agent nie wywołuje żadnego narzędzia procesowego (FindKnownIssue, GetServiceStatus, GetTicketStatus). Może sięgnąć do wiedzy Northstar_KB.
+
+============================================================
+REQ-009
+============================================================
+Input:
+{
+  "requestId": "REQ-009",
+  "requesterEmail": "iza@example.com",
+  "subject": "Brak faktur",
+  "body": "Zakładka Faktury jest pusta, a powinny być tam dokumenty. Nie widzę komunikatu błędu.",
+  "service": "billing"
+}
+
+Expected output:
+{
+  "requestId": "REQ-009",
+  "category": "INCIDENT",
+  "nextAction": "DRAFT_REPLY",
+  "humanReview": false,
+  "matchedIssueId": "KI-002"
+}
+
+Expected agent behavior:
+Agent wywołuje FindKnownIssue, najwyżej raz. Nie wywołuje GetServiceStatus ani GetTicketStatus. Może sięgnąć do wiedzy Northstar_KB.
+
+============================================================
+REQ-010
+============================================================
+Input:
+{
+  "requestId": "REQ-010",
+  "requesterEmail": "jan@example.com",
+  "subject": "Nieznane zgłoszenie",
+  "body": "Proszę o status mojego zgłoszenia INC-999.",
+  "service": "portal"
+}
+
+Expected output:
+{
+  "requestId": "REQ-010",
+  "category": "STATUS_REQUEST",
+  "nextAction": "ASK_DETAILS",
+  "humanReview": false,
+  "matchedIssueId": ""
+}
+
+Expected agent behavior:
+Agent wywołuje GetTicketStatus, najwyżej raz. Nie wywołuje FindKnownIssue ani GetServiceStatus. Może sięgnąć do wiedzy Northstar_KB.

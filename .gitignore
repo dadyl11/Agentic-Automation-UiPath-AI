@@ -1,0 +1,27 @@
+# Archiwum starszych wersji (duże pliki, tylko do wglądu lokalnie)
+_archiwum/
+
+# Środowisko Pythona i cache
+.venv/
+__pycache__/
+*.pyc
+
+# Cache Studio UiPath w projektach
+.local/
+
+# Paczki budowane z projektów (uip rpa pack)
+pakiet_importu/dist/*.nupkg
+pakiet_importu/Roboty.zip
+
+# Zip dla uczestników (budowany z UiPath_AI_Warsztat)
+UiPath_AI_Pakiet_warsztatowy*.zip
+
+# Pliki tymczasowe Office i systemu
+~$*
+*.tmp
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Lokalne ustawienia debugowania Studio Web (per użytkownik)
+userProfile/

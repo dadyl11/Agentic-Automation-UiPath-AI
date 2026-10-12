@@ -1,0 +1,11 @@
+{
+  "fileName": "exact-category.json",
+  "id": "3077d4f3-d434-465d-b029-f0b074eceb6e",
+  "name": "Exact match: category",
+  "description": "Dokładna zgodność pola category z oczekiwanym wynikiem.",
+  "category": 0,
+  "type": 1,
+  "targetOutputKey": "category",
+  "createdAt": "2026-10-09T14:21:32.000Z",
+  "updatedAt": "2026-10-09T14:21:32.000Z"
+}

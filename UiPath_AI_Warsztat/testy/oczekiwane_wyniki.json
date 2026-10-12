@@ -1,0 +1,220 @@
+[
+  {
+    "testId": "T01",
+    "requestId": "REQ-001",
+    "expectedCategory": "INCIDENT",
+    "expectedNextAction": "DRAFT_REPLY",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "KI-001",
+    "requiredTools": [
+      "FindKnownIssue"
+    ],
+    "split": "DEVELOPMENT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T02",
+    "requestId": "REQ-002",
+    "expectedCategory": "INCIDENT",
+    "expectedNextAction": "DRAFT_REPLY",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [
+      "GetServiceStatus"
+    ],
+    "split": "DEVELOPMENT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T03",
+    "requestId": "REQ-003",
+    "expectedCategory": "STATUS_REQUEST",
+    "expectedNextAction": "DRAFT_REPLY",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [
+      "GetTicketStatus"
+    ],
+    "split": "DEVELOPMENT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T04",
+    "requestId": "REQ-004",
+    "expectedCategory": "ACCESS_REQUEST",
+    "expectedNextAction": "HUMAN_REVIEW",
+    "expectedHumanReview": true,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [],
+    "split": "DEVELOPMENT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T05",
+    "requestId": "REQ-005",
+    "expectedCategory": "HOW_TO",
+    "expectedNextAction": "DRAFT_REPLY",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [],
+    "split": "DEVELOPMENT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T06",
+    "requestId": "REQ-006",
+    "expectedCategory": "FEATURE_REQUEST",
+    "expectedNextAction": "DRAFT_REPLY",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [],
+    "split": "DEVELOPMENT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T07",
+    "requestId": "REQ-007",
+    "expectedCategory": "OTHER",
+    "expectedNextAction": "ASK_DETAILS",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [],
+    "split": "DEVELOPMENT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T08",
+    "requestId": "REQ-008",
+    "expectedCategory": "HOW_TO",
+    "expectedNextAction": "HUMAN_REVIEW",
+    "expectedHumanReview": true,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [],
+    "split": "DEVELOPMENT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T09",
+    "requestId": "REQ-009",
+    "expectedCategory": "INCIDENT",
+    "expectedNextAction": "DRAFT_REPLY",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "KI-002",
+    "requiredTools": [
+      "FindKnownIssue"
+    ],
+    "split": "DEVELOPMENT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T10",
+    "requestId": "REQ-010",
+    "expectedCategory": "STATUS_REQUEST",
+    "expectedNextAction": "ASK_DETAILS",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [
+      "GetTicketStatus"
+    ],
+    "split": "DEVELOPMENT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T11",
+    "requestId": "REQ-011",
+    "expectedCategory": "INCIDENT",
+    "expectedNextAction": "HUMAN_REVIEW",
+    "expectedHumanReview": true,
+    "expectedMatchedIssueId": "KI-001",
+    "requiredTools": [
+      "FindKnownIssue"
+    ],
+    "split": "HOLDOUT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T12",
+    "requestId": "REQ-012",
+    "expectedCategory": "INCIDENT",
+    "expectedNextAction": "DRAFT_REPLY",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [
+      "GetServiceStatus"
+    ],
+    "split": "HOLDOUT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T13",
+    "requestId": "REQ-013",
+    "expectedCategory": "INCIDENT",
+    "expectedNextAction": "HUMAN_REVIEW",
+    "expectedHumanReview": true,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [
+      "FindKnownIssue"
+    ],
+    "split": "HOLDOUT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T14",
+    "requestId": "REQ-014",
+    "expectedCategory": "HOW_TO",
+    "expectedNextAction": "DRAFT_REPLY",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [],
+    "split": "HOLDOUT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T15",
+    "requestId": "REQ-015",
+    "expectedCategory": "OTHER",
+    "expectedNextAction": "ASK_DETAILS",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [],
+    "split": "HOLDOUT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T16",
+    "requestId": "REQ-016",
+    "expectedCategory": "STATUS_REQUEST",
+    "expectedNextAction": "HUMAN_REVIEW",
+    "expectedHumanReview": true,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [
+      "GetTicketStatus"
+    ],
+    "split": "HOLDOUT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T17",
+    "requestId": "REQ-017",
+    "expectedCategory": "ACCESS_REQUEST",
+    "expectedNextAction": "HUMAN_REVIEW",
+    "expectedHumanReview": true,
+    "expectedMatchedIssueId": "",
+    "requiredTools": [],
+    "split": "HOLDOUT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  },
+  {
+    "testId": "T18",
+    "requestId": "REQ-018",
+    "expectedCategory": "INCIDENT",
+    "expectedNextAction": "DRAFT_REPLY",
+    "expectedHumanReview": false,
+    "expectedMatchedIssueId": "KI-001",
+    "requiredTools": [
+      "FindKnownIssue"
+    ],
+    "split": "HOLDOUT",
+    "note": "Ocena po pełnym ćwiczeniu 4; category porównuj dokładnie, tekst odpowiedzi znaczeniowo."
+  }
+]

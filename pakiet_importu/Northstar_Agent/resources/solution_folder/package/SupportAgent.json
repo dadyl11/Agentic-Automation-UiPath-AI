@@ -1,0 +1,23 @@
+{
+  "docVersion": "1.0.0",
+  "resource": {
+    "name": "SupportAgent",
+    "kind": "package",
+    "apiVersion": "orchestrator.uipath.com/v1",
+    "projectKey": "844a3556-2340-4129-a45e-6f265fbdbdf8",
+    "isOverridable": true,
+    "dependencies": [],
+    "runtimeDependencies": [],
+    "folders": [
+      {
+        "fullyQualifiedName": "solution_folder"
+      }
+    ],
+    "spec": {
+      "name": "SupportAgent"
+    },
+    "locks": [],
+    "key": "5f37631e-b8f9-4223-87c6-e74695af2c2e",
+    "files": []
+  }
+}
