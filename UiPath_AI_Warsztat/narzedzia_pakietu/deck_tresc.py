@@ -333,13 +333,56 @@ SLIDES = [
          notes='Około 2 min. Model nie zna procedur Northstar. Bez źródła może zgadywać układ portalu i brzmieć przekonująco. '
                'Zbierz odpowiedzi grupy, zanim pokażesz RAG.'),
 
-    dict(kind='flow', label=D2, title='Grounding i RAG',
-         rows=[('Przygotowanie', [('Dokumenty', 'procedury KB'), ('Fragmenty', 'podział tekstu'), ('Indeks', 'Context Grounding', 'dark')]),
-               ('Odpowiedź', [('Pytanie', None), ('Wyszukanie', 'pasujące fragmenty', 'ai'), ('Model + fragmenty', 'odpowiedź ze źródłem', 'ai')])],
+    dict(kind='cards', label=D2, title='Context Grounding: wiedza firmy dla AI', cols=3,
+         cards=[('Co to jest', 'Usługa RAG w AI Trust Layer. Zamienia dokumenty firmy w indeks, który przeszukują agenci, GenAI Activities i Autopilot.'),
+                ('Skąd dane', 'Storage Bucket w Orchestratorze albo konektor: SharePoint, OneDrive, Google Drive, Confluence, Dropbox.'),
+                ('Kto widzi', 'Indeks należy do folderu i dziedziczy jego uprawnienia. Bez dostępu do folderu nie ma dostępu do wiedzy.')],
+         font=16, takeaway='Agent nie „uczy się” dokumentów. Przy każdym pytaniu szuka w indeksie i dostaje fragmenty.',
+         notes='Około 3 min. Context Grounding to RAG jako usługa: UiPath zarządza bazą wektorową i embeddingami. Obsługiwane formaty w Automation Cloud: PDF, DOCX, TXT, CSV, XLSX, JSON, JPG, PNG. '
+               'Indeksy dziedziczą uprawnienia folderu, co chroni przed wyciekiem danych między działami. '
+               'Ważne rozróżnienie: model nie jest douczany na dokumentach; dokumenty trafiają do wywołania jako kontekst. Zmiana dokumentu wymaga synchronizacji indeksu, a nie trenowania modelu. '
+               'Na Cloud jest limit 10 indeksów na tenant (do zwiększenia na wniosek). Wyszukiwania są rozliczane z puli.',
+         sources=[DOCS + 'automation-cloud/automation-cloud/latest/admin-guide/about-context-grounding', DOCS + 'automation-cloud/automation-cloud/latest/admin-guide/context-grounding-faq']),
+
+    dict(kind='flow', label=D2, title='Jak powstaje indeks',
+         rows=[(None, [('Dokument', 'np. procedury w buckecie'), ('Ekstrakcja', 'tekst; Advanced: też obrazy'), ('Fragmenty', 'podział na kawałki'),
+                       ('Embeddingi', 'wektor znaczenia fragmentu', 'ai'), ('Indeks', 'baza wektorowa', 'dark')])],
+         row_h=1.45, font=15, legend='Zmieniłeś dokument? Indeks nie wie o tym, dopóki nie zrobisz Sync (Orchestrator) albo Update Context Grounding Index (Studio).',
+         takeaway='Ta sama idea co Semantic Similarity z ćwiczenia 2: podobne znaczenie, bliskie wektory.',
+         notes='Około 3 min. Tryb Basic wystarcza do zwykłego tekstu; Advanced dla plików z obrazami (skany, infografiki), droższy przez OCR. '
+               'Dokumentacja zaleca opisowe, wersjonowane nazwy indeksów (np. HR-Policies-2025-Q3), żeby łatwo wrócić do poprzedniej wersji i porównywać bazy wiedzy. '
+               'Dobry dokument do indeksu: jedna procedura to jeden wyraźny fragment z tytułem i identyfikatorem (u nas KB-001…KB-006). '
+               'W ćwiczeniu 4 po utworzeniu indeksu czekamy na zakończoną synchronizację.',
+         sources=[AG + 'best-practices-for-context-engineering', DOCS + 'automation-cloud/automation-cloud/latest/admin-guide/about-context-grounding']),
+
+    dict(kind='flow', label=D2, title='Grounding i RAG: jak powstaje odpowiedź',
+         rows=[(None, [('Pytanie', 'z zadania lub rozmowy'), ('Wyszukanie w indeksie', 'najbliższe fragmenty', 'ai'), ('Model + fragmenty', 'odpowiedź na ich podstawie', 'ai'), ('Odpowiedź', 'ze wskazaniem źródła', 'dark')])],
+         row_h=1.45,
          takeaway='Grounding: odpowiedź oparta na danych. RAG: dane znalezione przez wyszukiwanie.',
          notes='Około 4 min. Grounding to szersze pojęcie niż RAG: wklejony dokument też jest kontekstem, ale nie pokazuje wyszukiwania. '
                'Dodanie dokumentów nie gwarantuje znalezienia właściwego fragmentu. Najpierw sprawdzamy, co wyszukiwanie zwróciło, dopiero potem odpowiedź.',
          sources=[AG + 'agent-contexts']),
+
+    dict(kind='table', label=D2, title='Jak agent szuka w wiedzy', subtitle='Agent → Contexts → Add context → indeks; ustawienia w Properties',
+         rows=[['Strategia', 'Do czego', 'Uwagi'],
+               ['Semantic', 'Tekst: procedury, FAQ, polityki', 'Domyślna; używamy jej w ćwiczeniu 4'],
+               ['Structured', 'Dane tabelaryczne (CSV)', 'Preview'],
+               ['DeepRAG', 'Synteza z wielu dokumentów, cytaty', 'Tylko PDF'],
+               ['Batch Transform', 'Masowe przetwarzanie wierszy CSV', 'Wynik w zdefiniowanych kolumnach']],
+         widths=[2.7, 5.0, 4.0], teal_first=True,
+         takeaway='Opis kontekstu mówi agentowi, kiedy po niego sięgnąć, tak jak opis narzędzia.',
+         notes='Około 3 min. Przy kilku kontekstach opis jest kluczowy: agent wybiera źródło na jego podstawie. '
+               'Folder path prefix zawęża wyszukiwanie do części dokumentów; podfoldery wymagają dopisania /** do ścieżki. '
+               'Kontekstem agenta mogą być też encje Data Fabric (dane z systemu źródłowego bez indeksu), ale tego nie używamy.',
+         sources=[AG + 'agent-contexts']),
+
+    dict(kind='cards', label=D2, title='Dwa pokrętła: ile fragmentów i jak podobnych', cols=2,
+         cards=[('Liczba wyników', 'Więcej fragmentów: większa szansa, że właściwy jest wśród nich.\nAle: więcej tokenów, wyższy koszt, ryzyko „tokens exceeded”.'),
+                ('Próg trafności', 'Domyślnie 0. Wyższy odcina słabe fragmenty.\nAle: może odciąć też właściwy, a wtedy model zgaduje.', 'warn')],
+         font=17, takeaway='Zacznij od progu 0 i podnoś go tylko, gdy w trace widać śmieci.',
+         notes='Około 2 min. Dokumentacja wprost ostrzega: próg powyżej 0 może odfiltrować właściwe fragmenty i prowadzić do halucynacji. '
+               'To ta sama logika co próg w ćwiczeniu 2: koszt dwóch rodzajów pomyłki.',
+         sources=[AG + 'best-practices-for-context-engineering', AG + 'agent-contexts']),
 
     dict(kind='table', label=D2, title='Wiedza czy narzędzie?',
          rows=[['Pytanie', 'Źródło', 'Dlaczego'],
@@ -350,6 +393,18 @@ SLIDES = [
          takeaway='Procedura mówi, jak. Narzędzie mówi, jak jest teraz.',
          notes='Około 3 min. Nie wolno zastępować pustego terminu obietnicą. Dla prośby o zmianę rachunku bankowego baza przewiduje przekazanie do człowieka. '
                'Rozróżnij brak wiedzy od awarii wyszukiwania: w obu przypadkach agent nie uzupełnia braku wymyśloną odpowiedzią.'),
+
+    dict(kind='table', label=D2, title='Gdy agent nie korzysta z wiedzy', subtitle='Diagnoza w trace: jakie fragmenty wróciły z wyszukiwania',
+         rows=[['Objaw', 'Co widać w trace', 'Co zrobić'],
+               ['Brak odpowiedzi, choć dokument jest', 'Brak wyników', 'Sprawdź plik w indeksie, zrób Sync, obniż próg'],
+               ['Odpowiedź bez kluczowej informacji', 'Wyniki odcięte progiem', 'Obniż próg albo uzupełnij dokument'],
+               ['Nieaktualna odpowiedź', 'Stary fragment', 'Sync indeksu, ponowna publikacja agenta'],
+               ['Błąd „tokens exceeded”', 'Za dużo fragmentów', 'Zmniejsz liczbę wyników'],
+               ['Podaje KB-001, ale go nie użył', 'Fragmentu nie ma w wynikach', 'W ocenie sources musi zgadzać się z trace']],
+         widths=[3.7, 3.4, 4.6], teal_first=True, row_h=0.56, font=14,
+         notes='Około 3 min. Na podstawie tabeli „Common errors” z Best practices for context engineering, plus nasz przypadek: sam identyfikator w odpowiedzi nie dowodzi groundingu. '
+               'Dokumentacja zaleca ewaluacje z różnorodnymi pytaniami, przegląd pobranych fragmentów i testy regresji przy wymianie indeksu.',
+         sources=[AG + 'best-practices-for-context-engineering']),
 
     dict(kind='lab', label=D2, time='55 min · Studio Web', title='Ćwiczenie 4. Odpowiedź oparta na wiedzy',
          build='Bucket + indeks Context Grounding z dokumentem wiedzy, podłączony do SupportAgent',
