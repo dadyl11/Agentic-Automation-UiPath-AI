@@ -49,7 +49,7 @@
 | `testy/Klucz_testow.md` | te same oczekiwania jako tabela do wydruku |
 | `testy/karta_oceny.md` | szablon notatki z jednego przebiegu (runId, kategoria oczekiwana/otrzymana…) |
 | `testy/pary_podobienstwa.json`, `testy_techniczne.json`, `rozmowy_testowe.json` | źródła arkuszy testowych |
-| `UiPath_AI_Warsztaty_v4.pptx` | prezentacja z notatkami |
+| `UiPath_AI_Warsztaty.pptx` | prezentacja z notatkami (generowana z `narzedzia_pakietu/deck_tresc.py`) |
 | `Przyklady_promptow.html` | teoria prompt engineeringu do slajdów |
 | `UiPath_AI_Trust_Layer_przewodnik.html` | materiał uzupełniający o LLM Gateway, guardrails, własnych modelach |
 | `Preflight_uczestnika.html` | do wysłania uczestnikom przed szkoleniem |
