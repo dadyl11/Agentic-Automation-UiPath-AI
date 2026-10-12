@@ -612,7 +612,7 @@ Uruchamiaj **Debug** z wartościami argumentów z tabeli. Jako query przekazuj o
 | Pusty query | puste | sales | `ERROR`, „Missing query” | ☐ |
 | Awaria | dowolny | sales, simulateFailure = True | `ERROR`, „Simulated timeout” | ☐ |
 
-> **Opcjonalnie:** opublikuj narzędzie i wywołaj je z Intake_AI aktywnością Run Job dla category = INCIDENT; wynik odczytaj przez Deserialize JSON. W ćwiczeniu 3B to samo narzędzie wywoła agent.
+> **Opcjonalnie:** opublikuj narzędzie i wywołaj je z Intake_AI aktywnością Run Job dla category = INCIDENT; w Input arguments przekaż query i service, a w **Output arguments** zapisz wynik do zmiennej i odczytaj pola out_status, out_issueId i out_workaround (narzędzie zwraca osobne argumenty, nie JSON). W ćwiczeniu 3B to samo narzędzie wywoła agent.
 
 > **Gdy brakuje czasu:** użyj gotowego narzędzia **FindKnownIssue_Zapas** z pakietu importu prowadzącego (ta sama logika, T=0,6), a kalibrację na parach potraktuj jako eksperyment.
 

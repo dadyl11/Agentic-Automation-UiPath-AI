@@ -2366,9 +2366,11 @@ weryfikacji)</td>
 </table></div>
 <blockquote>
 <p><strong>Opcjonalnie:</strong> opublikuj narzędzie i wywołaj je z
-Intake_AI aktywnością Run Job dla category = INCIDENT; wynik odczytaj
-przez Deserialize JSON. W ćwiczeniu 3B to samo narzędzie wywoła
-agent.</p>
+Intake_AI aktywnością Run Job dla category = INCIDENT; w Input arguments
+przekaż query i service, a w <strong>Output arguments</strong> zapisz
+wynik do zmiennej i odczytaj pola out_status, out_issueId i
+out_workaround (narzędzie zwraca osobne argumenty, nie JSON). W
+ćwiczeniu 3B to samo narzędzie wywoła agent.</p>
 </blockquote>
 <blockquote>
 <p><strong>Gdy brakuje czasu:</strong> użyj gotowego narzędzia
