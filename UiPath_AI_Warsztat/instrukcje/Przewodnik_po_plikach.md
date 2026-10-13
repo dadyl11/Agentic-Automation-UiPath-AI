@@ -22,6 +22,7 @@
 | 1A | `Prompty_Northstar.txt` → „Podsumowanie zgłoszenia” | prompt Content Generation |
 | 1B | `Prompty_Northstar.txt` → „Kategorie”, arkusz *Kategorie* | 6 kategorii z opisami do Categorize |
 | 1B | arkusz *Przyklady_cwiczeniowe* | DEMO-01 (kilka próśb w jednej wiadomości) |
+| 1A, 1B | `zapas/Intake_AI_Zapas` (cross-platform), `zapas/Intake_AI_Zapas_Windows` | gotowe rozwiązanie, gdy ćwiczenie nie wychodzi; w obu aktywnościach GenAI wybierz własne połączenie |
 | 2 | `dane/known_issues_do_wklejenia.txt` | wartość domyślna zmiennej lstKnownIssues (4 znane problemy jako wyrażenie VB) |
 | 2 | arkusz *Znane_problemy* | te same problemy w czytelnej tabeli |
 | 2 | arkusz *Pary_podobienstwa* | 6 par SIM do kalibracji progu T (kolumna na wynik score) |
