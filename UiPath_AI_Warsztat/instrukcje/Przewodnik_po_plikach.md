@@ -39,7 +39,8 @@
 | 5 | `testy/Northstar_testy.xlsx` | *Oczekiwane_wyniki* (kolumny na wynik v1 i v2), *Testy_techniczne* |
 | 6B | arkusz *Testy_techniczne*, *Przyklady_cwiczeniowe* | TECH-01…06 (awaria, zły JSON, powtórzenie, odrzucenie) i DEMO-03 |
 | 7 | `Prompty_Northstar.txt` → „NorthstarHelpdesk: prompt systemowy” | prompt agenta konwersacyjnego |
-| 7 | `testy/Northstar_testy.xlsx`, arkusz *Rozmowy_testowe* | 8 rozmów CHAT-01…08 |
+| 7 | `testy/Northstar_testy.xlsx`, arkusz *Rozmowy_testowe* | 11 rozmów CHAT-01…11 (CHAT-09…11 dla rozszerzenia z regulaminem i katalogiem) |
+| 7 (rozszerzenie) | `baza_wiedzy/helpdesk/Regulamin_wsparcia.pdf`, `Katalog_uslug.csv` | dwa dodatkowe źródła wiedzy NorthstarHelpdesk, osobne buckety i indeksy (generuje je `narzedzia_pakietu/make_wiedza.py`) |
 | 7 | `testy/rubryka_zadania_koncowego.md` | ocena prezentacji zespołów na koniec dnia 2 |
 
 ## Pliki prowadzącego (nie dla uczestników w trakcie ćwiczeń)

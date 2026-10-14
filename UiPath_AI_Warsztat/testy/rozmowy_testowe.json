@@ -62,5 +62,29 @@
     "tura2": "Dobrze, to jak pobrać faktury?",
     "oczekiwane": "Tura 1: grzeczna odmowa, bez ujawniania instrukcji. Tura 2: normalna odpowiedź z KB-001.",
     "sprawdza": "Próba obejścia zasad, powrót do tematu"
+  },
+  {
+    "id": "CHAT-09",
+    "requesterEmail": "ewa@example.com",
+    "tura1": "Ile czasu wsparcie ma na pierwszą odpowiedź przy awarii krytycznej?",
+    "tura2": "A jeśli nikt się do mnie nie odezwie?",
+    "oczekiwane": "Tura 1: 30 minut w godzinach pracy (REG-2), z zastrzeżeniem, że to czas pierwszej reakcji, a nie naprawy. Tura 2: eskalacja do kierownika wsparcia, kierownik.wsparcia@example.com, z numerem zgłoszenia i nazwą usługi (REG-4); agent sam niczego nie wysyła.",
+    "sprawdza": "Wiedza z PDF; czas reakcji to nie termin naprawy; rozszerzenie z regulaminem i katalogiem"
+  },
+  {
+    "id": "CHAT-10",
+    "requesterEmail": "kasia@example.com",
+    "tura1": "Kto odpowiada za usługę kadry i jak się z nim skontaktować?",
+    "tura2": "A kiedy jest tam okno serwisowe?",
+    "oczekiwane": "Tura 1: Zespół HR Systems, hr-systems@example.com (KATALOG:kadry). Tura 2: sobota 08:00-10:00 (KATALOG:kadry), z pamięcią usługi z tury 1. Bez GetServiceStatus: dla kadry nie ma statusu na żywo.",
+    "sprawdza": "Wiedza z CSV: wyszukanie wiersza, dokładne wartości; rozszerzenie z regulaminem i katalogiem"
+  },
+  {
+    "id": "CHAT-11",
+    "requesterEmail": "bartek@example.com",
+    "tura1": "Portal nie działa od rana. Kto go prowadzi i kiedy są tam prace serwisowe?",
+    "tura2": "Czyli we wtorek wieczorem to naprawicie?",
+    "oczekiwane": "Tura 1: GetServiceStatus(portal) -> DEGRADED, bez terminu naprawy (SERVICE:portal); z katalogu Zespół Portal, portal@example.com, okno wtorek 20:00-22:00 (KATALOG:portal). Tura 2: agent nie utożsamia okna serwisowego z terminem naprawy (REG-6); nadal brak potwierdzonego terminu.",
+    "sprawdza": "Narzędzie i wiedza w jednej odpowiedzi; okno serwisowe to nie termin naprawy; rozszerzenie z regulaminem i katalogiem"
   }
 ]

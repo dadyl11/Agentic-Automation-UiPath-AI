@@ -13,7 +13,7 @@ OUT = os.path.join(os.path.dirname(ROOT), 'UiPath_AI_Pakiet_warsztatowy.zip')
 PREFIX = os.path.basename(ROOT)
 
 EXCLUDE_DIRS = {'screeny', '__pycache__', 'png'}
-EXCLUDE_FILES = {'CLAUDE.md', 'make_deck.py', 'deck_tresc.py', 'make_diagrams.py', 'make_tables.py', 'make_zip.py', 'diagramy.json'}
+EXCLUDE_FILES = {'CLAUDE.md', 'make_deck.py', 'deck_tresc.py', 'make_diagrams.py', 'make_tables.py', 'make_wiedza.py', 'make_zip.py', 'diagramy.json'}
 EXCLUDE_PREFIX = ('~$', '.')
 
 files = []

@@ -95,7 +95,7 @@ Jesteś uprzejmym asystentem. Odpowiadaj po polsku, w jednym lub dwóch zdaniach
 
 - [ ] Agent odpowiedział na obie wiadomości i w drugiej pamiętał imię. Jeśli pojawił się komunikat o licencji lub braku dostępu, zapisz go dosłownie.
 
-> **Uwaga:** według dokumentacji licencji miesięczna pula dla agentów konwersacyjnych nie jest dostępna w Community. Wynik tego punktu decyduje, czy ćwiczenie 7 robisz samodzielnie, w parze czy jako pokaz.
+> **Uwaga:** wynik tego punktu decyduje, czy ćwiczenie 7 robisz samodzielnie, w parze czy jako pokaz.
 
 ## 8. Odeślij prowadzącemu
 

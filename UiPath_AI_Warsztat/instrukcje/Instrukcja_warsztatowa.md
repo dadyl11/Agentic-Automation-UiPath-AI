@@ -28,7 +28,7 @@ Pakiet warsztatowy dla Kamila Miśko • 2 dni • wersja 1.2 • 8 październik
 | 2 | 6A Zatwierdzanie przez człowieka | Maestro Flow z formularzem przeglądu (Quick Form) | 45 min |
 | 2 | 6B Orkiestracja w Maestro | Proces Northstar_Case | 75 min |
 | 2 | 6C Studio Desktop wywołuje agenta | Intake_Agent w **Studio Desktop**: Run Job, robot czeka albo się zawiesza | 30 min |
-| 2 | 7 Agent konwersacyjny | Czat NorthstarHelpdesk na tej samej wiedzy i narzędziach | 60 min |
+| 2 | 7 Agent konwersacyjny | Czat NorthstarHelpdesk na tej samej wiedzy i narzędziach; rozszerzenia: PDF i CSV jako wiedza, eskalacja, Teams i Slack | 60 min (rozszerzenia dodatkowo) |
 
 ## Jak czytać pakiet
 
@@ -180,8 +180,8 @@ Każdy uczestnik pracuje we własnej organizacji UiPath Community. Prowadzący n
 | Symulacje narzędzi i wejść w ewaluacji (preview) | Nie używamy; awarie wymuszamy parametrem simulateFailure |
 | Action Center, zadanie człowieka Quick Form w Maestro Flow | Hands-on; preflight potwierdza utworzenie i zakończenie zadania. Własna Action App jest rozszerzeniem |
 | Maestro Flow (Orchestrate) | Hands-on |
-| Agent konwersacyjny (Debug chat, ewaluacje z rozmów) | Hands-on, jeśli preflight punkt 7 przejdzie; inaczej praca w parze lub pokaz. Dokumentacja licencji: pula dla agentów konwersacyjnych niedostępna w Community |
-| Kanały czatu (Instance Management, Assistant, Teams, Slack, iFrame) | Instance Management pokaz prowadzącego; pozostałe tylko omówienie |
+| Agent konwersacyjny (Debug chat, ewaluacje z rozmów) | Hands-on, jeśli preflight punkt 7 przejdzie; inaczej praca w parze lub pokaz |
+| Kanały czatu (Instance Management, Assistant, Teams, Slack, iFrame) | Instance Management pokaz prowadzącego; Teams i Slack: rozszerzenie na końcu ćwiczenia 7 (pokaz lub chętni); pozostałe tylko omówienie |
 | Guardrails produktowe, AI Trust Layer, audyt | Pokaz konfiguracji bez zapisu: na Community kreator guardrails (agent i narzędzia) jest widoczny, ale zapis blokuje komunikat „not entitled”. Gotowe guardrails wymagają planu Enterprise |
 | Funkcje preview (pamięć agenta, Agents in Flow itp.) | Najwyżej wzmianka o kierunku rozwoju |
 
@@ -1501,7 +1501,7 @@ Drugi test pokazuje słabość reguły słownej: prośba o dostęp bez słowa �
 | Rozszerzenie | Kiedy |
 |---|---|
 | Własna Action App (węzeł **Human task → Action App**) | Formularz ma mieć własny układ, walidację lub logikę. Kontrakt pól i outcomes zostaje ten sam; dochodzi publikacja i wdrożenie aplikacji |
-| Escalation w samym agencie | Porównanie: agent prosi o pomoc w trakcie analizy kontra proces zatwierdza gotową rekomendację. Nie dubluj obu mechanizmów bez uzasadnienia |
+| Escalation w samym agencie | Porównanie: agent prosi o pomoc w trakcie analizy kontra proces zatwierdza gotową rekomendację. Wymaga Action App (Quick Form się nie nadaje); kroki w rozszerzeniu na końcu ćwiczenia 7. Nie dubluj obu mechanizmów bez uzasadnienia |
 
 # Ćwiczenie 6B | Orkiestracja w Maestro Flow
 
@@ -1808,9 +1808,9 @@ Ten sam SupportAgent, którego w 6B wywołuje Maestro Flow, może wywołać zwyk
 | **Cel** | Zbudować czat dla pracowników na tej samej wiedzy i narzędziach co SupportAgent i zobaczyć, czym rozmowa różni się od zadania wykonywanego w tle. |
 | **Czas** | 60 min |
 | **Co budujesz** | Agent konwersacyjny **NorthstarHelpdesk**: indeks wiedzy + GetServiceStatus + GetTicketStatus, test w Debug chat, zestaw ewaluacyjny z rozmów |
-| **Pliki** | `Prompty_Northstar.txt`, sekcja „NorthstarHelpdesk: prompt systemowy” · `testy/rozmowy_testowe.json` (arkusz *Rozmowy_testowe* w `testy/Northstar_testy.xlsx`) |
+| **Pliki** | `Prompty_Northstar.txt`, sekcja „NorthstarHelpdesk: prompt systemowy” · `testy/rozmowy_testowe.json` (arkusz *Rozmowy_testowe* w `testy/Northstar_testy.xlsx`) · rozszerzenie wiedzy: `baza_wiedzy/helpdesk/` |
 
-> **Uwaga:** zanim zaczniesz, sprawdź wynik punktu 7 preflightu. Według dokumentacji licencji miesięczna pula dla agentów konwersacyjnych nie jest dostępna w Community. Jeśli w Twojej organizacji agent konwersacyjny nie działa, pracuj w parze albo śledź pokaz prowadzącego i wykonaj kroki 5–6 jako ćwiczenie projektowe.
+> **Uwaga:** zanim zaczniesz, sprawdź wynik punktu 7 preflightu. Jeśli w Twojej organizacji agent konwersacyjny nie działa, pracuj w parze albo śledź pokaz prowadzącego i wykonaj kroki 5–6 jako ćwiczenie projektowe.
 
 ## Agent autonomiczny a konwersacyjny
 
@@ -1868,6 +1868,8 @@ Agent konwersacyjny nie ma promptu użytkownika: każda wiadomość z czatu jest
 
 > **Uwaga:** FindKnownIssue zostaw tylko w SupportAgent. Mniej narzędzi w czacie to krótszy czas odpowiedzi i mniej pomyłek przy wyborze.
 
+> **Uwaga:** ten krok używa indeksu Northstar_KB z ćwiczenia 4 (6 procedur). Rozszerzenie „Więcej wiedzy: PDF i CSV” na końcu ćwiczenia dodaje regulamin i katalog usług w osobnych indeksach; wtedy zmień też prompt systemowy na wersję z tego pakietu.
+
 ## Krok 5. Testuj w Debug chat
 
 1. Kliknij **Debug** (przy pierwszym uruchomieniu **Save & Debug**) i wpisz wartość requesterEmail z rozmowy.
@@ -1896,7 +1898,7 @@ Przeprowadź rozmowy CHAT-06 … CHAT-08.
 
 **Opcjonalnie, potwierdzenie narzędzia:** w ustawieniach guardrails narzędzia GetTicketStatus zaznacz **Require confirmation**. Powtórz CHAT-04: przed wywołaniem pojawi się prośba o zatwierdzenie, odrzucenie albo zmianę argumentów. Porównaj to z węzłem Quick Form z ćwiczenia 6A. Na Community guardrails narzędzia mogą być niedostępne do zapisu (komunikat „not entitled”, jak w demonstracji 6B); wtedy pomiń ten punkt.
 
-**Opcjonalnie, eskalacja:** dodaj **Add escalation** do Action Center z kryterium z sekcji PRZEKAZANIE w prompcie i powtórz CHAT-06. Eskalacja wstrzymuje rozmowę do czasu decyzji.
+**Opcjonalnie, eskalacja:** dodaj eskalację do Action Center według rozszerzenia „Eskalacja w samym agencie” na końcu tego ćwiczenia i powtórz CHAT-06.
 
 > **Uwaga:** agent konwersacyjny obsługuje tylko własne, deterministyczne guardrails na narzędziach. Wbudowanych detektorów (PII, prompt injection) z demonstracji na końcu ćwiczenia 6B tu nie ma; dlatego ochrona w CHAT-07 i CHAT-08 opiera się na prompcie i trzeba ją testować.
 
@@ -1920,7 +1922,7 @@ Przeprowadź rozmowy CHAT-06 … CHAT-08.
 2. **Deploy package** do folderu z szablonem maszyny serverless i robotem unattended; **Activate immediately** → **Deploy**.
 3. Otwórz agenta w **Instance Management** i przeprowadź CHAT-01 jako zwykły użytkownik.
 
-Inne kanały po wdrożeniu: Assistant, Microsoft Teams, Slack, osadzenie iFrame (np. w UiPath Apps), własna aplikacja przez TypeScript SDK. W warsztacie ich nie konfigurujemy.
+Inne kanały po wdrożeniu: Assistant, Microsoft Teams, Slack, osadzenie iFrame (np. w UiPath Apps), własna aplikacja przez TypeScript SDK. Teams i Slack opisuje rozszerzenie na końcu tego ćwiczenia.
 
 ## Punkt kontrolny
 
@@ -1930,6 +1932,163 @@ Inne kanały po wdrożeniu: Assistant, Microsoft Teams, Slack, osadzenie iFrame 
 - [ ] Zestaw ewaluacyjny ma co najmniej jeden test wieloturowy.
 
 > **Do omówienia:** kiedy w firmie lepszy jest czat, a kiedy agent w tle? Czat: pytania pracowników, samoobsługa, prowadzenie przez kroki. Agent autonomiczny w procesie: zgłoszenia z poczty lub formularza, wynik do dalszej automatyzacji, zatwierdzenie w procesie. Rozmowy z przekazywaniem między kilkoma agentami i automatyzacjami w tle buduje się w Maestro Flow (poza zakresem warsztatu).
+
+## Rozszerzenie: więcej wiedzy, PDF i CSV (dla chętnych lub pokaz)
+
+Agent z jedną procedurą-plikiem TXT to najprostszy przypadek. W firmie wiedza leży w PDF-ach, tabelach i katalogach. To rozszerzenie dodaje dwa źródła o różnym charakterze i pokazuje, czego każde nadaje się do wyszukiwania.
+
+| Źródło | Co zawiera | Jak agent go szuka |
+|---|---|---|
+| `Regulamin_wsparcia.pdf` | Godziny pracy, priorytety i czasy pierwszej reakcji, eskalacja (sekcje REG-1 … REG-6) | **Semantic**: po znaczeniu pytania |
+| `Katalog_uslug.csv` | 8 usług: zespół, kontakt, okno serwisowe | **Structured (Preview)**: jak tabela. Jeśli tryb nie działa na Twoim tenancie, użyj **Semantic** |
+
+Pliki: `baza_wiedzy/helpdesk/Regulamin_wsparcia.pdf` i `baza_wiedzy/helpdesk/Katalog_uslug.csv`.
+
+Katalog usług (zawartość pliku):
+
+{{plik: baza_wiedzy/helpdesk/Katalog_uslug.csv}}
+
+> **Uwaga (Community):** oba pliki przechodzą na ekstrakcji **Basic**. PDF ma zaznaczalny tekst i nie ma tabel ani obrazów. Skany, tabele w PDF i obrazy wymagają Advanced, które na Community kończy się błędem 402 (jak w kroku 2 ćwiczenia 4). Dokładne wartości (godziny, adresy, okna serwisowe) podaje tylko ten dokument; narzędzia ich nie znają.
+
+**Krok 1. Dwa nowe buckety i indeksy** (Orchestrator, folder **Shared**; opis jak w ćwiczeniu 4, kroki 1–2):
+
+| Bucket | Plik | Indeks | Ingestion |
+|---|---|---|---|
+| Northstar_Regulamin | `Regulamin_wsparcia.pdf` | Northstar_Regulamin | Basic |
+| Northstar_Katalog | `Katalog_uslug.csv` | Northstar_Katalog | Basic |
+
+Nie dokładaj tych plików do bucketu Northstar_KB: ten indeks obsługuje też SupportAgenta, a nowe dokumenty zmieniłyby jego odpowiedzi i wyniki ćwiczeń 4 i 5. Użyj **Sync** i poczekaj na zakończenie ingestii obu indeksów.
+
+> **Uwaga:** dokumentacja nie potwierdza, że jeden indeks da się podzielić na dwa konteksty (PDF osobno, CSV osobno) przez filtr folderu lub rozszerzenia. Dlatego są dwa indeksy.
+
+**Krok 2. Dodaj konteksty do NorthstarHelpdesk** (**Definition → Contexts → Add context**; zostaw Northstar_KB z kroku 4):
+
+| Indeks | Description | Search Strategy |
+|---|---|---|
+| Northstar_Regulamin | Regulamin wsparcia: godziny pracy, priorytety i czas pierwszej reakcji, eskalacja, awarie krytyczne. Sekcje oznaczone REG. | Semantic |
+| Northstar_Katalog | Katalog usług Northstar: dla każdej usługi zespół odpowiedzialny, kontakt e-mail i okno serwisowe. Tabela, kolumna usluga jest kluczem. | Structured (Preview), a gdy niedostępny: Semantic |
+
+Opisy są ważne: przy kilku źródłach pomagają agentowi dobrać wiedzę do pytania.
+
+**Krok 3. Zmień prompt systemowy.** Zastąp prompt z kroku 3 wersją z `Prompty_Northstar.txt` (ta sama sekcja „NorthstarHelpdesk: prompt systemowy”). Zmiany względem poprzedniej wersji:
+
+| Miejsce | Co się zmieniło |
+|---|---|
+| ZAKRES | Czwarty obszar: zasady wsparcia i katalog usług |
+| Reguły 1–2 | Źródła: KB, REG, KATALOG; wartości dokładnie jak w dokumencie, bez zaokrąglania |
+| Reguła 3 | GetServiceStatus tylko dla portal, sales, billing; dla pozostałych usług z katalogu: zespół i kontakt, bez statusu na żywo |
+| Reguła 8 | Czas pierwszej reakcji i okno serwisowe to nie termin naprawy |
+| PRZEKAZANIE | Można podać kontakt zespołu albo adres eskalacji z regulaminu (REG-4), ale agent niczego nie wysyła |
+| FORMAT | Przykłady źródeł: (REG-2), (KATALOG:kadry) |
+
+**Krok 4. Przetestuj trzy rozmowy** (Debug chat, jak w kroku 5):
+
+| Rozmowa | Oczekiwane zachowanie | Źródło | OK? |
+|---|---|---|---|
+| CHAT-09 | Tura 1: 30 minut w godzinach pracy, to czas reakcji, nie naprawy. Tura 2: eskalacja do kierownik.wsparcia@example.com z numerem zgłoszenia i nazwą usługi | REG-2, REG-4 | ☐ |
+| CHAT-10 | Tura 1: Zespół HR Systems, hr-systems@example.com. Tura 2: sobota 08:00-10:00, bez GetServiceStatus | KATALOG:kadry | ☐ |
+| CHAT-11 | GetServiceStatus(portal): DEGRADED, brak terminu; katalog: Zespół Portal, wtorek 20:00-22:00. Tura 2: okno serwisowe nie jest terminem naprawy | SERVICE:portal, KATALOG:portal, REG-6 | ☐ |
+
+W historii wykonania sprawdź, **z którego indeksu** pochodzi odpowiedź i czy agent nie wywołał narzędzia tam, gdzie wystarcza dokument.
+
+{{tabela: testy/rozmowy_testowe.json | CHAT-09,CHAT-10,CHAT-11 | id,requesterEmail,tura1,tura2}}
+
+**Krok 5. Porównaj wiedzę z narzędziem.** Zapytaj: „Czy kadry działają?”. Katalog podaje zespół i okno serwisowe, ale nie stan usługi. Agent ma to powiedzieć, a nie zgadywać. To różnica między wiedzą (opisy, zasady, kontakty) i narzędziem (bieżący stan, dokładne dane sprawy).
+
+> **Do omówienia:** gdzie w Waszej firmie leży wiedza, którą agent mógłby przeszukiwać (SharePoint, OneDrive, Google Drive, Confluence przez Integration Service), i które z tych danych powinny raczej trafić do narzędzia? Wyszukiwanie semantyczne nie znajdzie wiersza po dokładnym kluczu tak pewnie jak narzędzie.
+
+> **Uwaga:** tryb Structured jest w Preview, a w dokumentacji brak szczegółów (separator, kodowanie). Plik jest w UTF-8 z przecinkiem i nagłówkiem w pierwszym wierszu. Potwierdź zachowanie na swoim tenancie i zapisz, który tryb zadziałał.
+
+## Rozszerzenie: eskalacja w samym agencie (dla chętnych lub pokaz)
+
+Agent może sam poprosić człowieka o decyzję w trakcie rozmowy. Eskalacja działa na **Action App**: węzła Quick Form z Maestro Flow nie da się wskazać jako eskalacji. Różnica wobec ćwiczeń 6A i 6B:
+
+| | Eskalacja w agencie | Quick Form w Maestro |
+|---|---|---|
+| Kto decyduje o zatrzymaniu | Agent, według promptu eskalacji (niedeterministycznie) | Proces, zawsze w tym samym miejscu |
+| Formularz | Action App, opublikowana i wdrożona | Definiowany na węźle, bez aplikacji |
+| Rozmowa w czasie oczekiwania | Zablokowana do decyzji człowieka | Nie dotyczy |
+
+Gdy zatrzymanie ma być obowiązkowe i powtarzalne, zakończ agenta i użyj Action App poza nim, w procesie (ćwiczenie 6B).
+
+**Krok 1. Action App** (Studio Web: **New project → App**, potem **+ → Action**):
+
+| Element | Wartość |
+|---|---|
+| Input properties | `summary` (String, obowiązkowa): streszczenie sprawy dla człowieka |
+| Output properties | `comment` (String): odpowiedź człowieka dla agenta |
+| Outcomes | `Approve` i `Reject` |
+| Przyciski | Dla każdego outcome: **Events → Clicked on → Define automation → Submit Action** z odpowiednim Outcome i nadpisaniem `comment` wartością pola tekstowego |
+
+Opublikuj aplikację (**Publish**) i wdróż ją w Orchestratorze (**Automations → Apps → Deploy app**), w folderze na robocie serverless. Agent widzi tylko wdrożone aplikacje.
+
+> **Uwaga:** agenty nie obsługują typu In/Out w schemacie akcji. Używaj osobno właściwości Input i Output.
+
+**Krok 2. Eskalacja w agencie** (NorthstarHelpdesk, **Definition → Escalations → Add escalation**):
+
+| Pole | Wartość |
+|---|---|
+| App | Wdrożona aplikacja |
+| Prompt | Kryterium z sekcji PRZEKAZANIE w prompcie, np. „Użyj, gdy rozmówca prosi o nadanie dostępu albo narzędzie zwróciło ERROR” |
+| Assignments | **User** i Twój adres |
+| Inputs | `summary`, z opisem: „Jedno zdanie: o co prosi rozmówca i co już ustalono” |
+| Outcome behavior | `Approve` → **Continue** (agent wznawia z odpowiedzią człowieka); `Reject` → **End** |
+
+W prompcie systemowym możesz dopisać wprost, kiedy agent ma użyć eskalacji. Prompt „NorthstarHelpdesk: prompt systemowy” już mówi: „Jeżeli agent ma skonfigurowaną eskalację, użyj jej”.
+
+**Krok 3. Test:** powtórz CHAT-06 w Debug chat.
+
+| Sprawdzenie | OK? |
+|---|---|
+| Agent tworzy zadanie w Action Center zamiast samodzielnie rozstrzygać | ☐ |
+| Rozmowa czeka na decyzję (chat jest zablokowany) | ☐ |
+| Po Approve agent wznawia i odpowiada z uwzględnieniem `comment` | ☐ |
+| Po Reject rozmowa się kończy | ☐ |
+
+> **Uwaga:** panele i nazwy pól potwierdź na swoim tenancie. Agent decyduje o eskalacji na podstawie promptów, więc test powtórz kilka razy.
+
+## Rozszerzenie: agent w Teams albo Slacku (dla chętnych lub pokaz)
+
+Wdrożony agent konwersacyjny można udostępnić w komunikatorze przez aplikację **UiPath Autopilot**. Czat można też zbudować w Maestro Flow (Preview), gdy potrzebny jest routing, przekazanie między agentami albo równoległe automatyzacje. W komunikatorze oba rodzaje wyglądają tak samo, jako „Conversational Agent”, a kroki wdrożenia są te same.
+
+**Wymagania:**
+
+| Co | Szczegóły |
+|---|---|
+| Folder w Orchestratorze | Szablon maszyny **Serverless** (zawsze). Robot unattended tylko przy dostępie anonimowym; Teams i Slack logują użytkownika |
+| Agent | Opublikowany i wdrożony (krok 8), działa w Instance Management |
+| Uprawnienia | Użytkownik ma dostęp do folderu z agentem |
+| Komunikator | Administrator może dodać aplikację UiPath Autopilot do workspace (Slack) lub tenanta (Teams) |
+
+**Slack:**
+
+1. Administrator otwiera [instalację UiPath Autopilot](https://cloud.uipath.com/pluginecosystem_/slack/install) i wybiera **Allow**. Aplikacja trafia do całego workspace.
+2. W Slacku otwórz aplikację **UiPath Autopilot** → zakładka **Home** → **Sign in** (organizacja Automation Cloud).
+3. W razie potrzeby **Configure Tenant**. Z listy **Pick an agent from the list below** wybierz agenta.
+4. Zakładka **Chat**: wyślij CHAT-01.
+
+Komendy: `/autopilot help`, `/autopilot logout`, `/autopilot change-tenant`.
+
+**Microsoft Teams:**
+
+1. Administrator: **Apps** → wyszukaj **UiPath Autopilot** → **Add**.
+2. Otwórz aplikację w panelu bocznym i wyślij dowolną wiadomość. Rozpocznie się logowanie do organizacji i tenanta.
+3. Wybierz agenta z listy **Conversational agents** i pisz.
+4. Pełne funkcje daje zakładka **Agent Chat (Preview)** → **Sign in** → tenant → agent.
+5. Nowy kontekst rozmowy w czacie: wyślij „New chat”.
+
+**Co działa w którym kanale:**
+
+| Funkcja | Slack | Teams: czat | Teams: Agent Chat (Preview) |
+|---|---|---|---|
+| Wejścia konwersacji (requesterEmail) | ❌ | ❌ | ✅ |
+| Potwierdzenia wywołań narzędzi | ❌ | ❌ | ✅ |
+| Cytaty z wiedzy | ✅ | ✅ | ✅ |
+| Pliki | ✅ | ✅ | ✅ |
+
+> **Uwaga:** requesterEmail jest wejściem konwersacji (krok 2), a Slack i czat w Teams go nie przekazują. GetTicketStatus nie dostanie wtedy adresu, więc agent odmówi albo dopyta o e-mail (jak w CHAT-05). Na pokazie w komunikatorze używaj pytań o wiedzę i status usługi (CHAT-01, CHAT-02). Pytania o sprawę pokaż w Instance Management albo w zakładce Agent Chat w Teams.
+
+> **Uwaga:** agent w komunikatorze obsługuje tylko wiadomości prywatne przez aplikację UiPath Autopilot. Kanały i wzmianki @ nie działają. Instalacja aplikacji w firmowym workspace lub tenancie Microsoft 365 zwykle wymaga zgody administratora; do pokazu użyj osobnego, darmowego workspace Slack.
 
 # Rozszerzenia | Poczta, Excel i scenariusze klienta
 
@@ -2016,10 +2175,11 @@ Dwa dni po ok. 6 godzin pracy merytorycznej, przerwy osobno. Czasy to plan, nie 
 | 3A | Studio Desktop nie zalogowane do Community, brak połączenia GenAI lub publikacji | Logowanie w prawym górnym rogu Studio; GetTicketStatus zbudowany w Studio Web w rozwiązaniu (ten sam kontrakt) albo GetTicketStatus_Zapas |
 | 3B | Agent nie widzi narzędzia | Lista z sekcji Diagnoza; ostatecznie wspólny agent prowadzącego |
 | 4 | Indeks niedostępny | Wiedza wklejona do promptu (wariant awaryjny ćw. 4) |
+| 7 (wiedza) | Tryb Structured dla CSV niedostępny albo zwraca puste wyniki | Zmień Search Strategy katalogu na Semantic; potwierdź, że ingestia indeksu Northstar_Katalog zakończyła się powodzeniem |
 | 5 | Pula consumables wyczerpana | Tylko Exact match; tekst oceniany ręcznie wg „Rubryki oceny szkicu”; praca w parze |
 | 6A | Zadanie Quick Form się nie tworzy lub nie da się go zakończyć | Praca w parze z działającym kontem albo pokaz prowadzącego |
 | 6B | Maestro niedostępne | Diagram na papierze z trzema zakończeniami i pokaz |
-| 7 | Agent konwersacyjny niedostępny w Community | Praca w parze z działającym kontem albo pokaz prowadzącego; kroki 5–6 jako ćwiczenie projektowe na papierze |
+| 7 | Agent konwersacyjny nie działa w organizacji uczestnika | Praca w parze z działającym kontem albo pokaz prowadzącego; kroki 5–6 jako ćwiczenie projektowe na papierze |
 
 ## Przygotowanie samodzielne przed warsztatem
 

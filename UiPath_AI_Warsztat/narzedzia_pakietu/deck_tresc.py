@@ -562,8 +562,8 @@ SLIDES = [
          takeaway='Oba mogą używać narzędzi, wiedzy i eskalacji do człowieka.',
          notes='Około 4 min. Różnica dotyczy sposobu interakcji, nie dostępu do narzędzi ani poziomu bezpieczeństwa. '
                'Agenta konwersacyjnego nie nazywamy chatbotem FAQ: może wykonywać działania przez narzędzia. '
-               'requesterEmail ustawia aplikacja, nigdy nie bierzemy go z treści rozmowy. Licencje: pula agentów konwersacyjnych może być niedostępna na Community; '
-               'wtedy praca w parach lub pokaz (preflight, punkt 7).',
+               'requesterEmail ustawia aplikacja, nigdy nie bierzemy go z treści rozmowy.'
+               'Gdy czat nie działa u uczestnika: praca w parach lub pokaz (preflight, punkt 7).',
          sources=[AG + 'conversational-agents', AG + 'conversational-agents-deployment', AG + 'agent-vs-workflows']),
 
     dict(kind='chat', label=D2, title='Rozmowa uzupełnia brakujące dane',

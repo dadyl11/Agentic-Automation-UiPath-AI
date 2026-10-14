@@ -1,0 +1,9 @@
+usluga,nazwa,zespol,kontakt,okno_serwisowe
+portal,Portal Northstar,Zespół Portal,portal@example.com,wtorek 20:00-22:00
+sales,Usługa raportowa,Zespół Raportowanie,raporty@example.com,środa 20:00-22:00
+billing,Rozliczenia,Zespół Rozliczenia,rozliczenia@example.com,piątek 20:00-22:00
+archiwum,Archiwum dokumentów,Zespół Archiwum,archiwum@example.com,sobota 06:00-08:00
+kadry,Kadry i płace,Zespół HR Systems,hr-systems@example.com,sobota 08:00-10:00
+poczta,Poczta i kalendarz,Zespół Infrastruktura,infrastruktura@example.com,niedziela 02:00-04:00
+vpn,Dostęp zdalny (VPN),Zespół Infrastruktura,infrastruktura@example.com,niedziela 04:00-06:00
+drukarki,Drukarki i skanery,Zespół Stanowiska,stanowiska@example.com,czwartek 18:00-19:00
